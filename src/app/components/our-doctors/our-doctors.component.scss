@@ -1,127 +1,338 @@
 @use "sass:color";
 
+// Healthcare Colors for TB Clinic
+$primary-purple: #393362;     // Trust & professionalism
+$accent-coral: #f15f64;       // Warmth & care
+$primary-dark-color: #06457F; // Medical authority
+$light-bg: #f7f9fc;           // Calming background
+$white: #ffffff;
+$dark-text: #2c2c2c;
+$medium-text: #555;
+$gray-border: #e5e5e5;
+$card-bg: #fafbfc;
 
-/* Variables from your theme */
-$primary-red: #B71C1C;
-$primary-dark-color: #06457F;
-$light-bg: #F5F5F5;
-$white: #FFFFFF;
-$dark-text: #333;
-$gray-border: #E0E0E0;
-$cmo-bg: #f8f8f8; // Light background for CMO section
+// Font stack
+$font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
+/* =======================================================
+   DOCTORS PAGE
+   ======================================================= */
 .doctors-page-content {
-  font-family: 'Arial', sans-serif;
+  font-family: $font-family;
+  background: linear-gradient(180deg, $white 0%, $light-bg 100%);
+  min-height: 100vh;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 40px;
 }
 
-/* --- CMO Hero Section --- */
+/* =======================================================
+   CMO HERO SECTION
+   ======================================================= */
 .cmo-hero-section {
-  background-color: $cmo-bg;
-  padding: 50px 0;
-  margin-bottom: 40px;
-  border-bottom: 5px solid $primary-red;
+  background: linear-gradient(135deg, $light-bg 0%, #f0f2f8 100%);
+  padding: 60px 0;
+  margin-bottom: 60px;
+  border-bottom: 4px solid $primary-purple;
+  position: relative;
+  
+  // Decorative element
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 80% 20%, rgba(57, 51, 98, 0.03), transparent 60%),
+      radial-gradient(circle at 20% 80%, rgba(241, 95, 100, 0.03), transparent 60%);
+    pointer-events: none;
+  }
+  
+  .container {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 .cmo-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 40px;
+  gap: 50px;
   background: $white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  padding: 45px 40px;
+  border-radius: 20px;
+  box-shadow: 
+    0 10px 40px rgba(57, 51, 98, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(57, 51, 98, 0.08);
+  position: relative;
+  overflow: hidden;
+  
+  // Decorative accent
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(180deg, $primary-purple, $accent-coral);
+  }
 }
 
 .cmo-text-content {
   flex: 3;
   text-align: left;
+  
   .cmo-designation {
-    color: $primary-red;
-    font-size: 1.1em;
-    font-weight: 600;
-    margin-bottom: 5px;
-  }
-  .cmo-name {
-    font-size: 2.5em;
-    color: $primary-dark-color;
-    margin: 0 0 10px;
-  }
-  .cmo-experience {
-    font-size: 1.3em;
-    color: $dark-text;
-    font-weight: 500;
-    margin-bottom: 15px;
-    .highlight {
-      color: $primary-red;
-      font-weight: 700;
+    color: $accent-coral;
+    font-size: 1em;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    
+    &::before {
+      content: '👨‍⚕️';
+      font-size: 1.2em;
     }
   }
-  .cmo-bio {
-    color: #666;
-    line-height: 1.6;
+  
+  .cmo-name {
+    font-size: 2.8em;
+    color: $primary-purple;
+    margin: 0 0 15px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+  }
+  
+  .cmo-experience {
+    font-size: 1.25em;
+    color: $dark-text;
+    font-weight: 500;
     margin-bottom: 20px;
+    line-height: 1.5;
+    
+    .highlight {
+      color: $accent-coral;
+      font-weight: 700;
+      font-size: 1.1em;
+    }
+  }
+  
+  .cmo-bio {
+    color: $medium-text;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    font-size: 1.05em;
+    max-width: 650px;
   }
 }
 
 .cmo-photo-placeholder {
-  flex: 1;
-  max-width: 180px;
-  height: 180px;
+  // Remove all flex properties
+  width: 200px;
+  height: 200px;
+  min-width: 200px;  // Prevent shrinking
+  min-height: 200px; // Prevent shrinking
   border-radius: 50%;
-  background-color: $primary-dark-color;
+  background: linear-gradient(135deg, $primary-purple 0%, color.adjust($primary-purple, $lightness: -10%) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 
+    0 8px 30px rgba(57, 51, 98, 0.25),
+    inset 0 2px 10px rgba(255, 255, 255, 0.1);
+  border: 4px solid $white;
+  position: relative;
+  flex-shrink: 0;
+  
+  // Keep aspect ratio
+  aspect-ratio: 1 / 1;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background: $accent-coral;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(241, 95, 100, 0.3);
+  }
+  
   .initials {
-    font-size: 4em;
+    font-size: 4.5em;
     color: $white;
-    font-weight: bold;
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
+// Mobile fixes
+@media (max-width: 767px) {
+  .cmo-photo-placeholder {
+    width: 140px;
+    height: 140px;
+    min-width: 140px;
+    min-height: 140px;
+    
+    .initials {
+      font-size: 3.2em;
+    }
+    
+    &::before {
+      width: 24px;
+      height: 24px;
+      top: 6px;
+      right: 6px;
+    }
+  }
+}
+
+@media (max-width: 479px) {
+  .cmo-photo-placeholder {
+    width: 120px;
+    height: 120px;
+    min-width: 120px;
+    min-height: 120px;
+    
+    .initials {
+      font-size: 2.8em;
+    }
+  }
+}
+
+@media (max-width: 374px) {
+  .cmo-photo-placeholder {
+    width: 110px;
+    height: 110px;
+    min-width: 110px;
+    min-height: 110px;
+    
+    .initials {
+      font-size: 2.5em;
+    }
   }
 }
 
 .btn-appointment {
-  background-color: $primary-red;
+  background: linear-gradient(135deg, $accent-coral 0%, color.adjust($accent-coral, $lightness: -8%) 100%);
   color: $white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 15px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(241, 95, 100, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+  
+  &::after {
+    content: '→';
+    margin-left: 8px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+  
   &:hover {
-    // background-color: darken($primary-red, 10%);
-    background-color: color.adjust($primary-red, $lightness: -10%);
+    background: linear-gradient(135deg, color.adjust($accent-coral, $lightness: -5%) 0%, color.adjust($accent-coral, $lightness: -12%) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(241, 95, 100, 0.4);
+    
+    &::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    &::after {
+      transform: translateX(4px);
+    }
+  }
+  
+  &:active {
+    transform: translateY(0);
   }
 }
 
-/* --- Main Section Title (Adjusted Margin) --- */
+/* =======================================================
+   SECTION TITLE
+   ======================================================= */
 .section-title {
   text-align: center;
-  font-size: 1.8em;
+  font-size: 2.2em;
   font-weight: 700;
-  color: $primary-dark-color;
-  margin-bottom: 40px; /* Increased margin since the search card is gone */
+  color: $primary-purple;
+  margin-bottom: 50px;
   padding-top: 20px;
+  letter-spacing: -0.5px;
+  position: relative;
+  
+  &::before {
+    content: '🩺';
+    display: block;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  &::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, $primary-purple, $accent-coral);
+    margin: 15px auto 0;
+    border-radius: 2px;
+  }
 }
 
-/* --- Sub Doctors Grid --- */
+/* =======================================================
+   DOCTORS GRID
+   ======================================================= */
 .sub-doctors-grid-wrapper {
-  padding: 20px 0 60px;
+  padding: 20px 0 80px;
 }
 
 .sub-title {
-  font-size: 1.5em;
-  color: $primary-red;
-  font-weight: 600;
+  font-size: 1.6em;
+  color: $primary-purple;
+  font-weight: 700;
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  letter-spacing: -0.3px;
+  
+  &::before {
+    content: '👨‍⚕️👩‍⚕️ ';
+    margin-right: 10px;
+  }
 }
 
 .doctors-grid {
@@ -132,92 +343,466 @@ $cmo-bg: #f8f8f8; // Light background for CMO section
 
 .doctor-card {
   background: $white;
-  padding: 25px 15px;
-  border-radius: 10px;
+  padding: 30px 20px;
+  border-radius: 16px;
   text-align: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s;
+  box-shadow: 0 4px 16px rgba(57, 51, 98, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(57, 51, 98, 0.06);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $primary-purple, $accent-coral);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+  
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  }
-}
-
-.doctor-photo-placeholder {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: $light-bg;
-  border: 4px solid $primary-red;
-  margin: 0 auto 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  .initials {
-    font-size: 2.5em;
-    color: $primary-dark-color;
-    font-weight: bold;
-  }
-}
-
-.doctor-name {
-  font-size: 1.3em;
-  color: $primary-dark-color;
-  margin: 0 0 5px;
-}
-
-.doctor-designation {
-  font-size: 0.9em;
-  color: #666;
-  margin-bottom: 10px;
-}
-
-.experience-tag {
-  display: inline-block;
-  background-color: $primary-red;
-  color: $white;
-  font-size: 0.8em;
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-weight: 600;
-  margin-bottom: 15px;
-}
-
-.btn-view-profile {
-  display: inline-block;
-  color: $primary-red;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9em;
-  padding: 5px 10px;
-  border: 1px solid $primary-red;
-  border-radius: 5px;
-  transition: all 0.3s;
-  &:hover {
-    background-color: $primary-red;
-    color: $white;
-  }
-}
-
-/* --- Responsive Adjustments --- */
-@media (max-width: 992px) {
-  .doctors-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
-  }
-  .cmo-card {
-    flex-direction: column;
-    text-align: center;
-    .cmo-text-content {
-      text-align: center;
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(57, 51, 98, 0.15);
+    border-color: rgba(57, 51, 98, 0.12);
+    
+    &::before {
+      transform: scaleX(1);
+    }
+    
+    .doctor-photo-placeholder {
+      transform: scale(1.08);
+      box-shadow: 0 8px 20px rgba(57, 51, 98, 0.2);
     }
   }
 }
 
-@media (max-width: 576px) {
+.doctor-photo-placeholder {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, $light-bg 0%, #e8eaf0 100%);
+  border: 4px solid $accent-coral;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(241, 95, 100, 0.2);
+  
+  .initials {
+    font-size: 2.8em;
+    color: $primary-purple;
+    font-weight: 700;
+  }
+}
+
+.doctor-name {
+  font-size: 1.35em;
+  color: $primary-purple;
+  margin: 0 0 8px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  line-height: 1.3;
+}
+
+.doctor-designation {
+  font-size: 0.95em;
+  color: $medium-text;
+  margin-bottom: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+  
+  &::before {
+    content: '🩺 ';
+    margin-right: 4px;
+  }
+}
+
+.experience-tag {
+  display: inline-block;
+  background: linear-gradient(135deg, $accent-coral 0%, color.adjust($accent-coral, $lightness: -8%) 100%);
+  color: $white;
+  font-size: 0.85em;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 8px rgba(241, 95, 100, 0.25);
+}
+
+.btn-view-profile {
+  display: inline-block;
+  color: $primary-purple;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95em;
+  padding: 10px 20px;
+  border: 2px solid $primary-purple;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  
+  &:hover {
+    background: linear-gradient(135deg, $primary-purple 0%, color.adjust($primary-purple, $lightness: -8%) 100%);
+    color: $white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(57, 51, 98, 0.25);
+  }
+}
+
+/* =======================================================
+   TABLET RESPONSIVENESS (768px - 991px)
+   ======================================================= */
+@media (max-width: 991px) {
+  .container {
+    padding: 0 30px;
+  }
+  
+  .cmo-hero-section {
+    padding: 50px 0;
+    margin-bottom: 50px;
+  }
+  
+  .cmo-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 35px;
+    padding: 40px 35px;
+    
+    .cmo-text-content {
+      text-align: center;
+      
+      .cmo-name {
+        font-size: 2.4em;
+      }
+      
+      .cmo-designation {
+        justify-content: center;
+      }
+      
+      .cmo-bio {
+        max-width: 100%;
+      }
+    }
+  }
+  
+  .cmo-photo-placeholder {
+    max-width: 180px;
+    height: 180px;
+    
+    .initials {
+      font-size: 4em;
+    }
+  }
+  
   .doctors-grid {
-    grid-template-columns: 1fr; /* 1 column on small screens */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
   }
-  .cmo-name {
-    font-size: 2em !important;
+  
+  .section-title {
+    font-size: 2em;
   }
-}   
+  
+  .sub-title {
+    font-size: 1.5em;
+  }
+}
+
+/* =======================================================
+   MOBILE RESPONSIVENESS (480px - 767px)
+   ======================================================= */
+@media (max-width: 767px) {
+  .container {
+    padding: 0 20px;
+  }
+  
+  .cmo-hero-section {
+    padding: 40px 0;
+    margin-bottom: 40px;
+  }
+  
+  .cmo-card {
+    padding: 35px 25px;
+    gap: 30px;
+    border-radius: 16px;
+    
+    .cmo-text-content {
+      .cmo-designation {
+        font-size: 0.9em;
+        
+        &::before {
+          font-size: 1em;
+        }
+      }
+      
+      .cmo-name {
+        font-size: 2em;
+      }
+      
+      .cmo-experience {
+        font-size: 1.1em;
+        
+        .highlight {
+          font-size: 1em;
+        }
+      }
+      
+      .cmo-bio {
+        font-size: 1em;
+        line-height: 1.7;
+        margin-bottom: 20px;
+      }
+    }
+  }
+  
+  .cmo-photo-placeholder {
+    max-width: 150px;
+    height: 150px;
+    
+    .initials {
+      font-size: 3.5em;
+    }
+  }
+  
+  .btn-appointment {
+    padding: 12px 28px;
+    font-size: 14px;
+  }
+  
+  .section-title {
+    font-size: 1.8em;
+    margin-bottom: 40px;
+    
+    &::before {
+      font-size: 1.3em;
+    }
+  }
+  
+  .doctors-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .doctor-card {
+    padding: 25px 18px;
+  }
+  
+  .doctor-photo-placeholder {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 18px;
+    
+    .initials {
+      font-size: 2.5em;
+    }
+  }
+  
+  .doctor-name {
+    font-size: 1.2em;
+  }
+  
+  .doctor-designation {
+    font-size: 0.9em;
+  }
+  
+  .sub-title {
+    font-size: 1.35em;
+    margin-bottom: 30px;
+  }
+}
+
+/* =======================================================
+   SMALL MOBILE (375px - 479px)
+   ======================================================= */
+@media (max-width: 479px) {
+  .container {
+    padding: 0 16px;
+  }
+  
+  .cmo-hero-section {
+    padding: 35px 0;
+  }
+  
+  .cmo-card {
+    padding: 30px 20px;
+    gap: 25px;
+    
+    .cmo-text-content {
+      .cmo-designation {
+        font-size: 0.85em;
+      }
+      
+      .cmo-name {
+        font-size: 1.8em;
+      }
+      
+      .cmo-experience {
+        font-size: 1.05em;
+      }
+      
+      .cmo-bio {
+        font-size: 0.95em;
+      }
+    }
+  }
+  
+  .cmo-photo-placeholder {
+    max-width: 130px;
+    height: 130px;
+    
+    .initials {
+      font-size: 3em;
+    }
+  }
+  
+  .btn-appointment {
+    padding: 11px 24px;
+    font-size: 13px;
+  }
+  
+  .section-title {
+    font-size: 1.6em;
+  }
+  
+  .sub-title {
+    font-size: 1.25em;
+  }
+  
+  .doctors-grid {
+    gap: 18px;
+  }
+  
+  .doctor-card {
+    padding: 22px 16px;
+    border-radius: 14px;
+  }
+  
+  .doctor-photo-placeholder {
+    width: 90px;
+    height: 90px;
+    
+    .initials {
+      font-size: 2.3em;
+    }
+  }
+  
+  .doctor-name {
+    font-size: 1.15em;
+  }
+  
+  .doctor-designation {
+    font-size: 0.85em;
+  }
+}
+
+/* =======================================================
+   EXTRA SMALL MOBILE (<= 374px)
+   ======================================================= */
+@media (max-width: 374px) {
+  .container {
+    padding: 0 12px;
+  }
+  
+  .cmo-card {
+    padding: 25px 18px;
+    
+    .cmo-text-content {
+      .cmo-name {
+        font-size: 1.6em;
+      }
+      
+      .cmo-experience {
+        font-size: 1em;
+      }
+      
+      .cmo-bio {
+        font-size: 0.9em;
+      }
+    }
+  }
+  
+  .cmo-photo-placeholder {
+    max-width: 120px;
+    height: 120px;
+    
+    .initials {
+      font-size: 2.8em;
+    }
+  }
+  
+  .btn-appointment {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+  
+  .section-title {
+    font-size: 1.5em;
+  }
+  
+  .sub-title {
+    font-size: 1.2em;
+  }
+  
+  .doctors-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .doctor-card {
+    padding: 20px 15px;
+  }
+  
+  .doctor-photo-placeholder {
+    width: 85px;
+    height: 85px;
+    
+    .initials {
+      font-size: 2.2em;
+    }
+  }
+  
+  .doctor-name {
+    font-size: 1.1em;
+  }
+}
+
+/* =======================================================
+   ACCESSIBILITY
+   ======================================================= */
+.btn-appointment:focus,
+.btn-view-profile:focus,
+.doctor-card:focus {
+  outline: 3px solid rgba(57, 51, 98, 0.5);
+  outline-offset: 3px;
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .cmo-card,
+  .doctor-card {
+    border: 3px solid $primary-purple;
+  }
+  
+  .btn-appointment,
+  .btn-view-profile {
+    border-width: 3px;
+  }
+}
+

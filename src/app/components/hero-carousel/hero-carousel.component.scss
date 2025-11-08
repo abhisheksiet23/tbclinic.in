@@ -415,6 +415,11 @@ $font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica 
 
 /* Small Mobile (375px - 479px) */
 @media (min-width: 375px) and (max-width: 479px) {
+
+  .hero-background{
+    height: 525px;
+  }
+
   .top-marquee {
     font-size: 12px;
     padding: 8px 0;
@@ -422,6 +427,7 @@ $font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica 
   
   .hero-section {
     min-height: 100vh;
+    margin-bottom: -200px;
     padding: 20px 0;
   }
   
@@ -433,6 +439,7 @@ $font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica 
 
   .form-card {
     padding: 26px 22px 28px;
+    margin-top: -170px;
     max-width: 100%;
 
     h3 {
@@ -475,6 +482,7 @@ $font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica 
   .hero-section {
     min-height: 100vh;
     padding: 25px 0;
+    margin-bottom: -430px;
   }
   
   .form-overlay-container {
