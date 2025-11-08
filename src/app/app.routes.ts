@@ -1,40 +1,50 @@
 import { Routes } from '@angular/router';
-import { AboutUsComponent } from './components/about-us/about-us.component';
-import { HomeComponent } from './components/home/home.component'; // Assuming you have a HomeComponent
-import { OurDoctorsComponent} from './components/our-doctors/our-doctors.component';
-import { FaqComponent } from './components/faq/faq.component';
-import { NewsletterListComponent } from './components/newsletter-list/newsletter-list.component';
-import { ContactUsComponent } from './components/contact-us/contact-us.component';
-import { PrivacyPolicyComponent } from './components/privacy/PrivacyPolicyComponent';
-// import { StatsComponent } from './components/stats/case-studies-and-blogs.component';
-import { TbTreatmentsComponent } from './components/tb-treatments/tb-treatments.component';
 
 export const routes: Routes = [
-  // 1. Root Path: Load the main landing page component
-  { path: '', component: HomeComponent }, 
-  
-  // 2. About Path: Load the About Us component when clicked
-  { path: 'about-us', component: AboutUsComponent },
-
-  // 3. Our-doctors Path: Load Our-doctors component when clicked
-  { path: 'our-doctors', component: OurDoctorsComponent },
-
-  // 3. FAQ Path: Load FAQ component when clicked
-  { path: 'faq', component: FaqComponent },
-
-  // 3. FAQ Path: Load FAQ component when clicked
-  { path: 'newsletter-list', component: NewsletterListComponent },
-
-  { path: 'contact-us', component: ContactUsComponent },
-
-  { path: 'privacy', component: PrivacyPolicyComponent },
-
-  { path: 'our-doctors', component: OurDoctorsComponent },
-
-  { path: 'tb-treatments', component: TbTreatmentsComponent }
-
-
-  
-  // Optional: Wildcard route for 404
-  // { path: '**', component: NotFoundComponent } 
+  {
+    path: '',
+    loadComponent: () =>
+      import('./components/home/home.component').then((m) => m.HomeComponent),
+    pathMatch: 'full',
+  },
+  {
+    path: 'about-us',
+    loadComponent: () =>
+      import('./components/about-us/about-us.component').then((m) => m.AboutUsComponent),
+  },
+  {
+    path: 'our-doctors',
+    loadComponent: () =>
+      import('./components/our-doctors/our-doctors.component').then((m) => m.OurDoctorsComponent),
+  },
+  {
+    path: 'faq',
+    loadComponent: () => import('./components/faq/faq.component').then((m) => m.FaqComponent),
+  },
+  {
+    path: 'newsletter-list',
+    loadComponent: () =>
+      import('./components/newsletter-list/newsletter-list.component').then(
+        (m) => m.NewsletterListComponent,
+      ),
+  },
+  {
+    path: 'contact-us',
+    loadComponent: () =>
+      import('./components/contact-us/contact-us.component').then((m) => m.ContactUsComponent),
+  },
+  {
+    path: 'privacy',
+    loadComponent: () =>
+      import('./components/privacy/PrivacyPolicyComponent').then((m) => m.PrivacyPolicyComponent),
+  },
+  {
+    path: 'tb-treatments',
+    loadComponent: () =>
+      import('./components/tb-treatments/tb-treatments.component').then((m) => m.TbTreatmentsComponent),
+  },
+  {
+    path: '**',
+    redirectTo: '',
+  },
 ];

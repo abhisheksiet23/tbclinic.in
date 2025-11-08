@@ -13,15 +13,33 @@
     </section> -->
     
     <section class="specialties-section">
-        <app-specialties-ce></app-specialties-ce>
+        @defer (on viewport) {
+            <app-specialties-ce></app-specialties-ce>
+        } @placeholder {
+            <div class="deferred-placeholder">Preparing specialties...</div>
+        } @loading {
+            <div class="deferred-placeholder">Loading specialties...</div>
+        }
     </section>
 
     <section class="network-section">
-        <app-network></app-network>
+        @defer (on viewport) {
+            <app-network></app-network>
+        } @placeholder {
+            <div class="deferred-placeholder">Preparing network details...</div>
+        } @loading {
+            <div class="deferred-placeholder">Loading network details...</div>
+        }
     </section>
     
     <section class="patient-stories-section">
-        <app-patient-stories></app-patient-stories>
+        @defer (on viewport) {
+            <app-patient-stories></app-patient-stories>
+        } @placeholder {
+            <div class="deferred-placeholder">Preparing patient stories...</div>
+        } @loading {
+            <div class="deferred-placeholder">Loading patient stories...</div>
+        }
     </section>
 
     </div>
