@@ -828,3 +828,69 @@ $card-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
     height: 16px;
   }
 }
+
+
+@media (max-width: 767px) {
+
+  .slides-wrapper {
+    margin: 0 10px !important;   // was 45px – too narrow
+    border-radius: 10px;
+  }
+
+  .testimonial-card {
+    padding: 25px 20px !important;   // was 0 / very small
+    min-height: auto;
+  }
+
+  .quote-content .quote-text {
+    font-size: 1.05em;
+    line-height: 1.6;
+    padding: 0 5px;
+  }
+
+  .review-avatar {
+    width: 55px;
+    height: 55px;
+    font-size: 1.3em;
+  }
+
+  .nav-button {
+    width: 36px;
+    height: 36px;
+    font-size: 1em;
+  }
+}
+@media (max-width: 479px) {
+
+  .slides-wrapper {
+    margin: 0 6px !important;   // was 40px – too narrow
+  }
+
+  .testimonial-card {
+    padding: 20px 15px !important;
+  }
+
+  .quote-content .quote-text {
+    font-size: 1em;
+    line-height: 1.55;
+  }
+
+  .nav-button {
+    width: 34px;
+    height: 34px;
+  }
+}
+@media (max-width: 374px) {
+
+  .slides-wrapper {
+    margin: 0 4px !important;
+  }
+
+  .testimonial-card {
+    padding: 18px 12px !important;
+  }
+
+  .quote-content .quote-text {
+    font-size: 0.95em;
+  }
+}

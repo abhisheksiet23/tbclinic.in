@@ -7,13 +7,84 @@ $map-border: #f2f2f2;
 
 .network-section {
   background-color: #fff;
-  margin-top: -90px;
+  margin-top: -110px;
   padding: 60px 0;
   font-family: "Poppins", sans-serif;
 
   @media (max-width: 768px) {
-    margin-top: 0;
-    padding: 40px 0;
+    margin-top: -95px;
+    padding: 80px 0;
+  }
+}
+
+
+.delhi-centers-header {
+  text-align: center;
+  margin: -60px auto 25px;
+  padding: 0 15px;
+
+  @media (max-width: 768px) {
+    margin: -60px auto 20px;
+  }
+
+  @media (max-width: 480px) {
+    margin: -90px auto 18px;
+  }
+}
+
+/* Main Title */
+.delhi-centers-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: #2d2d2d;   /* dark text */
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 10px;
+  position: relative;
+  display: inline-block;
+
+  /* Underline to match theme */
+  &::after {
+    content: "";
+    width: 110px;
+    height: 4px;
+    background: #f15f64; /* your brand red */
+    border-radius: 3px;
+    display: block;
+    margin: 10px auto 0;
+  }
+
+  @media (max-width: 768px) {
+
+    font-size: 24px;
+    &::after {
+      width: 90px;
+      height: 3px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    font-size: 22px;
+    &::after {
+      width: 75px;
+    }
+  }
+}
+
+/* Subheading */
+.delhi-centers-subtitle {
+  font-size: 16px;
+  font-weight: 500;
+  color: #555;   /* subtle grey */
+  margin-top: 5px;
+  letter-spacing: 0.3px;
+  font-family: "Poppins", sans-serif;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
   }
 }
 
