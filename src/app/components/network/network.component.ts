@@ -72,7 +72,7 @@ export class NetworkComponent {
  contactInfo = {
   title: 'Our Network of Care',
  description: 'We are India\'s leading specialized TB healthcare provider, offering exceptional medical services across our centers in Delhi.',
- phone: '+91 98 100 26456',
+ phone: '+91 80 767 15740',
  email: 'info@tbclinic.com'
  };
  

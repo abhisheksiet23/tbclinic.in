@@ -24,7 +24,7 @@ export class HeaderComponent {
 
   // Method to handle helpline click (for mobile devices)
   onHelplineClick(): void {
-    window.location.href = 'tel:+919810026456';
+    window.location.href = 'tel:+918076715740';
   }
 
   // Method to handle navigation clicks
