@@ -18,7 +18,6 @@ import { PatientStoriesComponent } from './components/patient-stories/patient-st
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { OurDoctorsComponent } from './components/our-doctors/our-doctors.component';
 import { FaqComponent } from './components/faq/faq.component';
-import { NewsletterListComponent } from './components/newsletter-list/newsletter-list.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { PrivacyPolicyComponent } from './components/privacy/PrivacyPolicyComponent';
 
@@ -38,7 +37,7 @@ import { PrivacyPolicyComponent } from './components/privacy/PrivacyPolicyCompon
 })
 // 4. MUST export the class as App to satisfy main.ts/main.server.ts
 export class App {
-  title = 'rg-hospitals-clone';
+  title = 'TbClinic';
 
   constructor(private router: Router) {}
 

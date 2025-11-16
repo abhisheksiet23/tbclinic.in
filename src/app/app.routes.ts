@@ -22,13 +22,6 @@ export const routes: Routes = [
     loadComponent: () => import('./components/faq/faq.component').then((m) => m.FaqComponent),
   },
   {
-    path: 'newsletter-list',
-    loadComponent: () =>
-      import('./components/newsletter-list/newsletter-list.component').then(
-        (m) => m.NewsletterListComponent,
-      ),
-  },
-  {
     path: 'contact-us',
     loadComponent: () =>
       import('./components/contact-us/contact-us.component').then((m) => m.ContactUsComponent),
