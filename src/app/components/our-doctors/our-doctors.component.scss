@@ -1,3 +1,4 @@
+@use "sass:color";
 /* =========================================================
    COLOR PALETTE - UPDATED (Original TBClinic Theme)
 ========================================================= */
@@ -450,7 +451,7 @@ $slate-900: #0f172a;
   transition: all 0.25s ease;
   
   &:hover {
-    background: darken($coral, 7%);
+    background: color.adjust($coral, $lightness: -7%);
   }
   
   &:active {
@@ -528,7 +529,7 @@ $slate-900: #0f172a;
   box-shadow: 0 12px 30px rgba(241, 95, 100, 0.3);
   
   &:hover {
-    background: darken($coral, 7%);
+    background: color.adjust($coral, $lightness: -7%);
     transform: scale(1.05) translateY(-2px);
     box-shadow: 0 16px 40px rgba(241, 95, 100, 0.4);
   }
