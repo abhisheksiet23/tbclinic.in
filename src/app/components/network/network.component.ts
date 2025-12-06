@@ -28,28 +28,28 @@ export class NetworkComponent {
  hospitalLocations: Location[] = [
   {
    branchName: 'Mayur Vihar Branch',
-   addressLine: 'TB Clinic, DDA Market, F-7, Mayur Vihar Phase I, Pocket 1, Delhi 110091',
-   mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14013.393457591605!2d77.29524796030913!3d28.587823577313883!2m3!1f0!2f0!3f0!3m2!1i1024!2i777!4f13.1!3m3!1m2!1s0x390ce5001a143a87%3A0x8b32616f74a001f3!2sTBclinic.in!5e0!3m2!1sen!2sin!4v1679048700000!5m2!1sen!2sin'
+   addressLine: 'TB Clinic, DDA Market, F-7, Mayur Vihar Phase-I, Pocket-1, Delhi-110091',
+   mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.781409268987!2d77.29417407528805!3d28.6063337756791!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5001a143a87%3A0xb8b2668120a206af!2sTB%20Clinic!5e0!3m2!1sen!2sin!4v1765006543913!5m2!1sen!2sin'
   },
   {
    branchName: 'Lawrence Road Branch',
-   addressLine: 'C-8/139, Lawrence Road Gate No 3, Keshaypuram, Delhi -35',
-   mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.7820984852023!2d77.15582300000001!3d28.690205!2m3!1f0!2f0!3f0!3m2!1i1024!2i777!4f13.1!3m3!1m2!1s0x390d02330a6e3d55%3A0x16236777036885547770!2sMED%20CROSS%20CLINIC!5e0!3m2!1sen!2sin'
+   addressLine: 'C-8/139, Lawrence Road Gate No :3, Keshavpuram, Delhi-35, Opp- B4 Dda Market(Hanuman Mandir)',
+   mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.034389435326!2d77.15577717529126!3d28.688617875634105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d03ac60d1f0db%3A0xe1549eb05cc85afa!2sTbclinic.in!5e0!3m2!1sen!2sus!4v1765006601351!5m2!1sen!2sus'
   },
   {
    branchName: 'Durgapuri Branch',
-   addressLine: 'C-45, West Jyoti Nagar, Durgapuri Extension, Durgapuri, Shahdara, Delhi, 110094',
-   mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.419269067733!2d77.29041017548658!3d28.670281175652055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfb6d859a1175%3A0x6b7a5e8c18c5e69e!2sMed%20Cross%20Clinic!5e0!3m2!1sen!2sin!4v1730412380000!5m2!1sen!2sin'
+   addressLine: 'C-45, West Jyoti Nagar, Durgapuri Chowk, Durgapuri, Shahdara, Delhi-110094',
+   mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.964745626593!2d77.28763007529133!3d28.6907011756331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfb5f78cc7cff%3A0xbe4a1cd7f063d6e!2sMED%20CROSS%20CLINIC!5e0!3m2!1sen!2sin!4v1765006663135!5m2!1sen!2sin'
   },
   {
    branchName: 'Uttam Nagar Branch',
-   addressLine: 'C-45, West Jyoti Nagar, Near Pillar No. 713, Next to IDBI Bank, Uttam Nagar',
-   mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14013.393457591605!2d77.29524796030913!3d28.587823577313883!2m3!1f0!2f0!3f0!3m2!1i1024!2i777!4f13.1!3m3!1m2!1s0x390d04b806950275%3A0x86e6859546059d3e!2sTB%20Clinic!5e0!3m2!1sen!2sin'
+   addressLine: 'RZ-10, Uttam Nagar, Main Najafgarh Road, Near Pillar No. 713, Next to IDBI Bank, Uttam Nagar',
+   mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d378.33099454279267!2d77.0488369663347!3d28.620976288266032!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d0525b7f3732f%3A0xd7ee656a24dfaef2!2sIDBI%20Bank!5e0!3m2!1sen!2sus!4v1765007208652!5m2!1sen!2sus'
   },
   {
    branchName: 'Tigri Branch',
-   addressLine: 'A Block 111, 112, 113 Ground floor Bank Road JJ Colony Tigri, New Delhi 110080',
-   mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14013.393457591605!2d77.29524796030913!3d28.587823577313883!2m3!1f0!2f0!3f0!3m2!1i1024!2i777!4f13.1!3m3!1m2!1s0x390ce5001a143a87%3A0xb8b2668120a206af!2sTBclinic.in!5e0!3m2!1sen!2sin'
+   addressLine: 'A Block 111, 112, 113 Ground floor Bank Road JJ Colony Tigri, New Delhi-110080(near Sheetla Mata Mandir)',
+   mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d876.4819217243396!2d77.23747656956373!3d28.51182329848319!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce197e3bde169%3A0x4309fc81e68aed3a!2sSheetla%20Mata%20Mandir!5e0!3m2!1sen!2sus!4v1765007131680!5m2!1sen!2sus'
   }
  ];
 
