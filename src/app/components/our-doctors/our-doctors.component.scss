@@ -93,7 +93,7 @@ $slate-900: #0f172a;
   font-weight: 800;
   color: $slate-900;
   margin: 0 0 0.5rem 0;
-  margin-top: -100px;
+  margin-top: -80px;
   text-align: center;
   
   @media (min-width: 768px) {
@@ -102,6 +102,15 @@ $slate-900: #0f172a;
 }
 
 .title-underline {
+  width: 6rem;
+  height: 0.25rem;
+  background: linear-gradient(90deg, $coral, #f97477);
+  border-radius: 2px;
+  margin: 1rem 0 0 0;
+  margin-left: 580px;
+}
+
+.title-underline1 {
   width: 6rem;
   height: 0.25rem;
   background: linear-gradient(90deg, $coral, #f97477);
@@ -608,16 +617,23 @@ $slate-900: #0f172a;
 @media (max-width: 768px) {
 
   .section-title{
-    margin-top: -40px;
-    margin-bottom: -52px;
+    margin-top: -50px;
+    margin-bottom: -82px;
   }
 
   .section-title1{
-    margin-top: -120px;
+    margin-top: -70px;
     margin-bottom: -50px;
   }
 
   .title-underline {
+  margin-top: 80px;
+  margin-left: 140px;
+  background: linear-gradient(90deg, $coral, #f97477);
+
+  }
+
+  .title-underline1 {
   margin-top: 50px;
   margin-left: 140px;
   background: linear-gradient(90deg, $coral, #f97477);

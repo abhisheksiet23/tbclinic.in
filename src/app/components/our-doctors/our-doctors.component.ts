@@ -2,6 +2,7 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { PatientStoriesComponent } from '../patient-stories/patient-stories.component';
 
 interface Doctor {
   id: number;
@@ -27,7 +28,7 @@ interface Stat {
 @Component({
   selector: 'app-our-doctors',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule  , PatientStoriesComponent],
   templateUrl: './our-doctors.component.html',
   styleUrls: ['./our-doctors.component.scss']
 })

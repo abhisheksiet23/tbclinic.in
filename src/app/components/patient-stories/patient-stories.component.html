@@ -58,11 +58,11 @@
   
   <!-- Dot Indicators -->
   <div class="dots-container">
-    <span 
-      *ngFor="let testimonial of testimonials; let i = index"
-      class="dot"
-      [class.active]="i === currentSlideIndex"
-      (click)="currentSlideIndex = i; resetAutoScroll()"
-    ></span>
-  </div>
+  <span
+    *ngFor="let i of displayedDots"
+    class="dot"
+    [class.active]="currentSlideIndex >= i && currentSlideIndex < getDotRangeEnd(i)"
+    (click)="currentSlideIndex = i; resetAutoScroll()"
+  ></span>
+</div>
 </section>
