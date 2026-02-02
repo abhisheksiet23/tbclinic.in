@@ -25,7 +25,7 @@ export class AboutUsComponent implements OnInit {
   story = {
     title: 'Our Story',
     content: `
-        <p>We are a multidisciplinary team of dedicated medical professionals specializing in TB treatment and integrated healing practices. MEDCROSS is founded on the collective **Vision, Aspirations, and Hopes** of these professionals, driven by a commitment to eradicate tuberculosis as a major public health threat.</p>
+        <p>We are a multidisciplinary team of dedicated medical professionals expert in TB treatment and integrated healing practices. MEDCROSS is founded on the collective **Vision, Aspirations, and Hopes** of these professionals, driven by a commitment to eradicate tuberculosis as a major public health threat.</p>
         
         <h3>Core Objectives:</h3>
         <ul>

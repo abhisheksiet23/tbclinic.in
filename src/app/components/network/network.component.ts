@@ -71,7 +71,7 @@ export class NetworkComponent {
  // The contact info has been updated to remove "RG Hospitals" reference
  contactInfo = {
   title: 'Our Network of Care',
- description: 'We are India\'s leading specialized TB healthcare provider, offering exceptional medical services across our centers in Delhi.',
+ description: 'We are India\'s leading TB healthcare provider, offering exceptional medical services across our centers in Delhi.',
  phone: '+91 80 767 15740',
  email: 'info@tbclinic.com'
  };
