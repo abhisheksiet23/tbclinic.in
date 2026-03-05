@@ -13,6 +13,7 @@ import { TbTreatmentsComponent } from './components/tb-treatments/tb-treatments.
 import { SpecialtiesCeComponent } from './components/specialties-ce/specialties-ce.component';
 import { NetworkComponent } from './components/network/network.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ToastComponent } from './components/toast/toast.component';
 import { PatientStoriesComponent } from './components/patient-stories/patient-stories.component';
 // import { VideoCardComponent } from './components/video-card/video-card.component'; 
 import { AboutUsComponent } from './components/about-us/about-us.component';
@@ -33,6 +34,7 @@ import { PrivacyPolicyComponent } from './components/privacy/PrivacyPolicyCompon
     RouterOutlet,
     HeaderComponent, 
     FooterComponent,
+    ToastComponent,
   ],
 })
 // 4. MUST export the class as App to satisfy main.ts/main.server.ts

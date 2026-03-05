@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastService } from '../../services/toast.service';
 
 interface LeadForm {
   name: string;
@@ -28,7 +30,9 @@ export class HeroCarouselComponent implements OnInit {
     clinic: this.hospitals[0]
   };
 
-  constructor() {}
+  private toast = inject(ToastService);
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -36,7 +40,7 @@ export class HeroCarouselComponent implements OnInit {
     const isClinicSelected = this.formData.clinic !== this.hospitals[0];
 
     if (!this.formData.name || !this.formData.mobile || !isClinicSelected) {
-      alert('⚠️ Please fill in Name, Mobile, and select a Clinic.');
+      this.toast.warning('Please fill in Name, Mobile, and select a Clinic.');
       return;
     }
 
@@ -58,14 +62,14 @@ export class HeroCarouselComponent implements OnInit {
 
       const result = await response.json();
       if (result.success) {
-        alert('✅ Thank you! We will call you back soon.');
         this.formData = { name: '', mobile: '', email: '', clinic: this.hospitals[0] };
+        this.router.navigate(['/thank-you'], { queryParams: { source: 'home' } });
       } else {
-        alert('❌ Failed to send your request. Please try again.');
+        this.toast.error('Failed to send your request. Please try again.');
       }
     } catch (error) {
       console.error('Error sending form:', error);
-      alert('❌ Network error. Please try again later.');
+      this.toast.error('Network error. Please try again later.');
     }
   }
 }

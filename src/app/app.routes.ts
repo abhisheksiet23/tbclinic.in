@@ -47,6 +47,11 @@ export const routes: Routes = [
       import('./components/typhoid/typhoid.component').then((m) => m.TyphoidComponent),
   },
   {
+    path: 'thank-you',
+    loadComponent: () =>
+      import('./components/thank-you/thank-you.component').then((m) => m.ThankYouComponent),
+  },
+  {
     path: '**',
     redirectTo: '',
   },

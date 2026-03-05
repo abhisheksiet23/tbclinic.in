@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-contact-us',
@@ -36,6 +37,8 @@ export class ContactUsComponent implements OnInit {
   // ✅ Popup visibility state
   showPopup: boolean = false;
 
+  private toast = inject(ToastService);
+
   constructor() {}
 
   ngOnInit(): void {
@@ -47,7 +50,7 @@ export class ContactUsComponent implements OnInit {
   // Form submission handler
   async onSubmit(): Promise<void> {
     if (!this.contactForm.name || !this.contactForm.mobile || this.contactForm.hospital === this.hospitals[0]) {
-      alert('Please fill all required fields and select a clinic.');
+      this.toast.warning('Please fill all required fields and select a clinic.');
       return;
     }
 
@@ -72,12 +75,12 @@ export class ContactUsComponent implements OnInit {
         this.showPopup = true;
         this.resetForm();
       } else {
-        alert('Oops! Something went wrong. Please try again later.');
+        this.toast.error('Oops! Something went wrong. Please try again later.');
         console.error(result);
       }
     } catch (error) {
       console.error('Form submission error:', error);
-      alert('Unable to send form. Please try again later.');
+      this.toast.error('Unable to send form. Please try again later.');
     }
   }
 
@@ -99,14 +102,14 @@ export class ContactUsComponent implements OnInit {
 
   // Chat & Extra Buttons
   openInternationalEnquiry(): void {
-    alert('International Patient Enquiry link clicked!');
+    this.toast.info('International Patient Enquiry - Coming Soon!');
   }
 
   openQuickEnquiry(): void {
-    alert('Quick Enquiry link clicked!');
+    this.toast.info('Quick Enquiry - Coming Soon!');
   }
 
   openChat(): void {
-    alert('A live chat window would open here.');
+    this.toast.info('Live chat will be available soon!');
   }
 }

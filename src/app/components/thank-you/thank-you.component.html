@@ -1,0 +1,30 @@
+<section class="thank-you-page">
+  <div class="thank-you-container">
+    <div class="success-icon-wrapper">
+      <div class="checkmark-circle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 6L9 17l-5-5"/>
+        </svg>
+      </div>
+    </div>
+
+    <h1 class="thank-you-heading">{{ heading }}</h1>
+    <p class="thank-you-message">{{ message }}</p>
+
+    <div class="details-box">
+      <p>Our team will get in touch with you <strong>shortly</strong>.</p>
+      <p>Please keep your phone accessible so we can reach you promptly.</p>
+      <p>If you have any medical reports, keep them handy for your consultation.</p>
+    </div>
+
+    <div class="contact-info">
+      <p>For urgent queries, call us directly:</p>
+      <a href="tel:+919220362720" class="phone-link">📞 +91 92203 62720</a>
+    </div>
+
+    <div class="action-buttons">
+      <a [routerLink]="backLink" class="btn-back">{{ backLabel }}</a>
+      <a routerLink="/" class="btn-home" *ngIf="backLink !== '/'">Go to Home</a>
+    </div>
+  </div>
+</section>

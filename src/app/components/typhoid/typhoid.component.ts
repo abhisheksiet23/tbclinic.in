@@ -1,6 +1,8 @@
-import { Component, signal, HostListener } from '@angular/core';
+import { Component, signal, HostListener, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { ToastService } from '../../services/toast.service';
 
 interface ConsultationForm {
   name: string;
@@ -19,7 +21,11 @@ interface ConsultationForm {
 })
 export class TyphoidComponent {
   protected readonly title = signal('TB Caused by Typhoid: What You Need to Know');
-  
+
+  private toast = inject(ToastService);
+
+  constructor(private router: Router) {}
+
   formData: ConsultationForm = {
     name: '',
     phone: '',
@@ -78,8 +84,6 @@ export class TyphoidComponent {
         this.isLoading.set(false);
 
         if (result.success) {
-          this.isSubmitted.set(true);
-          alert('✅ Thank you! We will contact you soon.');
           // Reset form
           this.formData = {
             name: '',
@@ -88,12 +92,13 @@ export class TyphoidComponent {
             symptoms: '',
             duration: ''
           };
+          this.router.navigate(['/thank-you'], { queryParams: { source: 'typhoid' } });
         } else {
-          alert('❌ Failed to send your request. Please try again.');
+          this.toast.error('Failed to send your request. Please try again.');
         }
       } catch (error) {
         this.isLoading.set(false);
-        alert('❌ Network error. Please try again later.');
+        this.toast.error('Network error. Please try again later.');
       }
     }
 

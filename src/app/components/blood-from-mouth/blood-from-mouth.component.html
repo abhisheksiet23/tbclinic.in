@@ -41,9 +41,7 @@
       @if (isSubmitted()) {
         <div class="success-message">
           <div class="success-icon">✅</div>
-          <h3>Thank You!</h3>
-          <p>Your consultation request has been submitted successfully. Our Team will contact you soon.</p>
-          <button class="secondary-button" (click)="isSubmitted.set(false)">Submit Another Request</button>
+          <h3>Redirecting...</h3>
         </div>
       } @else {
         <form (ngSubmit)="onSubmit()" #consultForm="ngForm">
