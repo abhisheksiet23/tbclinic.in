@@ -24,6 +24,15 @@
     gtag('config', 'AW-337340316');
   </script>
 
+  <!-- Google Ads Conversion Tracking -->
+  <script>
+    window.addEventListener('load', function() {
+      if (window.location.pathname.match('/thank-you')) {
+        gtag('event', 'conversion', {'send_to': 'AW-337340316/EhTcCIi4u9QZEJzP7aAB'});
+      }
+    });
+  </script>
+
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
