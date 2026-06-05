@@ -72,6 +72,7 @@ export class ContactUsComponent implements OnInit {
 
     const formData = new FormData();
     formData.append('access_key', this.WEB3FORMS_ACCESS_KEY);
+    formData.append('subject', `New Appointment Request from tbclinic.in — ${this.contactForm.name}`);
     formData.append('name', this.contactForm.name);
     formData.append('email', this.contactForm.email);
     formData.append('mobile', this.contactForm.mobile);

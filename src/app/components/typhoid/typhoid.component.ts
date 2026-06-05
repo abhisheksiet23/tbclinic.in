@@ -96,7 +96,7 @@ export class TyphoidComponent implements OnInit {
 
       const formData = new FormData();
       formData.append('access_key', '282bc130-d161-4e24-9e93-8eeac1293408');
-      formData.append('subject', `Typhoid Consultation - ${this.formData.name}`);
+      formData.append('subject', `Typhoid Consultation from tbclinic.in — ${this.formData.name}`);
       formData.append('from_name', 'TBClinic Website');
       formData.append('name', this.formData.name);
       formData.append('email', this.formData.email);
