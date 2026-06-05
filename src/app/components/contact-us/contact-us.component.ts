@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ToastService } from '../../services/toast.service';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-contact-us',
@@ -38,6 +39,7 @@ export class ContactUsComponent implements OnInit {
   showPopup: boolean = false;
 
   private toast = inject(ToastService);
+  private seo = inject(SeoService);
 
   constructor() {}
 
@@ -45,6 +47,20 @@ export class ContactUsComponent implements OnInit {
     if (!this.contactForm.hospital) {
       this.contactForm.hospital = this.hospitals[0];
     }
+    this.seo.setPage({
+      title: 'Contact TB Clinic Delhi | Book TB Consultation | MEDCROSS',
+      description: 'Contact MEDCROSS TB Clinic Delhi. 5 clinic locations across Delhi: Lawrence Road, Mayur Vihar, Durgapuri, Uttam Nagar, Tigri. Call +91 92-180-26183 or book a consultation online.',
+      keywords: 'TB clinic contact Delhi, book TB consultation Delhi, MEDCROSS contact, TB clinic near me Delhi',
+      canonicalUrl: 'https://tbclinic.in/contact-us',
+      jsonLd: {
+        '@context': 'https://schema.org',
+        '@type': 'ContactPage',
+        'url': 'https://tbclinic.in/contact-us',
+        'name': 'Contact MEDCROSS TB Clinic Delhi',
+        'description': 'Book a tuberculosis consultation at MEDCROSS TB Clinic. 5 locations across Delhi. Open Monday–Saturday 9:30 AM to 5:00 PM.',
+        'mainEntity': { '@id': 'https://tbclinic.in/#organization' }
+      }
+    });
   }
 
   // Form submission handler

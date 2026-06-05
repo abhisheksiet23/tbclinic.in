@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { SeoService } from '../../services/seo.service';
 
 interface Treatment {
   title: string;
@@ -27,9 +28,37 @@ interface Feature {
   templateUrl: './tb-treatments.component.html',
   styleUrls: ['./tb-treatments.component.scss'],
 })
-export class TbTreatmentsComponent {
-  
-  private iconBasePath = 'assets/icons/'; 
+export class TbTreatmentsComponent implements OnInit {
+
+  constructor(private seo: SeoService) {}
+
+  ngOnInit(): void {
+    this.seo.setPage({
+      title: 'TB Conditions We Treat | All Types of Tuberculosis | MEDCROSS Delhi',
+      description: 'MEDCROSS TB Clinic treats all forms of tuberculosis: Pulmonary TB, Lymph Node TB, Abdominal TB, Bone & Spine TB, Brain TB (Meningitis), Genito-Urinary TB, Pleural Effusion, and Skin TB. Expert TB care in Delhi.',
+      keywords: 'pulmonary tuberculosis treatment Delhi, TB types, lymph node TB, bone TB treatment, brain TB meningitis, abdominal TB, skin TB, pleural effusion TB',
+      canonicalUrl: 'https://tbclinic.in/tb-treatments',
+      jsonLd: {
+        '@context': 'https://schema.org',
+        '@type': 'MedicalWebPage',
+        'url': 'https://tbclinic.in/tb-treatments',
+        'name': 'Conditions We Treat – MEDCROSS TB Clinic Delhi',
+        'description': 'Expert treatment for all types of tuberculosis at MEDCROSS TB Clinic Delhi.',
+        'about': [
+          { '@type': 'MedicalCondition', 'name': 'Pulmonary Tuberculosis', 'description': 'The most common form of TB, affecting the lungs.' },
+          { '@type': 'MedicalCondition', 'name': 'TB of Lymph Nodes', 'description': 'Tuberculosis causing swelling in the neck or lymph nodes.' },
+          { '@type': 'MedicalCondition', 'name': 'Abdominal Tuberculosis', 'description': 'TB affecting the digestive system and abdomen.' },
+          { '@type': 'MedicalCondition', 'name': 'Bone and Spine Tuberculosis', 'description': 'TB affecting bone structure and the spine, causing back pain or mobility issues.' },
+          { '@type': 'MedicalCondition', 'name': 'TB Meningitis', 'alternateName': 'Brain TB', 'description': 'A serious form of TB affecting the membranes surrounding the brain.' },
+          { '@type': 'MedicalCondition', 'name': 'Genito-Urinary Tuberculosis', 'description': 'TB affecting the kidneys, urinary system, or reproductive organs.' },
+          { '@type': 'MedicalCondition', 'name': 'Pleural Effusion (TB Fluid in Lungs)', 'description': 'Fluid build-up around the lungs caused by tuberculosis.' },
+          { '@type': 'MedicalCondition', 'name': 'Skin Tuberculosis', 'description': 'A rare form of TB causing slow-healing skin lesions or patches.' }
+        ]
+      }
+    });
+  }
+
+  private iconBasePath = 'assets/icons/';
 
   treatments: Treatment[] = [
   {

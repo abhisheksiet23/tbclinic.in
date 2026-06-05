@@ -1,8 +1,9 @@
-import { Component, signal, HostListener, inject } from '@angular/core';
+import { Component, signal, HostListener, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ToastService } from '../../services/toast.service';
+import { SeoService } from '../../services/seo.service';
 
 interface ConsultationForm {
   name: string;
@@ -19,12 +20,42 @@ interface ConsultationForm {
   templateUrl: './typhoid.component.html',
   styleUrl: './typhoid.component.scss',
 })
-export class TyphoidComponent {
-  protected readonly title = signal('TB Caused by Typhoid: What You Need to Know');
+export class TyphoidComponent implements OnInit {
+  protected readonly title = signal('TB After Typhoid: Know the Risks & Signs');
 
   private toast = inject(ToastService);
+  private seo = inject(SeoService);
 
   constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.seo.setPage({
+      title: 'TB After Typhoid – Risks, Symptoms & When to Get Tested | MEDCROSS Delhi',
+      description: 'Typhoid can weaken your immune system and increase TB risk. Learn the warning signs of TB after typhoid recovery, when to get tested, and how MEDCROSS TB Clinic Delhi can help. Book a consultation: +91 92-180-26183.',
+      keywords: 'TB after typhoid Delhi, tuberculosis after typhoid, typhoid TB risk, post-typhoid TB symptoms, TB testing Delhi',
+      canonicalUrl: 'https://tbclinic.in/typhoid',
+      jsonLd: {
+        '@context': 'https://schema.org',
+        '@type': 'MedicalWebPage',
+        'url': 'https://tbclinic.in/typhoid',
+        'name': 'TB After Typhoid – Risks, Symptoms & When to Get Tested',
+        'description': 'Typhoid fever can weaken immunity and increase the risk of developing tuberculosis. This page explains the connection between typhoid and TB, warning signs to watch for, and when to seek medical help.',
+        'about': [
+          {
+            '@type': 'MedicalCondition',
+            'name': 'Post-Typhoid Tuberculosis',
+            'description': 'Tuberculosis that develops after typhoid fever due to weakened immunity.'
+          },
+          {
+            '@type': 'MedicalCondition',
+            'name': 'Typhoid Fever',
+            'description': 'An infectious disease caused by Salmonella typhi that can suppress immunity and increase TB risk.'
+          }
+        ],
+        'mainEntity': { '@id': 'https://tbclinic.in/#organization' }
+      }
+    });
+  }
 
   formData: ConsultationForm = {
     name: '',

@@ -1,8 +1,9 @@
-import { Component, signal, HostListener, inject } from '@angular/core';
+import { Component, signal, HostListener, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ToastService } from '../../services/toast.service';
+import { SeoService } from '../../services/seo.service';
 
 interface ConsultationForm {
   name: string;
@@ -19,12 +20,36 @@ interface ConsultationForm {
   templateUrl: './blood-from-mouth.component.html',
   styleUrl: './blood-from-mouth.component.scss',
 })
-export class bloodFromMouthComponent {
+export class bloodFromMouthComponent implements OnInit {
   protected readonly title = signal('Blood from Mouth Can Be TB');
 
   private toast = inject(ToastService);
+  private seo = inject(SeoService);
 
   constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.seo.setPage({
+      title: 'Coughing Up Blood – Could It Be TB? | MEDCROSS TB Clinic Delhi',
+      description: 'Coughing up blood (hemoptysis) can be a sign of tuberculosis. Learn the symptoms of TB, when to seek immediate medical help, and how MEDCROSS TB Clinic Delhi can help. Book a free consultation today.',
+      keywords: 'coughing up blood TB, blood from mouth tuberculosis, hemoptysis TB, blood in cough Delhi, TB symptoms blood',
+      canonicalUrl: 'https://tbclinic.in/blood-from-mouth',
+      jsonLd: {
+        '@context': 'https://schema.org',
+        '@type': 'MedicalWebPage',
+        'url': 'https://tbclinic.in/blood-from-mouth',
+        'name': 'Blood from Mouth – Could It Be TB?',
+        'description': 'Coughing up blood can be a warning sign of tuberculosis. This page explains TB-related hemoptysis, associated symptoms, and the importance of early diagnosis.',
+        'about': {
+          '@type': 'MedicalCondition',
+          'name': 'Hemoptysis in Tuberculosis',
+          'associatedAnatomy': { '@type': 'AnatomicalStructure', 'name': 'Lung' },
+          'signOrSymptom': ['Coughing up blood', 'Persistent cough', 'Fever', 'Night sweats', 'Weight loss']
+        },
+        'mainEntity': { '@id': 'https://tbclinic.in/#organization' }
+      }
+    });
+  }
 
   formData: ConsultationForm = {
     name: '',

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-about-us',
@@ -94,7 +95,24 @@ export class AboutUsComponent implements OnInit {
   }
 ];
 
-  constructor() { }
+  constructor(private seo: SeoService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.seo.setPage({
+      title: 'About MEDCROSS TB Clinic Delhi | Our Mission to Eradicate Tuberculosis',
+      description: 'Learn about MEDCROSS by TB Clinic – a multidisciplinary team treating one of the highest numbers of TB patients in Delhi. Founded on a mission to eradicate tuberculosis in India. Evidence-based, compassionate care.',
+      keywords: 'about TB clinic Delhi, MEDCROSS tuberculosis clinic, TB expert Delhi, about us TB treatment',
+      canonicalUrl: 'https://tbclinic.in/about-us',
+      jsonLd: {
+        '@context': 'https://schema.org',
+        '@type': 'AboutPage',
+        'url': 'https://tbclinic.in/about-us',
+        'name': 'About MEDCROSS by TB Clinic',
+        'description': 'MEDCROSS by TB Clinic is operated by UshaPrakash Health Care Private Limited. We are a multidisciplinary team treating tuberculosis patients across Delhi with evidence-based care.',
+        'mainEntity': {
+          '@id': 'https://tbclinic.in/#organization'
+        }
+      }
+    });
+  }
 }

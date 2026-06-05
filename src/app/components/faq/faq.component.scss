@@ -1,122 +1,303 @@
-    @use "sass:color";
+@use "sass:color";
 
-    /* --- Variables from your theme --- */
-    $primary-red: #B71C1C;      
-    $primary-blue: #06457F;     
-    $white: #FFFFFF;
-    $dark-text: #333; // Used for answer body text
-    $light-gray-border: #DDD; // A cleaner, less intense border
+$red:       #B71C1C;
+$blue:      #06457F;
+$blue-dark: #043660;
+$white:     #ffffff;
+$off-white: #f8fafc;
+$gray-100:  #f3f4f6;
+$gray-200:  #e5e7eb;
+$gray-400:  #9ca3af;
+$gray-500:  #6b7280;
+$gray-700:  #374151;
+$gray-900:  #111827;
 
-    .faq-section {
-        padding: 10px;
-        min-height: 50vh;
-        background-color: $white; 
-    }
+.faq-page {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Open Sans', Arial, sans-serif;
+}
 
-    .container {
-        max-width: 100%;
-        margin: 0 auto;
-        // padding: 20px;
-    }
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
 
-    /* --- Top Header Band (Red Strip) --- */
-    .header-band {
-        background-color: $primary-red;
-        color: $white;
-        padding: 20px;
-        margin: 0 -20px 40px -20px; /* Extends past container padding */
-        
-        .breadcrumb {
-            font-size: 0.9em;
-            margin: 0;
-            text-transform: uppercase;
-        }
-    }
+  @media (min-width: 768px)  { padding: 0 1.5rem; }
+  @media (min-width: 1024px) { padding: 0 2rem; }
+}
 
-    /* --- Accordion Styling --- */
+/* ── Hero ─────────────────────────────────────────────── */
+.faq-hero {
+  background: linear-gradient(135deg, $blue 0%, $blue-dark 100%);
+  padding: 3.5rem 0 4.5rem;
+  position: relative;
+  overflow: hidden;
 
-    .accordion-list {
-        width: 100%;
-        margin-top: 20px;
-    }
+  @media (min-width: 768px) { padding: 5rem 0 6rem; }
+}
 
-    .accordion-item {
-        margin-bottom: 10px; // Increased space between items
-        border-radius: 4px;
-        overflow: hidden; // Ensures borders/shadows are contained
-    }
+.hero-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 15% 85%, rgba($red, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 85% 15%, rgba($white, 0.05) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba($white, 0.15);
+  color: $white;
+  border: 1px solid rgba($white, 0.25);
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+
+  svg { width: 15px; height: 15px; }
+}
+
+.hero-title {
+  color: $white;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  margin: 0 0 1rem;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  color: rgba($white, 0.82);
+  font-size: 1rem;
+  line-height: 1.65;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ── Accordion body wrapper ───────────────────────────── */
+.faq-body {
+  background: $off-white;
+  padding: 3rem 0 4rem;
+}
+
+.accordion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* ── Single accordion item ────────────────────────────── */
+.accordion-item {
+  background: $white;
+  border: 1px solid $gray-200;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.2s, border-color 0.2s;
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba($blue, 0.08);
+    border-color: color.adjust($blue, $lightness: 30%);
+  }
+
+  &.open {
+    border-color: $blue;
+    box-shadow: 0 4px 20px rgba($blue, 0.12);
 
     .accordion-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 20px;
-        cursor: pointer;
-        color: $white;
-        transition: background-color 0.3s;
-        
-        .question-text {
-            margin: 0;
-            font-size: 1.1em;
-            font-weight: 500;
-        }
-
-        .icon-toggle {
-            font-size: 1.5em;
-            font-weight: 700;
-            line-height: 1; // Center the + or -
-        }
+      background: linear-gradient(90deg, rgba($blue, 0.06) 0%, transparent 100%);
     }
 
-    /* --- Color Schemes --- */
+    .q-number { color: $blue; }
 
-    .red-header {
-        background-color: $primary-red;
+    .question-text { color: $blue; }
+
+    .chevron {
+      transform: rotate(180deg);
+      color: $blue;
     }
 
-    .blue-header {
-        background-color: $primary-blue;
-        
-        &:hover {
-            background-color: color.adjust($primary-blue, $lightness: -5%);
-        }
-    }
+    .accordion-body { max-height: 300px; }
+  }
+}
 
-    /* --- Answer Body --- */
-    .accordion-body {
-        background-color: $white;
-        padding: 20px;
-        border: 1px solid $light-gray-border;
-        border-top: none; // Connects visually to the header
-        
-        // This margin creates the red vertical bar effect on the left
-        margin-left: 5px; 
-        
-        // Use a box shadow for subtle lift
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+/* ── Header row ───────────────────────────────────────── */
+.accordion-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  transition: background 0.2s;
+}
 
-        p {
-            color: $dark-text;
-            font-size: 0.95em; // Slightly larger text
-            line-height: 1.6;
-            margin: 0;
-        }
-    }
+.q-number {
+  flex-shrink: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: $gray-400;
+  letter-spacing: 0.04em;
+  min-width: 24px;
+  transition: color 0.2s;
+}
 
-    /* --- Specific Styling for Open Item (First item in image) --- */
-    .accordion-item.open .accordion-body {
-        // Add a vertical colored line on the left for the active answer body
-        border-left: 5px solid $primary-red; 
-        padding-left: 15px; // Compensate for the border width
-    }
+.question-text {
+  flex: 1;
+  margin: 0;
+  font-size: 0.97rem;
+  font-weight: 600;
+  color: $gray-900;
+  line-height: 1.45;
+  transition: color 0.2s;
+}
 
-    /* --- Responsive Adjustments --- */
-    @media (max-width: 600px) {
-        .header-band {
-            padding: 15px;
-            margin: 0 -20px 20px -20px;
-        }
-        .accordion-header {
-            padding: 12px 15px;
-        }
-    }
+.chevron {
+  flex-shrink: 0;
+  color: $gray-400;
+  transition: transform 0.28s ease, color 0.2s;
+
+  svg { width: 18px; height: 18px; display: block; }
+}
+
+/* ── Collapsible answer ───────────────────────────────── */
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.32s ease;
+
+  p {
+    margin: 0;
+    padding: 0 1.25rem 1.25rem calc(1.25rem + 24px + 1rem);
+    font-size: 0.92rem;
+    color: $gray-700;
+    line-height: 1.7;
+  }
+}
+
+/* ── CTA ──────────────────────────────────────────────── */
+.cta-section {
+  background: $white;
+  padding: 3rem 0 4rem;
+}
+
+.cta-card {
+  background: linear-gradient(135deg, $blue 0%, $blue-dark 100%);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 10% 90%, rgba($red, 0.18) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    text-align: left;
+    padding: 2.5rem 3rem;
+    gap: 2rem;
+  }
+}
+
+.cta-icon {
+  flex-shrink: 0;
+  background: rgba($white, 0.15);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+
+  svg { width: 26px; height: 26px; color: $white; }
+}
+
+.cta-text {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+
+  h2 {
+    color: $white;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0 0 0.4rem;
+  }
+
+  p {
+    color: rgba($white, 0.82);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+.cta-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+
+  @media (min-width: 768px) { justify-content: flex-end; }
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: $white;
+  color: $blue;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.65rem 1.4rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+
+  svg { width: 15px; height: 15px; }
+
+  &:hover { background: $gray-100; transform: translateY(-1px); }
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  color: $white;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.65rem 1.4rem;
+  border-radius: 8px;
+  border: 1.5px solid rgba($white, 0.5);
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+
+  &:hover {
+    border-color: $white;
+    background: rgba($white, 0.1);
+    transform: translateY(-1px);
+  }
+}
