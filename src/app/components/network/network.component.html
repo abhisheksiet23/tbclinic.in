@@ -61,10 +61,10 @@
                 <i class="fa fa-map-marker-alt"></i> {{ loc.addressLine }}
               </p>
 
-              <a href="https://www.google.com/maps/search/?api=1&query={{ loc.addressLine | urlEncode }}"
+              <a [href]="loc.streetViewUrl"
                  target="_blank"
                  class="btn-get-directions">
-                  View Directions
+                View Street View
               </a>
             </div>
 
