@@ -4,7 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 // Import the new standalone pipes
 import { SafeUrlPipe } from '../pipes/safe-url.pipe'; 
-import { UrlEncodePipe } from '../pipes/url-encode.pipe'; 
+// import { UrlEncodePipe } from '../pipes/url-encode.pipe'; 
 
 interface Location {
  branchName: string; 
@@ -16,7 +16,7 @@ interface Location {
 @Component({
  selector: 'app-network',
  standalone: true,
- imports: [CommonModule, SafeUrlPipe, UrlEncodePipe], 
+ imports: [CommonModule, SafeUrlPipe], //can add UrlEncodePipe if needed
  templateUrl: './network.component.html',
  styleUrls: ['./network.component.scss']
 })
