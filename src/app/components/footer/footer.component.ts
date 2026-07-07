@@ -43,11 +43,11 @@ export class FooterComponent {
   ];
 
   networkOfCare2: LinkItem[] = [
-    { name: 'Lawrence Road', url: 'https://www.google.com/maps/place/Tbclinic.in/@28.688618,77.158352,15z/data=!4m6!3m5!1s0x390d03ac60d1f0db:0xe1549eb05cc85afa!8m2!3d28.6886179!4d77.1583521!16s%2Fg%2F11smr6f40b?hl=en&entry=ttu&g_ep=EgoyMDI1MTIwMi4wIKXMDSoASAFQAw%3D%3D' },
-    { name: 'Mayur Vihar', url: 'https://www.google.com/maps/place/TB+Clinic/@28.6063338,77.296749,17z/data=!3m1!4b1!4m6!3m5!1s0x390ce5001a143a87:0xb8b2668120a206af!8m2!3d28.6063338!4d77.296749!16s%2Fg%2F11vyh_mzt8?entry=ttu&g_ep=EgoyMDI1MTIwMi4wIKXMDSoASAFQAw%3D%3D' },
+    { name: 'Lawrence Road', url: 'https://www.google.com/maps/embed?pb=!4v1783416717613!6m8!1m7!1sBhRGKNnLjK77aOi7f4HvJw!2m2!1d28.68975231215174!2d77.16094850828438!3f208.77!4f-31.759999999999998!5f1.0228038414546936' },
+    { name: 'Mayur Vihar', url: 'https://www.google.com/maps/embed?pb=!4v1783416775372!6m8!1m7!1sV1PyN3wAw9Ksw1byVG7xZQ!2m2!1d28.60691070696357!2d77.29596978858156!3f252.51!4f6.799999999999997!5f0.8134586354752991' },
     { name: 'Durgapuri', url: 'https://www.google.com/maps/place/MED+CROSS+CLINIC/@28.690701,77.290205,15z/data=!4m6!3m5!1s0x390cfb5f78cc7cff:0xbe4a1cd7f063d6e!8m2!3d28.6907012!4d77.290205!16s%2Fg%2F11v6fkpgc8?hl=en&entry=ttu&g_ep=EgoyMDI1MTIwMi4wIKXMDSoASAFQAw%3D%3D' },
-    { name: 'Uttam Nagar', url: 'https://www.google.com/maps/place/IDBI+Bank/@28.620921,77.049296,18z/data=!4m6!3m5!1s0x390d0525b7f3732f:0xd7ee656a24dfaef2!8m2!3d28.6209211!4d77.0492964!16s%2Fg%2F11c718y2vb?hl=en&entry=ttu&g_ep=EgoyMDI1MTIwMi4wIKXMDSoASAFQAw%3D%3D' },
-    { name: 'Tigri  ', url: 'https://www.google.com/maps/place/Sheetla+Mata+Mandir/@28.511823,77.23812,17z/data=!4m6!3m5!1s0x390ce197e3bde169:0x4309fc81e68aed3a!8m2!3d28.5118233!4d77.2381203!16s%2Fg%2F11k00by4x_?hl=en&entry=ttu&g_ep=EgoyMDI1MTIwMi4wIKXMDSoASAFQAw%3D%3D' },
+    { name: 'Uttam Nagar', url: 'https://www.google.com/maps/embed?pb=!4v1783416910122!6m8!1m7!1sliYdcGvYO6kGm4_agadMGg!2m2!1d28.62084153104128!2d77.04939339192077!3f358.29!4f-0.12000000000000455!5f0.7820865974627469' },
+    { name: 'Tigri  ', url: 'https://www.google.com/maps/embed?pb=!4v1783416622731!6m8!1m7!1sV_v1Sou5sdWc-VAGIwRhvg!2m2!1d28.51170377389819!2d77.23801085778919!3f269.02!4f-3.0799999999999983!5f0.7820865974627469' },
   ];
 
   socialMedia = [
