@@ -1,19 +1,5 @@
-@use "sass:color";
-
-$red:       #B71C1C;
-$blue:      #06457F;
-$blue-dark: #043660;
-$white:     #ffffff;
-$off-white: #f8fafc;
-$gray-100:  #f3f4f6;
-$gray-200:  #e5e7eb;
-$gray-400:  #9ca3af;
-$gray-500:  #6b7280;
-$gray-700:  #374151;
-$gray-900:  #111827;
-
 .faq-page {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Open Sans', Arial, sans-serif;
+  font-family: var(--font-body);
 }
 
 .container {
@@ -28,57 +14,76 @@ $gray-900:  #111827;
 
 /* ── Hero ─────────────────────────────────────────────── */
 .faq-hero {
-  background: linear-gradient(135deg, $blue 0%, $blue-dark 100%);
-  padding: 3.5rem 0 4.5rem;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(160deg, #FFFFFF 0%, #F5F9FF 40%, #EEF5FD 100%);
+  border-bottom: 1px solid var(--color-border);
+  padding: 4.5rem 0;
 
-  @media (min-width: 768px) { padding: 5rem 0 6rem; }
+  @media (min-width: 768px) { padding: 6rem 0 5.5rem; }
 }
 
-.hero-pattern {
+.hero-bg {
   position: absolute;
   inset: 0;
-  background-image:
-    radial-gradient(circle at 15% 85%, rgba($red, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 85% 15%, rgba($white, 0.05) 0%, transparent 40%);
   pointer-events: none;
+}
+
+.hero-bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+.hero-bg-circle-1 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);
+  top: -160px;
+  right: -100px;
+}
+
+.hero-bg-circle-2 {
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, var(--color-primary) 0%, transparent 70%);
+  bottom: -140px;
+  left: -100px;
 }
 
 .hero-content {
   position: relative;
   z-index: 1;
   text-align: center;
+  max-width: 680px;
+  margin: 0 auto;
 }
 
 .hero-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  background: rgba($white, 0.15);
-  color: $white;
-  border: 1px solid rgba($white, 0.25);
-  padding: 0.4rem 1rem;
-  border-radius: 100px;
-  font-size: 0.82rem;
-  font-weight: 500;
-  letter-spacing: 0.03em;
+  gap: 0.4rem;
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 
   svg { width: 15px; height: 15px; }
 }
 
 .hero-title {
-  color: $white;
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
-  font-weight: 700;
+  color: var(--color-text-primary);
+  font-family: var(--font-heading);
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
+  font-weight: 800;
   margin: 0 0 1rem;
   line-height: 1.2;
 }
 
 .hero-subtitle {
-  color: rgba($white, 0.82);
+  color: var(--color-text-secondary);
   font-size: 1rem;
   line-height: 1.65;
   max-width: 600px;
@@ -87,7 +92,7 @@ $gray-900:  #111827;
 
 /* ── Accordion body wrapper ───────────────────────────── */
 .faq-body {
-  background: $off-white;
+  background: var(--color-bg);
   padding: 3rem 0 4rem;
 }
 
@@ -99,33 +104,33 @@ $gray-900:  #111827;
 
 /* ── Single accordion item ────────────────────────────── */
 .accordion-item {
-  background: $white;
-  border: 1px solid $gray-200;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
   transition: box-shadow 0.2s, border-color 0.2s;
 
   &:hover {
-    box-shadow: 0 4px 16px rgba($blue, 0.08);
-    border-color: color.adjust($blue, $lightness: 30%);
+    box-shadow: var(--shadow-card);
+    border-color: rgba(43, 125, 233, 0.3);
   }
 
   &.open {
-    border-color: $blue;
-    box-shadow: 0 4px 20px rgba($blue, 0.12);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-card);
 
     .accordion-header {
-      background: linear-gradient(90deg, rgba($blue, 0.06) 0%, transparent 100%);
+      background: var(--color-primary-light);
     }
 
-    .q-number { color: $blue; }
+    .q-number { color: var(--color-primary); }
 
-    .question-text { color: $blue; }
+    .question-text { color: var(--color-primary); }
 
     .chevron {
       transform: rotate(180deg);
-      color: $blue;
+      color: var(--color-primary);
     }
 
     .accordion-body { max-height: 300px; }
@@ -145,7 +150,7 @@ $gray-900:  #111827;
   flex-shrink: 0;
   font-size: 0.78rem;
   font-weight: 700;
-  color: $gray-400;
+  color: var(--color-text-secondary);
   letter-spacing: 0.04em;
   min-width: 24px;
   transition: color 0.2s;
@@ -156,14 +161,14 @@ $gray-900:  #111827;
   margin: 0;
   font-size: 0.97rem;
   font-weight: 600;
-  color: $gray-900;
+  color: var(--color-text-primary);
   line-height: 1.45;
   transition: color 0.2s;
 }
 
 .chevron {
   flex-shrink: 0;
-  color: $gray-400;
+  color: var(--color-text-secondary);
   transition: transform 0.28s ease, color 0.2s;
 
   svg { width: 18px; height: 18px; display: block; }
@@ -179,20 +184,21 @@ $gray-900:  #111827;
     margin: 0;
     padding: 0 1.25rem 1.25rem calc(1.25rem + 24px + 1rem);
     font-size: 0.92rem;
-    color: $gray-700;
+    color: var(--color-text-secondary);
     line-height: 1.7;
   }
 }
 
 /* ── CTA ──────────────────────────────────────────────── */
 .cta-section {
-  background: $white;
+  background: var(--color-surface);
   padding: 3rem 0 4rem;
 }
 
 .cta-card {
-  background: linear-gradient(135deg, $blue 0%, $blue-dark 100%);
-  border-radius: 16px;
+  background: linear-gradient(160deg, #FFFFFF 0%, #F5F9FF 45%, #EEF5FD 100%);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
   padding: 2.5rem 2rem;
   display: flex;
   flex-direction: column;
@@ -201,12 +207,16 @@ $gray-900:  #111827;
   gap: 1.5rem;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 20px rgba(43, 125, 233, 0.06);
 
   &::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 10% 90%, rgba($red, 0.18) 0%, transparent 55%);
+    top: -50%;
+    right: -20%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(22, 184, 166, 0.14) 0%, transparent 70%);
     pointer-events: none;
   }
 
@@ -220,7 +230,7 @@ $gray-900:  #111827;
 
 .cta-icon {
   flex-shrink: 0;
-  background: rgba($white, 0.15);
+  background: var(--color-primary-light);
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -230,7 +240,7 @@ $gray-900:  #111827;
   position: relative;
   z-index: 1;
 
-  svg { width: 26px; height: 26px; color: $white; }
+  svg { width: 26px; height: 26px; color: var(--color-primary); }
 }
 
 .cta-text {
@@ -239,14 +249,15 @@ $gray-900:  #111827;
   z-index: 1;
 
   h2 {
-    color: $white;
+    font-family: var(--font-heading);
+    color: var(--color-text-primary);
     font-size: 1.3rem;
-    font-weight: 700;
+    font-weight: 800;
     margin: 0 0 0.4rem;
   }
 
   p {
-    color: rgba($white, 0.82);
+    color: var(--color-text-secondary);
     font-size: 0.92rem;
     line-height: 1.6;
     margin: 0;
@@ -268,36 +279,37 @@ $gray-900:  #111827;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: $white;
-  color: $blue;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: #ffffff;
   font-size: 0.88rem;
   font-weight: 700;
   padding: 0.65rem 1.4rem;
   border-radius: 8px;
   text-decoration: none;
-  transition: background 0.2s, transform 0.15s;
+  box-shadow: 0 4px 16px rgba(43, 125, 233, 0.25);
+  transition: transform 0.15s, box-shadow 0.2s;
 
   svg { width: 15px; height: 15px; }
 
-  &:hover { background: $gray-100; transform: translateY(-1px); }
+  &:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(43, 125, 233, 0.35); }
 }
 
 .btn-secondary {
   display: inline-flex;
   align-items: center;
   background: transparent;
-  color: $white;
+  color: var(--color-primary);
   font-size: 0.88rem;
   font-weight: 600;
   padding: 0.65rem 1.4rem;
   border-radius: 8px;
-  border: 1.5px solid rgba($white, 0.5);
+  border: 1.5px solid var(--color-border);
   text-decoration: none;
   transition: border-color 0.2s, background 0.2s, transform 0.15s;
 
   &:hover {
-    border-color: $white;
-    background: rgba($white, 0.1);
+    border-color: var(--color-primary);
+    background: var(--color-primary-light);
     transform: translateY(-1px);
   }
 }

@@ -1,229 +1,250 @@
 <!-- our-doctors.component.html -->
-<div class="doctors-page-container">
-  <!-- Animated Background Elements -->
-  <div class="background-decoration decoration-top-right"></div>
-  <div class="background-decoration decoration-bottom-left"></div>
-  <div class="background-decoration decoration-center"></div>
+<div class="doctors-page">
 
-  <!-- CMO Leadership Section - FIRST -->
-  <section class="cmo-section hero-cmo">
+  <!-- ══════════════════════════════════════
+       SECTION 1 — HERO
+  ══════════════════════════════════════ -->
+  <section class="hero-banner">
+    <div class="hero-bg-circle hero-bg-circle-1"></div>
+    <div class="hero-bg-circle hero-bg-circle-2"></div>
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-label">
+          <svg class="label-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          Our Medical Team
+        </span>
+        <h1 class="hero-title">TB Care Is Medical. But It Is Also Personal.</h1>
+        <p class="hero-subtitle">A treatment plan may begin with a diagnosis, but the experience of treatment depends greatly on the people guiding you through it.</p>
+        <p class="hero-subtitle hero-subtitle--muted">Our doctors focus on helping patients understand their condition, make informed decisions, and stay supported throughout their TB treatment journey.</p>
+
+        <div class="hero-cta-row">
+          <button type="button" class="hero-btn hero-btn--primary" (click)="scrollToTeam()">
+            Meet Our Doctors
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </button>
+          <a routerLink="/contact-us" class="hero-btn hero-btn--secondary">Book a Consultation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 2 — CLINICAL LEADERSHIP
+  ══════════════════════════════════════ -->
+  <section class="cmo-section">
     <div class="container">
       <div class="section-header">
-        <span class="section-label">Leadership</span>
-        <h2 class="section-title">Meet Our Chief Medical Officer</h2>
+        <span class="section-label">Clinical Leadership</span>
+        <h2 class="section-title">Meet {{ cmo.name }}</h2>
         <div class="title-underline"></div>
       </div>
 
-      <!-- CMO Card -->
-      <div class="cmo-card-wrapper">
-        <div class="cmo-card">
-          <!-- Photo Side -->
-          <div class="cmo-photo-wrapper">
-            <div class="cmo-photo-container">
-              <div class="cmo-photo">
-                <img src="assets/Dr.Sunita.jpg" alt="{{ cmo.name }}" class="cmo-photo-img">
-              </div>
-              <div class="photo-ring photo-ring-1"></div>
-              <div class="photo-ring photo-ring-2"></div>
-            </div>
-            <div class="cmo-quick-stats">
-              <div class="quick-stat">
-                <span class="quick-stat-value">{{ cmo.experience }}</span>
-                <span class="quick-stat-label">Experience</span>
-              </div>
+      <div class="cmo-card">
+        <div class="cmo-photo-wrapper">
+          <div class="cmo-photo">
+            <img src="assets/Dr.Sunita.jpg" [alt]="cmo.name" class="cmo-photo-img">
+          </div>
+          <div class="cmo-quick-stat">
+            <span class="quick-stat-value">{{ cmo.experience }}</span>
+            <span class="quick-stat-label">{{ cmo.designation }}</span>
+          </div>
+        </div>
+
+        <div class="cmo-content">
+          <span class="cmo-role-badge">{{ cmo.role }}</span>
+          <p class="cmo-bio">{{ cmo.bio }}</p>
+
+          <div class="cmo-focus">
+            <span class="cmo-focus-label">Areas of Focus</span>
+            <div class="cmo-focus-tags">
+              @for (area of cmo.focusAreas; track area) {
+                <span class="focus-tag">{{ area }}</span>
+              }
             </div>
           </div>
 
-          <!-- Content Side -->
-          <div class="cmo-content">
-            <div class="cmo-header">
-              <span class="cmo-badge">
-                <svg class="badge-icon-sm" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                </svg>
-                Chief Medical Officer
-              </span>
-              <h1 class="cmo-name">{{ cmo.name }}</h1>
-              <p class="cmo-role-text">{{ cmo.role }}</p>
+          <button class="cmo-cta-btn" (click)="bookConsultation()">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            Book a Consultation with {{ cmo.name }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 3 — OUR CARE PHILOSOPHY
+  ══════════════════════════════════════ -->
+  <section class="philosophy-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">How We Think</span>
+        <h2 class="section-title">Different Doctors. One Standard of Care.</h2>
+        <div class="title-underline"></div>
+        <p class="section-subtitle">Wherever you meet our team, our approach remains consistent.</p>
+      </div>
+
+      <div class="philosophy-grid">
+        @for (item of philosophies; track item.title; let i = $index) {
+          <div class="philosophy-card">
+            <span class="philosophy-index">{{ (i + 1).toString().padStart(2, '0') }}</span>
+            <h3 class="philosophy-title">{{ item.title }}</h3>
+            <p class="philosophy-desc">{{ item.description }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 4 — HOW THE TEAM WORKS TOGETHER
+  ══════════════════════════════════════ -->
+  <section class="teamwork-section">
+    <div class="container container--narrow">
+      <span class="section-label">One Clinical System</span>
+      <h2 class="section-title" style="text-align:left">Your Care Is Supported by a Team</h2>
+      <div class="title-underline" style="margin:0 0 1.25rem"></div>
+      <p class="teamwork-text">Your treatment journey may involve consultations, investigations, follow-ups and ongoing monitoring. Our doctors work within a shared approach to care so that your progress remains understood and your next steps remain clear.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 5 — MEET THE DOCTORS
+  ══════════════════════════════════════ -->
+  <section class="doctors-section" id="clinical-team">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Our Experts</span>
+        <h2 class="section-title">The Doctors Who Will Guide Your Care</h2>
+        <div class="title-underline"></div>
+      </div>
+
+      <div class="doctors-grid">
+        @for (doctor of doctors; track doctor.id) {
+          <div class="doctor-card">
+            <div class="doctor-photo">
+              <span class="initials">{{ doctor.initials }}</span>
             </div>
-
-            <div class="cmo-specialization">
-              <div class="spec-icon">
-                <svg fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/>
-                </svg>
-              </div>
-              <div class="spec-content">
-                <span class="spec-label">Expertise</span>
-                <span class="spec-value">{{ cmo.specialization }}</span>
-              </div>
-            </div>
-
-            <p class="cmo-bio">{{ cmo.bio }}</p>
-
-            <div class="credentials-section">
-              <span class="credentials-title">Credentials & Expertise</span>
-              <div class="credentials-list">
-                @for (cred of cmo.credentials; track cred) {
-                  <span class="credential-badge">
-                    <svg class="cred-icon" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                    </svg>
-                    {{ cred }}
-                  </span>
-                }
-              </div>
-            </div>
-
-            <button class="cmo-cta-btn" (click)="bookConsultation()">
-              <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <h3 class="doctor-name">{{ doctor.name }}</h3>
+            <p class="doctor-designation">{{ doctor.designation }}</p>
+            <span class="doctor-experience">{{ doctor.experience }} of Experience</span>
+            <p class="doctor-bio">{{ doctor.bio }}</p>
+            <button class="doctor-book-btn" (click)="bookConsultation()">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
               </svg>
               Book Consultation
             </button>
           </div>
+        }
+      </div>
+
+      <!-- Experience Stats -->
+      <div class="stats-banner">
+        <span class="stats-heading">Experience You Can See. Care You Can Feel.</span>
+        <div class="stats-grid">
+          @for (stat of stats; track stat.label) {
+            <div class="stat-item">
+              <span class="stat-value">{{ stat.value }}</span>
+              <span class="stat-label">{{ stat.label }}</span>
+            </div>
+          }
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Stats Banner Section -->
-  <section class="stats-section">
-    <div class="container">
-      <div class="stats-banner">
-        @for (stat of stats; track stat.label; let i = $index) {
-          <div class="stat-item" [style.animation-delay]="(i * 0.1) + 's'">
-            <div class="stat-icon-wrapper">
-              @if (i === 0) {
-                <svg class="stat-icon" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
-                </svg>
-              } @else {
-                <svg class="stat-icon" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
-                </svg>
-              }
-            </div>
-            <div class="stat-content">
-              <div class="stat-value">{{ stat.value }}</div>
-              <div class="stat-label">{{ stat.label }}</div>
-            </div>
-          </div>
-        }
+  <!-- ══════════════════════════════════════
+       SECTION 6 — WHAT TO EXPECT AT YOUR FIRST CONSULTATION
+  ══════════════════════════════════════ -->
+  <section class="first-visit-section">
+    <div class="container container--narrow">
+      <div class="section-header">
+        <span class="section-label">Before You Arrive</span>
+        <h2 class="section-title">Your First Consultation Starts With Understanding</h2>
+        <div class="title-underline"></div>
+      </div>
+      <p class="first-visit-text">We begin by listening to your symptoms, concerns and medical history. If you already have prescriptions, scans or test reports, our doctor can review them with you. From there, we explain what we understand so far and whether further evaluation may be needed.</p>
+
+      <div class="first-visit-checklist">
+        <span class="checklist-label">You can bring:</span>
+        <div class="checklist-items">
+          @for (item of firstVisitChecklist; track item) {
+            <span class="checklist-item">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 13l4 4L19 7"/>
+              </svg>
+              {{ item }}
+            </span>
+          }
+        </div>
       </div>
     </div>
   </section>
 
-  <app-patient-stories></app-patient-stories>
-  
-  <!-- Clinical Team Section -->
-  <section class="doctors-section">
+  <!-- ══════════════════════════════════════
+       SECTION 7 — SELECTED PATIENT STORIES
+  ══════════════════════════════════════ -->
+  <section class="reviews-section">
     <div class="container">
       <div class="section-header">
-        <span class="section-label">Our Experts</span>
-        <h2 class="section-title">Clinical Team</h2>
+        <span class="section-label">Patient Proof</span>
+        <h2 class="section-title">What Patients Remember About Their Care</h2>
         <div class="title-underline"></div>
-        <p class="section-subtitle">Expert TB experts dedicated to providing exceptional patient care</p>
       </div>
 
-      <!-- Doctors Grid -->
-      <div class="doctors-grid">
-        @for (doctor of doctors; track doctor.id; let i = $index) {
-          <div
-            class="doctor-card"
-            [class.expanded]="selectedDoctorId() === doctor.id"
-            [style.animation-delay]="(i * 0.1) + 's'"
-            (click)="toggleDoctorDetails(doctor.id)"
-          >
-            <!-- Card Top Pattern -->
-            <div class="card-pattern"></div>
-            
-            <!-- Doctor Info -->
-            <div class="doctor-header">
-              <div class="doctor-photo-container">
-                <div class="doctor-photo">
-                  <span class="initials">{{ doctor.initials }}</span>
-                </div>
-                <div class="experience-badge">{{ doctor.experience }}</div>
-              </div>
-
-              <h3 class="doctor-name">{{ doctor.name }}</h3>
-              <p class="doctor-designation">{{ doctor.designation }}</p>
-
-              <div class="doctor-skills">
-                <span class="skill-tag">TB Care</span>
-                <span class="skill-tag">Patient Consultation</span>
-              </div>
-
-              <div class="doctor-expand-cta" [class.expanded]="selectedDoctorId() === doctor.id">
-                <span class="cta-text">{{ selectedDoctorId() === doctor.id ? 'Hide Profile' : 'View Profile' }}</span>
-                <svg class="cta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                </svg>
-              </div>
-            </div>
-
-            <!-- Expanded Details -->
-            <div class="doctor-details" [class.show]="selectedDoctorId() === doctor.id">
-              <div class="details-content">
-                <p class="detail-text">
-                  With {{ doctor.experience }} of experience in TB care, {{ doctor.name }} brings clinical expertise and compassionate patient care to every interaction.
-                </p>
-                <div class="detail-highlights">
-                  <div class="highlight-item">
-                    <svg class="highlight-icon" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                    </svg>
-                    <span>Evidence-based treatment</span>
-                  </div>
-                  <div class="highlight-item">
-                    <svg class="highlight-icon" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                    </svg>
-                    <span>Patient-centered approach</span>
-                  </div>
-                </div>
-                <button class="detail-btn" (click)="bookConsultation(); $event.stopPropagation()">
-                  <svg class="btn-icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                  </svg>
-                  Book Appointment
-                </button>
-              </div>
-            </div>
+      <div class="reviews-grid">
+        @for (review of curatedReviews; track review.name) {
+          <div class="review-card">
+            <span class="review-label">{{ review.label }}</span>
+            <p class="review-quote">"{{ review.quote }}"</p>
+            <span class="review-name">{{ review.name }}</span>
           </div>
         }
       </div>
-    </div>
-  </section>
 
-  <!-- CTA Section -->
-  <section class="cta-section">
-    <div class="cta-bg-pattern"></div>
-    <div class="container">
-      <div class="cta-content">
-        <div class="cta-icon-wrapper">
-          <svg class="cta-main-icon" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/>
+      <div class="reviews-more">
+        <a routerLink="/about-us" fragment="recovery-stories" class="reviews-more-link">
+          Read More Patient Reviews
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
           </svg>
-        </div>
-        <h2 class="cta-title">Ready to Start Your Journey to Better Health?</h2>
-        <p class="cta-subtitle">Connect with our expert TB experts for personalized, compassionate care tailored to your needs.</p>
-        <div class="cta-buttons">
-          <button class="cta-button primary" (click)="bookConsultation()">
-            <svg class="cta-btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-            </svg>
-            Book Consultation
-          </button>
-          <a href="tel:+919999999999" class="cta-button secondary">
-            <svg class="cta-btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-            </svg>
-            Call Now
-          </a>
-        </div>
+        </a>
       </div>
     </div>
   </section>
+
+
+  <!-- ══════════════════════════════════════
+       SECTION 8 — FINAL CTA
+  ══════════════════════════════════════ -->
+  <section class="cta-section">
+    <div class="cta-pattern"></div>
+    <div class="container">
+      <h2 class="cta-title">The Right Care Begins With the Right Conversation.</h2>
+      <p class="cta-subtitle">Whether you are seeking a diagnosis, a second opinion, or guidance during ongoing TB treatment, our team is here to understand your situation and help you identify the appropriate next step.</p>
+      <div class="cta-buttons">
+        <button type="button" class="cta-btn cta-btn--primary" (click)="bookConsultation()">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          Book a Consultation
+        </button>
+        <a routerLink="/network" class="cta-btn cta-btn--secondary">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          Find Your Nearest Clinic
+        </a>
+      </div>
+    </div>
+  </section>
+
 </div>

@@ -1,167 +1,171 @@
 <!-- about-us.component.html -->
 <div class="about-page-container">
-  <!-- Animated Background Elements -->
+  <!-- Background Elements -->
   <div class="bg-decoration bg-decoration-1"></div>
   <div class="bg-decoration bg-decoration-2"></div>
 
-  <!-- Hero Banner Section -->
+  <!-- ══════════════════════════════════════
+       SECTION 1 — HERO
+  ══════════════════════════════════════ -->
   <section class="hero-banner">
-    <div class="hero-pattern"></div>
+    <div class="hero-bg-circle hero-bg-circle-1"></div>
+    <div class="hero-bg-circle hero-bg-circle-2"></div>
     <div class="container">
       <div class="hero-content">
         <span class="hero-label">
-          <svg class="label-icon" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          <svg class="label-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
           </svg>
-          About TBClinic
+          Why Patients Trust Us
         </span>
-        <h1 class="hero-title">Compassionate, Evidence-Based Care for Every Patient</h1>
-        <p class="hero-subtitle">Leading the fight against tuberculosis with expertise, empathy, and innovation</p>
+        <h1 class="hero-title">Why Thousands of Patients Have Trusted TB Clinic</h1>
+        <p class="hero-subtitle">For over 16 years, we've helped patients across Delhi navigate one of life's most uncertain diagnoses with clarity, expertise, and continuous support. Our mission has always been simple — no patient should have to face TB alone.</p>
       </div>
 
-      <!-- Stats Cards -->
-      <div class="stats-grid">
-        @for (stat of stats; track stat.label; let i = $index) {
-          <div class="stat-card" [style.animation-delay]="(i * 0.1) + 's'">
-            <div class="stat-icon-wrapper">
-              @if (i === 0) {
-                <svg class="stat-icon" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
-                </svg>
-              } @else if (i === 1) {
-                <svg class="stat-icon" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                </svg>
-              } @else {
-                <svg class="stat-icon" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/>
-                </svg>
-              }
-            </div>
-            <div class="stat-content">
-              <span class="stat-value">{{ stat.value }}</span>
-              <span class="stat-label">{{ stat.label }}</span>
-            </div>
+      <!-- Trust Strip -->
+      <div class="trust-strip" role="list" aria-label="Our key credentials">
+        @for (item of trustStrip; track item.label) {
+          <div class="trust-pill" role="listitem">
+            <span class="trust-pill-value">{{ item.value }}</span>
+            <span class="trust-pill-label">{{ item.label }}</span>
           </div>
         }
       </div>
     </div>
   </section>
 
-  <!-- Our Story Section -->
+  <!-- ══════════════════════════════════════
+       SECTION 2 — WHY WE EXIST
+  ══════════════════════════════════════ -->
   <section class="story-section">
     <div class="container">
       <div class="story-grid">
         <!-- Image Side -->
         <div class="story-image-wrapper">
           <div class="image-frame">
-            <img [src]="story.imageUrl" alt="TB patient care and consultation" class="story-image">
+            <img [src]="purpose.imageUrl" alt="TB patient care and consultation" class="story-image">
             <div class="image-accent"></div>
           </div>
         </div>
 
         <!-- Content Side -->
         <div class="story-content">
-          <span class="section-label">Our Journey</span>
-          <h2 class="section-title">{{ story.title }}</h2>
+          <span class="section-label">Our Purpose</span>
+          <h2 class="section-title">Why We Built TB Clinic</h2>
           <div class="title-underline"></div>
 
-          <p class="story-text">
-            At TBClinic, we are dedicated to restoring health and dignity to individuals affected by tuberculosis. 
-            Our multidisciplinary team combines <strong>clinical expertise, nutritional support, emotional reassurance, 
-            and immunity-building guidance</strong> to enable complete and sustained recovery.
-          </p>
-
-          <p class="story-text">
-            Guided by WHO-aligned treatment protocols and compassionate patient engagement, 
-            we focus on <strong>early diagnosis, effective treatment, prevention awareness, and holistic healing practices</strong> 
-            that protect both individuals and communities.
-          </p>
+          @for (para of purpose.paragraphs; track $index) {
+            <p class="story-text">{{ para }}</p>
+          }
 
           <div class="story-highlights">
-            <div class="highlight-item">
-              <svg class="highlight-icon" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-              </svg>
-              <span>WHO-aligned treatment protocols</span>
-            </div>
-            <div class="highlight-item">
-              <svg class="highlight-icon" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-              </svg>
-              <span>Holistic healing approach</span>
-            </div>
-            <div class="highlight-item">
-              <svg class="highlight-icon" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-              </svg>
-              <span>Compassionate patient care</span>
-            </div>
+            @for (highlight of purpose.highlights; track highlight) {
+              <div class="highlight-item">
+                <svg class="highlight-icon" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+                <span>{{ highlight }}</span>
+              </div>
+            }
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Achievement Banner -->
-  <section class="achievement-section">
-    <div class="container">
-      <div class="achievement-banner">
-        <img src="assets/trophy.png" alt="Achievement Trophy" class="achievement-icon">
-        <div class="achievement-divider"></div>
-        <h3 class="achievement-title">Treating one of the highest number of TB patients in Delhi</h3>
-        <span class="sub-note">*As per Government Health Records*</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Values Section -->
-  <section class="values-section">
+  <!-- ══════════════════════════════════════
+       SECTION 3 — OUR PHILOSOPHY OF CARE
+  ══════════════════════════════════════ -->
+  <section class="philosophy-section">
     <div class="container">
       <div class="section-header">
-        <span class="section-label light">What We Stand For</span>
-        <h2 class="section-title light">Our Guiding Values</h2>
-        <div class="title-underline light"></div>
+        <span class="section-label">How We Think</span>
+        <h2 class="section-title">Our Philosophy of Care</h2>
+        <div class="title-underline"></div>
       </div>
 
-      <div class="values-grid">
-        @for (value of values; track value.title; let i = $index) {
-          <div class="value-card" [style.animation-delay]="(i * 0.1) + 's'">
-            <div class="value-icon-wrapper">
-              @if (i === 0) {
-                <svg class="value-icon" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                </svg>
-              } @else if (i === 1) {
-                <svg class="value-icon" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                </svg>
-              } @else if (i === 2) {
-                <svg class="value-icon" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
-                </svg>
-              } @else {
-                <svg class="value-icon" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7z"/>
-                </svg>
-              }
-            </div>
-            <h3 class="value-title">{{ value.title }}</h3>
-            <p class="value-description">{{ value.description }}</p>
+      <div class="philosophy-grid">
+        @for (item of philosophies; track item.title; let i = $index) {
+          <div class="philosophy-card" [style.animation-delay]="(i * 0.1) + 's'">
+            <span class="philosophy-index">{{ (i + 1).toString().padStart(2, '0') }}</span>
+            <h3 class="philosophy-title">{{ item.title }}</h3>
+            <p class="philosophy-description">{{ item.description }}</p>
           </div>
         }
       </div>
     </div>
   </section>
 
-  <!-- Testimonials Section -->
-  <section class="testimonials-section">
+  <!-- ══════════════════════════════════════
+       SECTION 4 — HOW WE CARE DIFFERENTLY
+  ══════════════════════════════════════ -->
+  <section class="care-timeline-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">The Patient Experience</span>
+        <h2 class="section-title">How We Care Differently</h2>
+        <div class="title-underline"></div>
+      </div>
+
+      <div class="care-timeline">
+        @for (step of careSteps; track step.title; let i = $index) {
+          <div class="care-step" [style.animation-delay]="(i * 0.08) + 's'">
+            <div class="care-step-marker">
+              <span class="care-step-number">{{ i + 1 }}</span>
+            </div>
+            <div class="care-step-body">
+              <h3 class="care-step-title">{{ step.title }}</h3>
+              <p class="care-step-desc">{{ step.description }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 5 — MEET THE PEOPLE BEHIND TB CLINIC
+  ══════════════════════════════════════ -->
+  <section class="team-section">
+    <div class="container">
+      <div class="team-grid">
+
+        <div class="team-lead-card">
+          <div class="team-lead-photo">
+            <img src="assets/Dr.Sunita.jpg" alt="Dr. Sunita Rani, Chief Medical Officer, MEDCROSS TB Clinic">
+          </div>
+          <div class="team-lead-info">
+            <span class="section-label">Meet The People Behind TB Clinic</span>
+            <h2 class="section-title" style="text-align:left">Led by Doctors Who Stay Close to Every Case</h2>
+            <p class="team-lead-desc">Dr. Sunita Rani and our team of dedicated TB experts guide every patient personally — from the first consultation to the final follow-up. These are the people who will guide your recovery.</p>
+            <div class="team-tags">
+              <span class="team-tag">Dr. Sunita Rani · Chief Medical Officer</span>
+              <span class="team-tag">16+ Years in TB Care</span>
+              <span class="team-tag">50+ Years Combined Team Experience</span>
+            </div>
+            <a routerLink="/our-doctors" class="team-link-btn">
+              Meet Our Full Team
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 7 — RECOVERY STORIES
+  ══════════════════════════════════════ -->
+  <section class="testimonials-section" id="recovery-stories">
     <div class="container">
       <div class="section-header">
         <span class="section-label">Real Stories</span>
-        <h2 class="section-title">Patient Experiences</h2>
+        <h2 class="section-title">Recovery Stories</h2>
         <div class="title-underline"></div>
-        <p class="section-subtitle">Hear from those who trusted us with their recovery journey</p>
+        <p class="section-subtitle">Every recovery begins with uncertainty. These are stories from patients who trusted us to guide them through it.</p>
       </div>
 
       <div class="testimonials-grid">
@@ -193,30 +197,32 @@
     </div>
   </section>
 
-  <!-- CTA Section -->
+  <!-- ══════════════════════════════════════
+       SECTION 8 — FINAL CTA
+  ══════════════════════════════════════ -->
   <section class="cta-section">
     <div class="cta-pattern"></div>
     <div class="container">
       <div class="cta-content">
         <div class="cta-icon-wrapper">
-          <svg class="cta-icon" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/>
+          <svg class="cta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
           </svg>
         </div>
-        <h2 class="cta-title">Ready to Begin Your Recovery Journey?</h2>
-        <p class="cta-subtitle">Our expert team is here to provide compassionate, effective TB care tailored to your needs.</p>
+        <h2 class="cta-title">Whether You're Looking for Answers, a Second Opinion, or Ongoing Treatment, We're Here to Help.</h2>
+        <p class="cta-subtitle">You don't need to have all the answers before you reach out. Whether you're experiencing symptoms, seeking a second opinion, or continuing treatment, our team is here to help you understand the next step with clarity and confidence.</p>
         <div class="cta-buttons">
-          <a routerLink="/contact" class="cta-btn primary">
+          <a routerLink="/contact-us" class="cta-btn primary">
             <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
             </svg>
-            Book Consultation
+            Book a Consultation
           </a>
-          <a routerLink="/our-doctors" class="cta-btn secondary">
-            <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+          <a href="https://wa.me/919218026183?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20TB%20care" target="_blank" rel="noopener" class="cta-btn secondary">
+            <svg class="btn-icon" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
             </svg>
-            Meet Our Doctors
+            Talk to Our Team
           </a>
         </div>
       </div>

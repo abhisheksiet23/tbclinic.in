@@ -1,555 +1,343 @@
-@use "sass:color";
-
-// Brand Colors - Healthcare Theme
-$primary-red: #393362;      // Main Navigation/Primary color (Deep Purple)
-$dark-red: #f15f64;         // Button/Accent color (Coral Red)
-$text-dark: #2c2c2c;
-$white: #ffffff;
-$menu-bg-mobile: #f9f9f9; 
-$gray-border: #e8e8e8;
-$light-shadow: rgba(0, 0, 0, 0.08);
-$medium-shadow: rgba(0, 0, 0, 0.15);
-
-// Reset
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+﻿/* =========================================================
+   HEADER — TBClinic Premium Rebrand
+   ========================================================= */
 
 .main-header {
-    width: 100%;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    position: relative;
+  width: 100%;
+  font-family: var(--font-body);
+  position: relative;
 }
 
 .container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  @media (max-width: 992px) { padding: 0 1.5rem; }
+  @media (max-width: 576px) { padding: 0 1rem; }
 }
 
-// --- Top Bar (Redesigned for Mobile) ---
+/* ── Top Bar ── */
 .top-bar {
-    background: linear-gradient(135deg, $primary-red 0%, color.adjust($primary-red, $lightness: -5%) 100%);
-    padding: 12px 0;
-    position: relative;
-    
-    // Subtle pattern overlay for healthcare feel
+  background: #DCEBFB;
+  border-bottom: 1px solid #E1ECF7;
+  padding: 10px 0;
+
+  .container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .top-bar-content {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .helpline {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #1A2B42;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+
     &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-image: 
-            radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
-            radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
-        pointer-events: none;
-    }
-    
-    .container {
-        display: flex;
-        justify-content: flex-end;
-        position: relative;
-        z-index: 1;
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #2B7DE9;
+      border-radius: 50%;
+      animation: pulseDot 2s ease-in-out infinite;
     }
 
-    .top-bar-content {
-        display: flex;
-        align-items: center;
-        gap: 25px;
+    &:hover { color: #2B7DE9; }
+  }
+
+  .top-bar-contacts {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .top-bar-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    color: #25D366;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover { color: #1ebe5d; }
+  }
+
+  .btn-book {
+    background: #2B7DE9;
+    color: #ffffff;
+    padding: 0.5rem 1.25rem;
+    border: none;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.813rem;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(43, 125, 233, 0.2);
+    letter-spacing: 0.01em;
+
+    &:hover {
+      background: #1E5FB8;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(43, 125, 233, 0.3);
     }
 
-    .helpline {
-        color: $white;
-        font-size: 15px;
-        font-weight: 500;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        letter-spacing: 0.3px;
-        
-        // Add phone icon effect
-        &::before {
-            content: '📞';
-            font-size: 14px;
-        }
-    }
-
-    .btn-book {
-        background: linear-gradient(135deg, $dark-red 0%, color.adjust($dark-red, $lightness: -8%) 100%);
-        color: $white;
-        padding: 10px 28px;
-        border: none;
-        border-radius: 25px;
-        cursor: pointer;
-        font-weight: 600;
-        font-size: 14px;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(241, 95, 100, 0.3);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-
-        &:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(241, 95, 100, 0.4);
-            background: linear-gradient(135deg, color.adjust($dark-red, $lightness: -5%) 0%, color.adjust($dark-red, $lightness: -12%) 100%);
-        }
-
-        &:active {
-            transform: translateY(0);
-        }
-    }
+    &:active { transform: translateY(0); }
+  }
 }
 
-// --- Main Navigation Bar (Sticky with Enhanced Shadow) ---
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* ── Main Navigation ── */
 .navbar {
-    background-color: $white;
-    box-shadow: 0 2px 12px $light-shadow;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    transition: box-shadow 0.3s ease;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 2px 16px rgba(43, 125, 233, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 
-    &.scrolled {
-        box-shadow: 0 4px 20px $medium-shadow;
-    }
-
-    .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        min-height: 85px;
-        position: relative;
-    }
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 80px;
+    position: relative;
+  }
 }
 
 .logo-area {
-    flex-shrink: 0;
-    
-    .logo {
-        height: 65px;
-        width: auto;
-        object-fit: contain;
-        transition: all 0.3s ease;
-        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-        
-        &:hover {
-            transform: scale(1.02);
-        }
+  flex-shrink: 0;
+
+  .logo {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.85;
     }
+  }
 }
 
-// --- Navigation Links (Desktop) ---
+/* ── Desktop Nav Links ── */
 .nav-links {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
 
-    .nav-item {
-        position: relative;
+  .nav-link {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    padding: 0.5rem 0.875rem;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    position: relative;
+    text-decoration: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 0.875rem;
+      right: 0.875rem;
+      height: 2px;
+      background: var(--color-primary);
+      transform: scaleX(0);
+      border-radius: 1px;
+      transition: transform 0.2s ease;
     }
 
-    .nav-link {
-        text-decoration: none;
-        color: $text-dark;
-        font-weight: 500;
-        font-size: 15px;
-        padding: 10px 18px;
-        transition: all 0.3s ease;
-        white-space: nowrap;
-        border-radius: 8px;
-        position: relative;
-        
-        &::after {
-            content: '';
-            position: absolute;
-            bottom: 8px;
-            left: 18px;
-            right: 18px;
-            height: 2px;
-            background-color: $primary-red;
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
+    &:hover {
+      color: var(--color-primary);
+      background: var(--color-primary-light);
 
-        &:hover {
-            color: $primary-red;
-            background-color: rgba(57, 51, 98, 0.05);
-            
-            &::after {
-                transform: scaleX(1);
-            }
-        }
-
-        &.active {
-            color: $primary-red;
-            background-color: rgba(57, 51, 98, 0.08);
-            font-weight: 600;
-        }
+      &::after {
+        transform: scaleX(1);
+      }
     }
+
+    &.active {
+      color: var(--color-primary);
+      background: var(--color-primary-light);
+      font-weight: 600;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+  }
 }
 
-// --- Mobile Menu Toggle Styles ---
+/* ── Mobile Toggle ── */
 .menu-toggle {
-    display: none;
+  display: none;
 }
 
 .menu-icon {
-    display: none; 
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 1001;
+  position: relative;
+
+  .bar {
+    height: 2.5px;
+    width: 100%;
+    background: var(--color-primary);
+    border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}
+
+/* ── Tablet + Mobile ── */
+@media (max-width: 992px) {
+  .menu-icon {
+    display: flex;
+  }
+
+  .navbar .container {
+    min-height: 68px;
+  }
+
+  .logo-area .logo {
+    height: 52px;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
     flex-direction: column;
-    justify-content: space-between;
-    width: 28px;
-    height: 22px;
-    cursor: pointer;
-    z-index: 1001;
-    position: relative;
-    padding: 2px;
+    background: var(--color-surface);
+    box-shadow: 4px 0 32px rgba(43, 125, 233, 0.12);
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+    overflow-y: auto;
+    padding: 100px 0 2rem;
+    gap: 0;
+    align-items: stretch;
 
-    .bar {
-        height: 3px;
-        width: 100%;
-        background-color: $primary-red;
-        border-radius: 3px;
-        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    }
-}
-
-// ------------------------------------------------------------------
-// --- TABLET RESPONSIVENESS (768px - 992px) ------------------------
-// ------------------------------------------------------------------
-
-@media (max-width: 992px) {
-    .container {
-        padding: 0 24px;
-    }
-    
-    /* --- Top Bar: Optimized Layout --- */
-    .top-bar {
-        padding: 10px 0;
-        
-        .top-bar-content {
-            width: 100%;
-            justify-content: space-between;
-            gap: 15px;
-        }
-        
-        .helpline {
-            font-size: 13px;
-            
-            &::before {
-                font-size: 12px;
-            }
-        }
-        
-        .btn-book {
-            padding: 9px 20px;
-            font-size: 12px;
-            letter-spacing: 0.3px;
-        }
-    }
-    
-    /* --- Main Nav: Compact --- */
-    .navbar .container {
-        min-height: 70px;
-    }
-    
-    .logo-area .logo {
-        height: 55px;
+    .nav-item {
+      width: 100%;
+      border-bottom: 1px solid var(--color-border);
     }
 
-    /* --- Show Hamburger --- */
-    .menu-icon {
-        display: flex;
-    }
-
-    /* --- Mobile Menu: Slide-in with Better Animation --- */
-    .nav-links {
-        position: fixed;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        height: calc(100vh - 70px);
-        flex-direction: column;
-        background: linear-gradient(180deg, $white 0%, $menu-bg-mobile 100%);
-        box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.05);
-        transform: translateX(100%);
-        transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        z-index: 999;
-        overflow-y: auto;
-        padding: 20px 0;
-        gap: 0;
-        
-        .nav-item {
-            width: 100%;
-            opacity: 0;
-            transform: translateX(30px);
-            transition: all 0.3s ease;
-            
-            &:not(:last-child) {
-                border-bottom: 1px solid $gray-border;
-            }
-            
-            .nav-link {
-                padding: 18px 24px;
-                font-size: 16px;
-                color: $text-dark;
-                width: 100%;
-                display: block;
-                border-radius: 0;
-                
-                &::after {
-                    display: none;
-                }
-                
-                &:hover, &.active {
-                    background-color: rgba(57, 51, 98, 0.06);
-                    color: $primary-red;
-                    padding-left: 32px;
-                }
-                
-                // Add arrow indicator
-                &::before {
-                    content: '›';
-                    margin-right: 10px;
-                    font-size: 20px;
-                    color: $primary-red;
-                    opacity: 0;
-                    transition: opacity 0.3s ease;
-                }
-                
-                &:hover::before, &.active::before {
-                    opacity: 1;
-                }
-            }
-        }
-    }
-
-    /* --- Menu Open State --- */
-    .menu-toggle:checked ~ .nav-links {
-        transform: translateX(0);
-        
-        .nav-item {
-            opacity: 1;
-            transform: translateX(0);
-            
-            // Staggered animation
-            @for $i from 1 through 10 {
-                &:nth-child(#{$i}) {
-                    transition-delay: #{$i * 0.05}s;
-                }
-            }
-        }
-    }
-    
-    /* --- Hamburger to X Animation --- */
-    .menu-toggle:checked + .menu-icon {
-        .bar:nth-child(2) {
-            opacity: 0;
-            transform: translateX(20px);
-        }
-        .bar:nth-child(1) {
-            transform: translateY(9px) rotate(45deg);
-        }
-        .bar:nth-child(3) {
-            transform: translateY(-9px) rotate(-45deg);
-        }
-    }
-    
-    /* --- Prevent body scroll when menu open --- */
-    .menu-toggle:checked ~ * {
-        body {
-            overflow: hidden;
-        }
-    }
-}
-
-// ------------------------------------------------------------------
-// --- MOBILE RESPONSIVENESS (<= 576px) -----------------------------
-// ------------------------------------------------------------------
-
-@media (max-width: 576px) {
-    .container {
-        padding: 0 16px;
-    }
-    
-    /* --- Compact Top Bar --- */
-    .top-bar {
-        padding: 8px 0;
-        
-        .top-bar-content {
-            gap: 10px;
-        }
-        
-        .helpline {
-            font-size: 11px;
-            
-            &::before {
-                font-size: 10px;
-            }
-        }
-        
-        .btn-book {
-            padding: 7px 14px;
-            font-size: 10px;
-            border-radius: 20px;
-        }
-    }
-    
-    /* --- Ultra-Compact Navbar --- */
-    .navbar .container {
-        min-height: 60px;
-    }
-    
-    .logo-area .logo {
-        height: 45px;
-    }
-    
-    .menu-icon {
-        width: 26px;
-        height: 20px;
-        
-        .bar {
-            height: 2.5px;
-        }
-    }
-    
-    /* --- Mobile Menu Adjustments --- */
-    .nav-links {
-        top: 60px;
-        height: calc(100vh - 60px);
-        padding: 15px 0;
-        
-        .nav-item .nav-link {
-            padding: 16px 20px;
-            font-size: 15px;
-            
-            &:hover, &.active {
-                padding-left: 28px;
-            }
-        }
-    }
-    
-    .menu-toggle:checked + .menu-icon {
-        .bar:nth-child(1) {
-            transform: translateY(8.5px) rotate(45deg);
-        }
-        .bar:nth-child(3) {
-            transform: translateY(-8.5px) rotate(-45deg);
-        }
-    }
-}
-
-// ------------------------------------------------------------------
-// --- EXTRA SMALL DEVICES (<= 375px) -------------------------------
-// ------------------------------------------------------------------
-
-@media (max-width: 375px) {
-    .top-bar {
-        .helpline {
-            font-size: 10px;
-            gap: 4px;
-        }
-        
-        .btn-book {
-            padding: 6px 12px;
-            font-size: 9px;
-        }
-    }
-    
-    .logo-area .logo {
-        height: 40px;
-    }
-    
-    .nav-links .nav-item .nav-link {
-        font-size: 14px;
-        padding: 14px 16px;
-    }
-}
-
-// ------------------------------------------------------------------
-// --- ACCESSIBILITY ENHANCEMENTS -----------------------------------
-// ------------------------------------------------------------------
-
-// Focus states for keyboard navigation
-.nav-link:focus,
-.btn-book:focus,
-.menu-icon:focus {
-    outline: 3px solid rgba(57, 51, 98, 0.4);
-    outline-offset: 2px;
-}
-
-// Reduced motion for accessibility
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}
-
-// High contrast mode support
-@media (prefers-contrast: high) {
-    .navbar {
-        border-bottom: 2px solid $text-dark;
-    }
-    
     .nav-link {
-        border: 1px solid transparent;
-        
-        &:hover, &:focus {
-            border-color: $primary-red;
-        }
+      display: block;
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 0;
+
+      &::after {
+        display: none;
+      }
+
+      &:hover, &.active {
+        background: var(--color-primary-light);
+        color: var(--color-primary);
+        padding-left: 2rem;
+      }
     }
-}
-// Force mobile menu to be above everything - ADD AT THE VERY END
-@media (max-width: 992px) {
-    // Make sure top-bar and navbar stay visible
-    .top-bar,
-    .navbar {
-        position: relative;
-        z-index: 1000001 !important;
+  }
+
+  /* Menu open state */
+  .menu-toggle:checked ~ .nav-links {
+    transform: translateX(0);
+  }
+
+  /* Hamburger → X */
+  .menu-toggle:checked + .menu-icon {
+    .bar:nth-child(2) {
+      opacity: 0;
     }
-    
-    // When menu is open
-    .menu-toggle:checked {
-        // Hide only the content AFTER the header
-        ~ .nav-links ~ * {
-            display: none !important;
-        }
-        
-        // Full screen menu
-        ~ .nav-links {
-            display: flex !important;
-            position: fixed !important;
-            top: 120px !important; // Below top-bar + navbar
-            left: 0 !important;
-            right: 0 !important;
-            bottom: 0 !important;
-            width: 100vw !important;
-            height: calc(100vh - 120px) !important;
-            z-index: 999999 !important;
-            background: #ffffff !important;
-            padding-top: 20px !important;
-            transform: translateX(0) !important;
-        }
-        
-        // Keep hamburger icon visible and animated
-        + .menu-icon {
-            z-index: 1000002 !important;
-        }
+    .bar:nth-child(1) {
+      transform: translateY(8.75px) rotate(45deg);
     }
+    .bar:nth-child(3) {
+      transform: translateY(-8.75px) rotate(-45deg);
+    }
+  }
+
+  .top-bar .top-bar-content {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .top-bar .helpline {
+    font-size: 0.813rem;
+  }
 }
 
 @media (max-width: 576px) {
-    .menu-toggle:checked ~ .nav-links {
-        top: 100px !important; // Smaller top-bar + navbar on mobile
-        height: calc(100vh - 100px) !important;
+  .navbar .container {
+    min-height: 60px;
+  }
+
+  .logo-area .logo {
+    height: 46px;
+  }
+
+  .top-bar {
+    padding: 8px 0;
+
+    .btn-book {
+      font-size: 0.75rem;
+      padding: 0.438rem 0.875rem;
     }
+
+    .helpline {
+      font-size: 0.75rem;
+    }
+
+    /* WhatsApp is already offered in the hero + floating dial — drop the duplicate
+       here so the phone number has room and never wraps. */
+    .top-bar-whatsapp {
+      display: none;
+    }
+  }
+
+  .nav-links {
+    padding-top: 80px;
+  }
+}
+
+/* ── Accessibility ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }

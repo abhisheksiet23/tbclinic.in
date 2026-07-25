@@ -1,77 +1,78 @@
 <section class="network-section">
- 
-  <div class="delhi-centers-header">
-  <h2 class="delhi-centers-title">Our Delhi Centers</h2>
-  <p class="delhi-centers-subtitle">Find your nearest clinic</p>
-</div>
-  <!-- Delhi Map -->
-  <div class="delhi-map-container">
-    <img src="assets/images/delhi-map.png" alt="Delhi TB Clinic Network Map" class="delhi-map-image">
 
-    <button *ngFor="let loc of hospitalLocations; let i = index" 
-      class="map-location-pin"
-      [style.top]="mapPinPositions[i].top"
-      [style.left]="mapPinPositions[i].left"
-      (click)="scrollToBranch(i)">
-      <span>{{ loc.branchName }}</span>
-    </button>
+  <!-- Section Header -->
+  <div class="network-header">
+    <span class="network-eyebrow">
+      <i class="fa fa-map-marker-alt"></i> Our Delhi Centers
+    </span>
+    <h2 class="network-title">Expert TB &amp; Chest Care Across Delhi</h2>
+    <p class="network-subtitle">
+      Five specialized clinics delivering accurate diagnosis, advanced treatment
+      and compassionate care &mdash; closer to you.
+    </p>
   </div>
 
-  <!-- Nav Bar -->
-  <div class="city-nav-bar">
-    <div class="city-nav-container">
-      <a *ngFor="let city of networkCities"
-         href="#"
-         class="city-link"
-         [class.active]="city === 'All Locations'">
-        {{ city }}
-      </a>
+  <!-- Interactive Map -->
+  <div class="network-locator">
+    <div class="delhi-map-container">
+      <img src="assets/images/delhi-map.png" alt="Delhi TB Clinic Network Map" class="delhi-map-image">
+
+      <button *ngFor="let loc of hospitalLocations; let i = index"
+        type="button"
+        class="map-pin"
+        [class.active]="activeIndex === i"
+        [style.top]="mapPinPositions[i].top"
+        [style.left]="mapPinPositions[i].left"
+        (click)="scrollToBranch(i)"
+        (mouseenter)="setActive(i)"
+        (mouseleave)="setActive(null)"
+        (focus)="setActive(i)"
+        (blur)="setActive(null)"
+        [attr.aria-label]="'Go to ' + loc.branchName">
+        <span class="map-pin-number">{{ i + 1 }}</span>
+        <span class="map-pin-tooltip">{{ loc.branchName }}</span>
+      </button>
+
+      <!-- Compass -->
+      <div class="map-compass" aria-hidden="true">
+        <span class="compass-n">N</span>
+        <span class="compass-arrow">&#9650;</span>
+      </div>
     </div>
   </div>
 
-  <div class="network-content-wrapper">
-    <div class="content-container">
-      
-      <!-- Updated Info Panel -->
-      <div class="network-info-panel">
-        <h2 class="info-title">Network of Care</h2>
-        <p class="info-description">
-          We provide tuberculosis diagnosis, treatment, and ongoing patient care through our connected branch clinics across Delhi.
-          Each location is staffed with trained TB experts, offering the same standard of compassion, scientific treatment protocols and continuous support.
-        </p>
-      </div>
+  <!-- Branch Cards -->
+  <div class="locations-carousel">
+    <div class="carousel-track">
+      <div class="location-card"
+        *ngFor="let loc of hospitalLocations; let i = index"
+        [id]="'branch-' + i"
+        [class.active]="activeIndex === i"
+        (mouseenter)="setActive(i)"
+        (mouseleave)="setActive(null)">
 
-      <!-- Branch Cards -->
-      <div class="locations-carousel">
-        <div class="carousel-track">
-          <div class="location-card" *ngFor="let loc of hospitalLocations; let i = index" [id]="'branch-' + i">
-            
-            <h3 class="branch-name-header">{{ loc.branchName }}</h3>
-
-            <div class="map-embed-area">
-              <iframe 
-                [src]="loc.mapEmbedUrl | safeUrl"
-                allowfullscreen
-                loading="lazy">
-              </iframe>
-            </div>
-
-            <div class="branch-details">
-              <p class="address-line">
-                <i class="fa fa-map-marker-alt"></i> {{ loc.addressLine }}
-              </p>
-
-              <a href="https://www.google.com/maps/search/?api=1&query={{ loc.addressLine | urlEncode }}"
-                 target="_blank"
-                 class="btn-get-directions">
-                  View Directions
-              </a>
-            </div>
-
-          </div>
+        <div class="card-head">
+          <span class="card-number">{{ i + 1 }}</span>
+          <h3 class="branch-name-header">{{ loc.branchName }}</h3>
         </div>
-      </div>
 
+        <p class="address-line">{{ loc.addressLine }}</p>
+
+        <div class="card-features">
+          <span class="feature-item"><i class="fa fa-user-md"></i> Expert Doctors</span>
+          <span class="feature-item"><i class="fa fa-x-ray"></i> Digital X-Ray</span>
+          <span class="feature-item"><i class="fa fa-vial"></i> Lab Services</span>
+        </div>
+
+        <a href="https://www.google.com/maps/search/?api=1&query={{ loc.addressLine | urlEncode }}"
+           target="_blank"
+           rel="noopener"
+           class="btn-get-directions">
+          <i class="fa fa-map-marker-alt"></i> Get Directions
+          <i class="fa fa-external-link-alt directions-ext"></i>
+        </a>
+
+      </div>
     </div>
   </div>
 

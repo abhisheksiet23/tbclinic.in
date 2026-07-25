@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -18,7 +18,7 @@ interface LeadForm {
   templateUrl: './hero-carousel.component.html',
   styleUrls: ['./hero-carousel.component.scss']
 })
-export class HeroCarouselComponent implements OnInit {
+export class HeroCarouselComponent {
 
   staticBackgroundUrl: string = 'assets/Doctor.jpeg';
   hospitals: string[] = ['Select Clinic (Nearest Metro)', 'Lawrence Road (Keshavuram, Red Line)', 'Mayur Vihar (Mayur Vihar Pocket-I, Pink Line)', 'Durgapuri (Shahdra, Red Line)', 'Uttam Nagar (Nawada, Blue Line)', 'Tigri (Saket, Yellow Line)'];
@@ -30,11 +30,63 @@ export class HeroCarouselComponent implements OnInit {
     clinic: this.hospitals[0]
   };
 
+  isFormOpen = false;
+
+  /** Ensures the mobile form auto-opens only once, after the user has nearly reached the footer. */
+  private hasAutoOpened = false;
+
   private toast = inject(ToastService);
 
   constructor(private router: Router) {}
 
-  ngOnInit(): void {}
+  /**
+   * On mobile, reveal the booking form only once the user has scrolled almost all the
+   * way down (near the footer) — so they've seen the whole page (important for a
+   * stigmatized topic) before being asked, and the form is never an on-load popup.
+   * The CTA button itself still appears right after the first section. Fires once
+   * and never re-nags.
+   */
+  @HostListener('window:scroll')
+  onWindowScroll(): void {
+    if (this.hasAutoOpened || this.isFormOpen) return;
+    if (typeof window === 'undefined' || window.innerWidth > 899) return;
+
+    const footer = document.querySelector('.main-footer');
+    if (!footer) return;
+
+    // Trigger once the footer is close to entering the viewport.
+    if (footer.getBoundingClientRect().top < window.innerHeight * 1.2) {
+      this.hasAutoOpened = true;
+      this.openForm();
+    }
+  }
+
+  openForm(): void {
+    this.isFormOpen = true;
+    document.body.style.overflow = 'hidden';
+  }
+
+  /** Hero "Book Appointment" CTA: opens the modal on mobile, scrolls to the inline form on desktop. */
+  scrollToForm(): void {
+    if (typeof window === 'undefined') return;
+
+    if (window.innerWidth <= 899) {
+      this.openForm();
+      return;
+    }
+
+    document.querySelector('.hero-form-panel')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  closeForm(): void {
+    this.isFormOpen = false;
+    document.body.style.overflow = '';
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscapeKey(): void {
+    if (this.isFormOpen) this.closeForm();
+  }
 
   async onSubmitForm(): Promise<void> {
     const isClinicSelected = this.formData.clinic !== this.hospitals[0];

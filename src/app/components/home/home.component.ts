@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { HeroCarouselComponent } from '../hero-carousel/hero-carousel.component';
 import { NetworkComponent } from '../network/network.component';
 import { PatientStoriesComponent } from '../patient-stories/patient-stories.component';
@@ -9,6 +10,7 @@ import { SeoService } from '../../services/seo.service';
   selector: 'app-home',
   standalone: true,
   imports: [
+    CommonModule,
     HeroCarouselComponent,
     NetworkComponent,
     PatientStoriesComponent,
@@ -17,8 +19,131 @@ import { SeoService } from '../../services/seo.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  /** Journey carousel state (mobile) */
+  @ViewChild('journeyTrack') journeyTrack?: ElementRef<HTMLElement>;
+  journeySteps = [0, 1, 2, 3, 4];
+  journeyIndex = 0;
+  private autoplayTimer?: ReturnType<typeof setInterval>;
+  private scrollScheduled = false;
+
+  /** The WhatsApp/Call/Book speed-dial is redundant with the hero's own CTAs, so it
+   *  only appears once the user has scrolled a bit into the hero — and then stays
+   *  visible for the rest of the session, even if they scroll back up. */
+  showSpeedDial = false;
+
   constructor(private seo: SeoService) {}
+
+  @HostListener('window:scroll')
+  onSpeedDialScroll(): void {
+    if (this.showSpeedDial || typeof window === 'undefined') return;
+    // Key off the hero's own CTA row (not a fixed % of hero height) so the
+    // speed-dial never appears while those buttons are still on screen —
+    // the hero has grown taller over time and the old percentage-based
+    // guess started firing while the CTA row was still visible.
+    const heroCta = document.querySelector<HTMLElement>('.hero-cta-row');
+    if (!heroCta) return;
+    if (heroCta.getBoundingClientRect().bottom < 0) {
+      this.showSpeedDial = true;
+    }
+  }
+
+  /**
+   * Myth cards: an exclusive accordion on mobile (one open at a time), but all
+   * cards open and non-interactive on desktop (a 2-up grid of full myth+fact cards).
+   * Done in JS because CSS can't reliably force a modern <details> open.
+   */
+  @HostListener('window:resize')
+  applyMythMode(): void {
+    if (typeof document === 'undefined') return;
+    const items = document.querySelectorAll<HTMLDetailsElement>('.myth-item');
+    const isDesktop = window.innerWidth >= 768;
+    items.forEach((el, i) => {
+      if (isDesktop) {
+        el.removeAttribute('name'); // drop the exclusive group so all can stay open
+        el.open = true;
+      } else {
+        el.setAttribute('name', 'myths');
+        el.open = i === 0;
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    if (typeof window === 'undefined') return;
+    this.applyMythMode();
+    this.onSpeedDialScroll();
+    // Autoplay only when the track is actually a scrollable carousel (mobile)
+    // and the user hasn't asked to reduce motion.
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce && this.isJourneyScrollable()) {
+      this.autoplayTimer = setInterval(() => {
+        const next = (this.journeyIndex + 1) % this.journeySteps.length;
+        this.scrollJourneyTo(next, true);
+      }, 4000);
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.stopAutoplay();
+  }
+
+  private isJourneyScrollable(): boolean {
+    const el = this.journeyTrack?.nativeElement;
+    return !!el && el.scrollWidth > el.clientWidth + 4;
+  }
+
+  /** Stop autoplaying the moment the user takes control. */
+  stopAutoplay(): void {
+    if (this.autoplayTimer) {
+      clearInterval(this.autoplayTimer);
+      this.autoplayTimer = undefined;
+    }
+  }
+
+  private scrollJourneyTo(i: number, smooth: boolean): void {
+    const el = this.journeyTrack?.nativeElement;
+    const child = el?.children[i] as HTMLElement | undefined;
+    if (!el || !child) return;
+    const target = child.offsetLeft - (el.clientWidth - child.clientWidth) / 2;
+    el.scrollTo({ left: Math.max(0, target), behavior: smooth ? 'smooth' : 'auto' });
+  }
+
+  /** Keep the active dot in sync as the user swipes. */
+  onJourneyScroll(): void {
+    if (this.scrollScheduled) return;
+    this.scrollScheduled = true;
+    requestAnimationFrame(() => {
+      this.scrollScheduled = false;
+      const el = this.journeyTrack?.nativeElement;
+      if (!el) return;
+      const center = el.scrollLeft + el.clientWidth / 2;
+      let best = 0;
+      let bestDist = Infinity;
+      for (let i = 0; i < el.children.length; i++) {
+        const c = el.children[i] as HTMLElement;
+        const dist = Math.abs(c.offsetLeft + c.clientWidth / 2 - center);
+        if (dist < bestDist) { bestDist = dist; best = i; }
+      }
+      this.journeyIndex = best;
+    });
+  }
+
+  journeyPrev(): void {
+    this.stopAutoplay();
+    this.scrollJourneyTo(Math.max(this.journeyIndex - 1, 0), true);
+  }
+
+  journeyNext(): void {
+    this.stopAutoplay();
+    this.scrollJourneyTo(Math.min(this.journeyIndex + 1, this.journeySteps.length - 1), true);
+  }
+
+  journeyGoTo(i: number): void {
+    this.stopAutoplay();
+    this.scrollJourneyTo(i, true);
+  }
 
   ngOnInit(): void {
     this.seo.setPage({

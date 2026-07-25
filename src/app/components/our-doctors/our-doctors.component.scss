@@ -1,1371 +1,812 @@
-@use "sass:color";
-
 /* =========================================================
-   COLOR PALETTE - TBClinic Theme
-========================================================= */
-$purple: #393362;
-$purple-dark: #2a2848;
-$purple-light: #4a4375;
-$coral: #f15f64;
-$coral-light: #ff7a7f;
-$navy: #06457F;
-$white: #fff;
-$border: #e6e8f0;
-$text-medium: #61677c;
-$slate-50: #f8fafc;
-$slate-100: #f1f5f9;
-$slate-200: #e2e8f0;
-$slate-600: #475569;
-$slate-700: #334155;
-$slate-900: #0f172a;
+   OUR DOCTORS PAGE — "People + Clinical Confidence" Rebuild
+   ========================================================= */
 
-/* =========================================================
-   ANIMATIONS
-========================================================= */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 0.3; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-@keyframes ringPulse {
-  0% { transform: scale(1); opacity: 0.5; }
-  100% { transform: scale(1.25); opacity: 0; }
-}
-
-/* =========================================================
-   GLOBAL STYLES
-========================================================= */
-.doctors-page-container {
-  min-height: 100vh;
-  background: linear-gradient(180deg, $slate-50, #fafbff, $slate-50);
-  position: relative;
+.doctors-page {
+  font-family: var(--font-body);
   overflow-x: hidden;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
-  
-  @media (min-width: 640px) {
-    padding: 0 1.5rem;
-  }
-  
-  @media (min-width: 1024px) {
-    padding: 0 2rem;
-  }
+  padding: 0 1.5rem;
+
+  @media (min-width: 1024px) { padding: 0 2rem; }
+
+  &--narrow { max-width: 760px; }
 }
 
-/* Background Decorations */
-.background-decoration {
-  position: fixed;
-  border-radius: 50%;
-  filter: blur(100px);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.decoration-top-right {
-  top: -150px;
-  right: -150px;
-  width: 400px;
-  height: 400px;
-  background: linear-gradient(135deg, rgba($purple, 0.06), rgba(147, 51, 234, 0.03));
-  animation: pulse 8s ease-in-out infinite;
-}
-
-.decoration-bottom-left {
-  bottom: -150px;
-  left: -150px;
-  width: 350px;
-  height: 350px;
-  background: linear-gradient(45deg, rgba($coral, 0.05), rgba($purple, 0.03));
-  animation: pulse 10s ease-in-out infinite reverse;
-}
-
-.decoration-center {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba($navy, 0.02), transparent 70%);
-}
-
-/* =========================================================
-   SECTION HEADERS
-========================================================= */
 .section-header {
-  margin-bottom: 1.5rem;
   text-align: center;
-  position: relative;
-  z-index: 1;
-  
-  @media (min-width: 768px) {
-    margin-bottom: 2rem;
-  }
+  margin-bottom: 2.25rem;
 }
 
 .section-label {
   display: inline-block;
-  background: rgba($coral, 0.1);
-  color: $coral;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.688rem;
+  background: rgba(43, 125, 233, 0.1);
+  color: var(--color-accent);
+  padding: 0.375rem 1rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  margin-bottom: 0.5rem;
-  
-  @media (min-width: 768px) {
-    padding: 0.375rem 1rem;
-    font-size: 0.75rem;
-  }
+  margin-bottom: 0.75rem;
 }
 
 .section-title {
-  font-size: 1.5rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 3.4vw, 2rem);
   font-weight: 800;
-  color: $slate-900;
-  margin: 0 0 0.5rem;
-  line-height: 1.2;
-  
-  @media (min-width: 640px) {
-    font-size: 1.75rem;
-  }
-  
-  @media (min-width: 768px) {
-    font-size: 2rem;
-  }
-  
-  @media (min-width: 1024px) {
-    font-size: 2.25rem;
-  }
-}
-
-.title-underline {
-  width: 3rem;
-  height: 3px;
-  background: linear-gradient(90deg, $coral, $coral-light);
-  border-radius: 2px;
-  margin: 0 auto;
-  
-  @media (min-width: 768px) {
-    width: 4rem;
-    height: 4px;
-  }
+  color: var(--color-text-primary);
+  margin: 0 0 0.625rem;
+  text-align: center;
 }
 
 .section-subtitle {
-  color: $text-medium;
-  font-size: 0.875rem;
-  margin-top: 0.75rem;
-  max-width: 450px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.5;
-  
-  @media (min-width: 768px) {
-    font-size: 1rem;
-  }
+  font-size: 0.938rem;
+  color: var(--color-text-secondary);
+  max-width: 500px;
+  margin: 0.75rem auto 0;
+  line-height: 1.6;
 }
 
-/* =========================================================
-   CMO HERO SECTION (FIRST)
-========================================================= */
-.cmo-section.hero-cmo {
-  padding: 2rem 0 1.5rem;
+.title-underline {
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+  border-radius: 2px;
+  margin: 0 auto;
+}
+
+/* ══════════════════════════════════════
+   SECTION 1 — HERO
+══════════════════════════════════════ */
+.hero-banner {
+  background: linear-gradient(160deg, #FFFFFF 0%, #F5F9FF 40%, #EEF5FD 100%);
+  border-bottom: 1px solid #E1ECF7;
+  padding: 3.5rem 0 3rem;
   position: relative;
-  z-index: 1;
-  
-  @media (min-width: 768px) {
-    padding: 3rem 0 2rem;
+  overflow: hidden;
+
+  @media (min-width: 768px) { padding: 5rem 0 3.5rem; }
+}
+
+.hero-bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.hero-bg-circle-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #16B8A6 0%, transparent 70%);
+  top: -180px;
+  right: -140px;
+}
+
+.hero-bg-circle-2 {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, #2B7DE9 0%, transparent 70%);
+  bottom: -120px;
+  left: -100px;
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: rgba(43, 125, 233, 0.1);
+  color: #2B7DE9;
+  border: 1px solid rgba(43, 125, 233, 0.25);
+  padding: 0.375rem 1rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.label-icon { width: 0.875rem; height: 0.875rem; }
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.65rem, 4.2vw, 2.75rem);
+  font-weight: 800;
+  color: #1A2B42;
+  margin: 0 0 1rem;
+  line-height: 1.18;
+}
+
+.hero-subtitle {
+  color: #4A5A72;
+  font-size: 1.02rem;
+  margin: 0 auto 0.75rem;
+  max-width: 620px;
+  line-height: 1.7;
+
+  &--muted { font-size: 0.938rem; }
+}
+
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  svg { width: 1rem; height: 1rem; }
+
+  &--primary {
+    background: var(--color-accent);
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(43, 125, 233, 0.25);
+
+    &:hover { background: var(--color-accent-dark); transform: translateY(-1px); }
+  }
+
+  &--secondary {
+    background: #ffffff;
+    color: var(--color-text-primary);
+    border: 1.5px solid #E1ECF7;
+
+    &:hover { background: var(--color-primary-light); }
   }
 }
 
-.cmo-card-wrapper {
-  animation: fadeInUp 0.6s ease-out;
+/* ══════════════════════════════════════
+   SECTION 2 — CLINICAL LEADERSHIP
+══════════════════════════════════════ */
+.cmo-section {
+  padding: 4rem 0;
+  background: var(--color-surface);
+
+  @media (min-width: 768px) { padding: 5rem 0; }
 }
 
 .cmo-card {
-  background: $white;
-  border-radius: 1rem;
-  box-shadow: 0 10px 40px rgba($purple, 0.1);
-  overflow: hidden;
   display: grid;
   grid-template-columns: 1fr;
-  transition: all 0.35s ease;
-  
+  gap: 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #FAFCFF, #F5F9FF);
+  border: 1px solid #E1ECF7;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+
   @media (min-width: 768px) {
-    grid-template-columns: 0.85fr 1.15fr;
-    border-radius: 1.5rem;
-  }
-  
-  &:hover {
-    box-shadow: 0 20px 60px rgba($purple, 0.15);
-    transform: translateY(-4px);
+    grid-template-columns: 260px 1fr;
+    gap: 2.75rem;
+    padding: 2.5rem;
   }
 }
 
 .cmo-photo-wrapper {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, $purple, $purple-dark);
-  position: relative;
-  overflow: hidden;
-  min-height: 220px;
-  
-  @media (min-width: 640px) {
-    padding: 2rem;
-    min-height: 260px;
-  }
-  
-  @media (min-width: 768px) {
-    padding: 2.5rem;
-    min-height: auto;
-  }
-  
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url('data:image/svg+xml,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><g fill="none"><g fill="rgba(255,255,255,.03)"><path d="M20 20v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4z"/></g></g></svg>');
-  }
-}
-
-.cmo-photo-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1rem;
-  
-  @media (min-width: 768px) {
-    margin-bottom: 1.25rem;
-  }
+  text-align: center;
 }
 
 .cmo-photo {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  background: rgba($white, 0.1);
-  border: 3px solid rgba($white, 0.9);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
-  transition: all 0.35s ease;
-  position: relative;
-  z-index: 2;
+  aspect-ratio: 3 / 4;
+  max-width: 220px;
+  margin: 0 auto 1rem;
+  border-radius: var(--radius-md);
   overflow: hidden;
-  
-  @media (min-width: 640px) {
-    width: 160px;
-    height: 160px;
-    border-width: 4px;
-  }
-  
-  @media (min-width: 768px) {
-    width: 180px;
-    height: 180px;
-  }
-  
-  @media (min-width: 1024px) {
-    width: 200px;
-    height: 200px;
-  }
-  
-  &:hover {
-    transform: scale(1.03);
-  }
-}
+  box-shadow: var(--shadow-hover);
+  background: var(--color-primary-light);
 
-.photo-ring {
-  position: absolute;
-  border-radius: 50%;
-  border: 2px solid rgba($white, 0.15);
-  animation: ringPulse 2s ease-out infinite;
-}
-
-.photo-ring-1 {
-  width: 180px;
-  height: 180px;
-  
-  @media (min-width: 640px) {
-    width: 200px;
-    height: 200px;
-  }
-  
-  @media (min-width: 768px) {
-    width: 220px;
-    height: 220px;
-  }
-  
-  @media (min-width: 1024px) {
-    width: 240px;
-    height: 240px;
-  }
-}
-
-.photo-ring-2 {
-  width: 220px;
-  height: 220px;
-  animation-delay: 0.5s;
-  
-  @media (min-width: 640px) {
-    width: 240px;
-    height: 240px;
-  }
-  
-  @media (min-width: 768px) {
-    width: 260px;
-    height: 260px;
-  }
-  
-  @media (min-width: 1024px) {
-    width: 280px;
-    height: 280px;
-  }
+  @media (min-width: 768px) { max-width: 100%; }
 }
 
 .cmo-photo-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50%;
+  /* Source photo is a phone screenshot with a status bar and nav/share icons
+     at the edges — zoom and bias the crop upward to hide that chrome. */
+  object-position: 50% 20%;
+  transform: scale(1.2);
+  transform-origin: 50% 30%;
+  display: block;
 }
 
-.cmo-quick-stats {
-  display: flex;
-  gap: 0.75rem;
-  position: relative;
-  z-index: 2;
-}
-
-.quick-stat {
-  display: flex;
+.cmo-quick-stat {
+  display: inline-flex;
   flex-direction: column;
-  align-items: center;
-  background: rgba($white, 0.1);
-  backdrop-filter: blur(8px);
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  border: 1px solid rgba($white, 0.15);
-  
-  @media (min-width: 768px) {
-    padding: 0.625rem 1.25rem;
-    border-radius: 0.625rem;
-  }
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.625rem 1.125rem;
 }
 
 .quick-stat-value {
-  font-size: 1rem;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
   font-weight: 800;
-  color: $white;
-  
-  @media (min-width: 768px) {
-    font-size: 1.125rem;
-  }
+  color: var(--color-accent);
 }
 
 .quick-stat-label {
-  font-size: 0.625rem;
-  color: rgba($white, 0.8);
-  font-weight: 500;
-  
-  @media (min-width: 768px) {
-    font-size: 0.688rem;
-  }
+  font-size: 0.72rem;
+  color: var(--color-text-secondary);
 }
 
 .cmo-content {
-  padding: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  
-  @media (min-width: 640px) {
-    padding: 1.5rem;
-  }
-  
-  @media (min-width: 768px) {
-    padding: 2rem;
-  }
-  
-  @media (min-width: 1024px) {
-    padding: 2.5rem;
-  }
+  text-align: center;
+
+  @media (min-width: 768px) { text-align: left; }
 }
 
-.cmo-header {
-  margin-bottom: 1rem;
-  
-  @media (min-width: 768px) {
-    margin-bottom: 1.25rem;
-  }
-}
-
-.cmo-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  background: linear-gradient(135deg, rgba($purple, 0.08), rgba($coral, 0.05));
-  color: $purple;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.625rem;
+.cmo-role-badge {
+  display: inline-block;
+  background: rgba(43, 125, 233, 0.1);
+  color: var(--color-accent);
+  font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: 0.03em;
-  margin-bottom: 0.5rem;
-  border: 1px solid rgba($purple, 0.08);
-  
-  @media (min-width: 768px) {
-    padding: 0.375rem 0.875rem;
-    font-size: 0.688rem;
-  }
-}
-
-.badge-icon-sm {
-  width: 0.75rem;
-  height: 0.75rem;
-  color: $coral;
-}
-
-.cmo-name {
-  font-size: 1.375rem;
-  font-weight: 800;
-  color: $slate-900;
-  margin: 0 0 0.25rem;
-  line-height: 1.2;
-  
-  @media (min-width: 640px) {
-    font-size: 1.5rem;
-  }
-  
-  @media (min-width: 768px) {
-    font-size: 1.75rem;
-    margin: 0 0 0.375rem;
-  }
-  
-  @media (min-width: 1024px) {
-    font-size: 2rem;
-  }
-}
-
-.cmo-role-text {
-  color: $navy;
-  font-weight: 600;
-  font-size: 0.813rem;
-  margin: 0;
-  
-  @media (min-width: 768px) {
-    font-size: 0.938rem;
-  }
-  
-  @media (min-width: 1024px) {
-    font-size: 1rem;
-  }
-}
-
-.cmo-specialization {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  background: linear-gradient(135deg, rgba($navy, 0.05), rgba($purple, 0.03));
-  border: 1px solid rgba($navy, 0.1);
-  border-radius: 0.75rem;
-  padding: 0.75rem 1rem;
+  padding: 0.3rem 0.875rem;
+  border-radius: var(--radius-pill);
   margin-bottom: 1rem;
-  
-  @media (min-width: 768px) {
-    padding: 0.875rem 1.25rem;
-    margin-bottom: 1.25rem;
-  }
-}
-
-.spec-icon {
-  width: 36px;
-  height: 36px;
-  background: linear-gradient(135deg, $coral, $coral-light);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  
-  @media (min-width: 768px) {
-    width: 40px;
-    height: 40px;
-  }
-  
-  svg {
-    width: 18px;
-    height: 18px;
-    color: $white;
-    
-    @media (min-width: 768px) {
-      width: 20px;
-      height: 20px;
-    }
-  }
-}
-
-.spec-content {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-
-.spec-label {
-  font-size: 0.625rem;
-  color: $text-medium;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  
-  @media (min-width: 768px) {
-    font-size: 0.688rem;
-  }
-}
-
-.spec-value {
-  font-size: 0.875rem;
-  color: $slate-900;
-  font-weight: 700;
-  
-  @media (min-width: 768px) {
-    font-size: 0.938rem;
-  }
-  
-  @media (min-width: 1024px) {
-    font-size: 1rem;
-  }
 }
 
 .cmo-bio {
-  color: $text-medium;
-  font-size: 0.875rem;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-  
-  @media (min-width: 768px) {
-    font-size: 0.938rem;
-    line-height: 1.7;
-    margin-bottom: 1.25rem;
-  }
+  font-size: 0.938rem;
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+  margin: 0 0 1.5rem;
 }
 
-.credentials-section {
-  margin-bottom: 1rem;
-  
-  @media (min-width: 768px) {
-    margin-bottom: 1.25rem;
-  }
-}
+.cmo-focus { margin-bottom: 1.75rem; }
 
-.credentials-title {
+.cmo-focus-label {
   display: block;
-  font-size: 0.625rem;
-  color: $text-medium;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  margin-bottom: 0.5rem;
-  
-  @media (min-width: 768px) {
-    font-size: 0.688rem;
-    margin-bottom: 0.625rem;
-  }
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 0.625rem;
 }
 
-.credentials-list {
+.cmo-focus-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.375rem;
-  
-  @media (min-width: 768px) {
-    gap: 0.5rem;
-  }
+  gap: 0.5rem;
+  justify-content: center;
+
+  @media (min-width: 768px) { justify-content: flex-start; }
 }
 
-.credential-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  background: $slate-100;
-  color: $slate-700;
-  padding: 0.375rem 0.625rem;
-  border-radius: 9999px;
-  font-size: 0.688rem;
+.focus-tag {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  font-size: 0.78rem;
   font-weight: 600;
-  transition: all 0.2s ease;
-  
-  @media (min-width: 768px) {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.75rem;
-  }
-  
-  &:hover {
-    background: $slate-200;
-    transform: translateY(-1px);
-  }
-}
-
-.cred-icon {
-  width: 0.75rem;
-  height: 0.75rem;
-  color: $coral;
+  padding: 0.375rem 0.875rem;
+  border-radius: var(--radius-pill);
 }
 
 .cmo-cta-btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 0.5rem;
-  width: 100%;
-  padding: 0.875rem 1.25rem;
-  background: linear-gradient(135deg, $coral, $coral-light);
-  color: $white;
-  border: none;
-  border-radius: 0.75rem;
+  background: var(--color-accent);
+  color: #ffffff;
+  font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: var(--radius-pill);
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 20px rgba($coral, 0.25);
-  
-  @media (min-width: 768px) {
-    width: auto;
-    padding: 0.938rem 1.75rem;
-    font-size: 0.938rem;
-  }
-  
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba($coral, 0.35);
-  }
-  
-  &:active {
-    transform: translateY(0);
-  }
+  transition: all 0.2s ease;
+
+  svg { width: 1.1rem; height: 1.1rem; }
+
+  &:hover { background: var(--color-accent-dark); transform: translateY(-1px); }
 }
 
-.btn-icon {
-  width: 1.125rem;
-  height: 1.125rem;
+/* ══════════════════════════════════════
+   SECTION 3 — OUR CARE PHILOSOPHY
+══════════════════════════════════════ */
+.philosophy-section {
+  padding: 4rem 0;
+  background: linear-gradient(180deg, #FAFCFF 0%, #F5F9FF 100%);
+
+  @media (min-width: 768px) { padding: 5rem 0; }
 }
 
-/* =========================================================
-   STATS SECTION
-========================================================= */
-.stats-section {
-  padding: 1.5rem 0;
-  position: relative;
-  z-index: 1;
-  
-  @media (min-width: 768px) {
-    padding: 2rem 0;
-  }
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+
+  @media (min-width: 640px) { grid-template-columns: repeat(2, 1fr); }
 }
 
-.stats-banner {
-  display: flex;
-  justify-content: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  
-  @media (min-width: 768px) {
-    gap: 1.25rem;
-  }
+.philosophy-card {
+  background: #ffffff;
+  border: 1px solid #E1ECF7;
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  box-shadow: 0 4px 20px rgba(43, 125, 233, 0.06);
 }
 
-.stat-item {
-  display: flex;
-  align-items: center;
-  gap: 0.625rem;
-  background: $white;
-  padding: 0.75rem 1rem;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 15px rgba($purple, 0.06);
-  border: 1px solid rgba($border, 0.5);
-  animation: fadeInUp 0.5s ease-out backwards;
-  transition: all 0.25s ease;
-  flex: 1;
-  min-width: 140px;
-  max-width: 200px;
-  
-  @media (min-width: 768px) {
-    padding: 1rem 1.25rem;
-    gap: 0.75rem;
-    border-radius: 1rem;
-  }
-  
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba($purple, 0.1);
-  }
-}
-
-.stat-icon-wrapper {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, rgba($coral, 0.1), rgba($purple, 0.08));
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  
-  @media (min-width: 768px) {
-    width: 44px;
-    height: 44px;
-  }
-}
-
-.stat-icon {
-  width: 20px;
-  height: 20px;
-  color: $coral;
-  
-  @media (min-width: 768px) {
-    width: 22px;
-    height: 22px;
-  }
-}
-
-.stat-content {
-  display: flex;
-  flex-direction: column;
-}
-
-.stat-value {
-  font-size: 1.25rem;
+.philosophy-index {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
   font-weight: 800;
-  color: $slate-900;
-  line-height: 1.1;
-  
-  @media (min-width: 768px) {
-    font-size: 1.5rem;
-  }
+  color: var(--color-accent);
+  background: rgba(43, 125, 233, 0.1);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-pill);
+  margin-bottom: 0.875rem;
 }
 
-.stat-label {
-  font-size: 0.688rem;
-  color: $text-medium;
-  font-weight: 500;
-  
-  @media (min-width: 768px) {
-    font-size: 0.75rem;
-  }
+.philosophy-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 0.5rem;
 }
 
-/* =========================================================
-   DOCTORS GRID SECTION
-========================================================= */
+.philosophy-desc {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ══════════════════════════════════════
+   SECTION 4 — HOW THE TEAM WORKS TOGETHER
+══════════════════════════════════════ */
+.teamwork-section {
+  padding: 3.5rem 0;
+  background: var(--color-surface);
+  text-align: center;
+
+  @media (min-width: 768px) { padding: 4rem 0; text-align: left; }
+}
+
+.teamwork-text {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ══════════════════════════════════════
+   SECTION 5 — MEET THE DOCTORS
+══════════════════════════════════════ */
 .doctors-section {
-  padding: 2rem 0;
-  position: relative;
-  z-index: 1;
-  
-  @media (min-width: 768px) {
-    padding: 3rem 0;
-  }
+  padding: 4rem 0;
+  background: var(--color-bg);
+  scroll-margin-top: 90px;
+
+  @media (min-width: 768px) { padding: 5rem 0; }
 }
 
 .doctors-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem;
-  align-items: start;
-  
-  @media (min-width: 640px) {
-    gap: 1rem;
-  }
-  
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.25rem;
-  }
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+
+  @media (min-width: 560px) { grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 1100px) { grid-template-columns: repeat(4, 1fr); }
 }
 
 .doctor-card {
-  background: $white;
-  border-radius: 1rem;
-  box-shadow: 0 6px 25px rgba($purple, 0.06);
-  overflow: hidden;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  animation: fadeInUp 0.5s ease-out backwards;
-  position: relative;
-  
-  @media (min-width: 768px) {
-    border-radius: 1.125rem;
-  }
-  
-  &:hover {
-    box-shadow: 0 15px 45px rgba($purple, 0.12);
-    transform: translateY(-5px);
-  }
-  
-  &.expanded {
-    box-shadow: 0 18px 50px rgba($purple, 0.15);
-  }
-}
-
-.card-pattern {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 70px;
-  background: linear-gradient(135deg, $purple, $purple-dark);
-  
-  @media (min-width: 768px) {
-    height: 85px;
-  }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url('data:image/svg+xml,<svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><g fill="none"><g fill="rgba(255,255,255,.04)"><circle cx="15" cy="15" r="3"/></g></g></svg>');
-  }
-}
-
-.doctor-header {
-  padding: 1rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  position: relative;
-  z-index: 1;
-  
-  @media (min-width: 640px) {
-    padding: 1.25rem 1rem;
-  }
-  
-  @media (min-width: 768px) {
-    padding: 1.5rem 1.25rem;
-  }
-}
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.75rem 1.5rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 
-.doctor-photo-container {
-  position: relative;
-  display: inline-block;
-  margin-bottom: 0.75rem;
-  
-  @media (min-width: 768px) {
-    margin-bottom: 1rem;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(43, 125, 233, 0.1);
+    border-color: rgba(43, 125, 233, 0.25);
   }
 }
 
 .doctor-photo {
-  width: 70px;
-  height: 70px;
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: 1rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, $purple-light, $purple-dark);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid $white;
-  box-shadow: 0 8px 25px rgba($purple, 0.2);
-  position: relative;
-  transition: all 0.3s ease;
-  
-  @media (min-width: 640px) {
-    width: 80px;
-    height: 80px;
-  }
-  
-  @media (min-width: 768px) {
-    width: 90px;
-    height: 90px;
-    border-width: 4px;
-  }
-  
-  @media (min-width: 1024px) {
-    width: 100px;
-    height: 100px;
-  }
-  
-  .doctor-card:hover & {
-    transform: scale(1.05);
-    box-shadow: 0 12px 35px rgba($purple, 0.25);
-  }
-}
-
-.initials {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: $white;
-  
-  @media (min-width: 640px) {
-    font-size: 1.375rem;
-  }
-  
-  @media (min-width: 768px) {
-    font-size: 1.5rem;
-  }
-  
-  @media (min-width: 1024px) {
-    font-size: 1.75rem;
-  }
-}
-
-.experience-badge {
-  position: absolute;
-  bottom: -4px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(135deg, $coral, $coral-light);
-  color: $white;
-  padding: 0.188rem 0.5rem;
-  border-radius: 9999px;
-  font-size: 0.563rem;
-  font-weight: 700;
-  white-space: nowrap;
-  box-shadow: 0 3px 10px rgba($coral, 0.25);
-  
-  @media (min-width: 768px) {
-    padding: 0.25rem 0.625rem;
-    font-size: 0.625rem;
-  }
-}
-
-.doctor-name {
-  font-size: 0.938rem;
-  font-weight: 800;
-  color: $slate-900;
-  margin: 0 0 0.125rem;
-  
-  @media (min-width: 768px) {
-    font-size: 1.063rem;
-    margin: 0 0 0.25rem;
-  }
-  
-  @media (min-width: 1024px) {
-    font-size: 1.125rem;
-  }
-}
-
-.doctor-designation {
-  color: $navy;
-  font-weight: 600;
-  font-size: 0.688rem;
-  margin: 0 0 0.625rem;
-  
-  @media (min-width: 768px) {
-    font-size: 0.75rem;
-    margin: 0 0 0.75rem;
-  }
-}
-
-.doctor-skills {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.25rem;
-  margin-bottom: 0.625rem;
-  
-  @media (min-width: 768px) {
-    gap: 0.375rem;
-    margin-bottom: 0.75rem;
-  }
-}
-
-.skill-tag {
-  background: rgba($purple, 0.05);
-  color: $slate-600;
-  padding: 0.188rem 0.438rem;
-  border-radius: 0.25rem;
-  font-size: 0.563rem;
-  font-weight: 500;
-  
-  @media (min-width: 768px) {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.625rem;
-  }
-}
-
-.doctor-expand-cta {
-  padding-top: 0.625rem;
-  border-top: 1px solid $border;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.25rem;
-  transition: all 0.25s ease;
-  
-  @media (min-width: 768px) {
-    padding-top: 0.75rem;
-    gap: 0.375rem;
-  }
-  
-  &.expanded {
-    .cta-icon {
-      transform: rotate(180deg);
-    }
-    
-    .cta-text {
-      color: $coral;
-    }
-  }
-}
-
-.cta-text {
-  color: $navy;
-  font-size: 0.688rem;
-  font-weight: 600;
-  transition: color 0.25s ease;
-  
-  @media (min-width: 768px) {
-    font-size: 0.75rem;
-  }
-}
-
-.cta-icon {
-  width: 0.875rem;
-  height: 0.875rem;
-  color: $navy;
-  transition: all 0.25s ease;
-  
-  .doctor-card:hover & {
-    color: $coral;
-  }
-}
-
-/* Doctor Details (Expanded) */
-.doctor-details {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.35s ease;
-  
-  &.show {
-    max-height: 350px;
-  }
-}
-
-.details-content {
-  padding: 1rem;
-  background: linear-gradient(135deg, rgba($purple, 0.02), rgba($coral, 0.01));
-  border-top: 1px solid $border;
-  
-  @media (min-width: 768px) {
-    padding: 1.25rem;
-  }
-}
-
-.detail-text {
-  color: $text-medium;
-  font-size: 0.75rem;
-  line-height: 1.55;
-  margin: 0 0 0.75rem;
-  
-  @media (min-width: 768px) {
-    font-size: 0.813rem;
-    line-height: 1.6;
-    margin: 0 0 1rem;
-  }
-}
-
-.detail-highlights {
-  display: flex;
-  flex-direction: column;
-  gap: 0.375rem;
-  margin-bottom: 0.75rem;
-  
-  @media (min-width: 768px) {
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-  }
-}
-
-.highlight-item {
-  display: flex;
-  align-items: center;
-  gap: 0.375rem;
-  font-size: 0.688rem;
-  color: $slate-700;
-  font-weight: 500;
-  
-  @media (min-width: 768px) {
-    font-size: 0.75rem;
-  }
-}
-
-.highlight-icon {
-  width: 0.875rem;
-  height: 0.875rem;
-  color: $coral;
   flex-shrink: 0;
 }
 
-.detail-btn {
-  width: 100%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.375rem;
-  padding: 0.625rem 0.75rem;
-  background: linear-gradient(135deg, $coral, $coral-light);
-  color: $white;
-  border: none;
-  border-radius: 0.5rem;
+.initials {
+  font-family: var(--font-heading);
+  font-size: 1.375rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.doctor-name {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
   font-weight: 700;
-  font-size: 0.75rem;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 15px rgba($coral, 0.2);
-  
-  @media (min-width: 768px) {
-    padding: 0.75rem 1rem;
-    font-size: 0.813rem;
-    border-radius: 0.625rem;
-  }
-  
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba($coral, 0.3);
-  }
-  
-  &:active {
-    transform: translateY(0);
-  }
+  color: var(--color-text-primary);
+  margin: 0 0 0.375rem;
 }
 
-.btn-icon-sm {
-  width: 1rem;
-  height: 1rem;
+.doctor-designation {
+  font-size: 0.813rem;
+  color: var(--color-text-secondary);
+  margin: 0 0 0.5rem;
 }
 
-/* =========================================================
-   CTA SECTION
-========================================================= */
-.cta-section {
-  background: linear-gradient(135deg, $purple, $purple-dark);
-  color: $white;
-  padding: 2.5rem 0;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-  
-  @media (min-width: 768px) {
-    padding: 3.5rem 0;
-  }
-  
-  .container {
-    position: relative;
-    z-index: 2;
-  }
+.doctor-experience {
+  display: inline-block;
+  background: var(--color-primary-light);
+  color: var(--color-accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-pill);
+  margin-bottom: 1.125rem;
 }
 
-.cta-bg-pattern {
-  position: absolute;
-  inset: 0;
-  background: url('data:image/svg+xml,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><g fill="none"><g fill="rgba(255,255,255,.03)"><path d="M20 20v-3h-2v3h-3v2h3v3h2v-3h3v-2h-3z"/></g></g></svg>');
+.doctor-bio {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+  margin: 0 0 1.25rem;
+  flex: 1;
 }
 
-.cta-content {
-  max-width: 520px;
-  margin: 0 auto;
-}
-
-.cta-icon-wrapper {
-  width: 56px;
-  height: 56px;
-  background: rgba($white, 0.1);
-  border-radius: 50%;
+.doctor-book-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 1rem;
-  border: 2px solid rgba($white, 0.15);
-  animation: float 3s ease-in-out infinite;
-  
-  @media (min-width: 768px) {
-    width: 64px;
-    height: 64px;
-    margin: 0 auto 1.25rem;
-  }
+  gap: 0.5rem;
+  width: 100%;
+  background: var(--color-accent);
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.7rem 1.25rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  svg { width: 1rem; height: 1rem; }
+
+  &:hover { background: var(--color-accent-dark); }
 }
 
-.cta-main-icon {
-  width: 28px;
-  height: 28px;
-  color: $white;
-  
-  @media (min-width: 768px) {
-    width: 32px;
-    height: 32px;
-  }
+/* Experience stats */
+.stats-banner {
+  text-align: center;
+}
+
+.stats-heading {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  max-width: 720px;
+  margin: 0 auto;
+
+  @media (min-width: 640px) { grid-template-columns: repeat(4, 1fr); }
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 0.75rem;
+}
+
+.stat-value {
+  font-family: var(--font-heading);
+  font-size: 1.375rem;
+  font-weight: 800;
+  color: var(--color-accent);
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+/* ══════════════════════════════════════
+   SECTION 6 — FIRST CONSULTATION
+══════════════════════════════════════ */
+.first-visit-section {
+  padding: 4rem 0;
+  background: var(--color-surface);
+
+  @media (min-width: 768px) { padding: 5rem 0; }
+}
+
+.first-visit-text {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+  text-align: center;
+  margin: 0 0 2rem;
+}
+
+.first-visit-checklist {
+  background: linear-gradient(160deg, #FAFCFF 0%, #F5F9FF 100%);
+  border: 1px solid #E1ECF7;
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  text-align: center;
+}
+
+.checklist-label {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 1rem;
+}
+
+.checklist-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.625rem;
+}
+
+.checklist-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 0.5rem 0.875rem;
+  font-size: 0.813rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+
+  svg { width: 0.9rem; height: 0.9rem; color: var(--color-accent); flex-shrink: 0; }
+}
+
+/* ══════════════════════════════════════
+   SECTION 7 — SELECTED PATIENT STORIES
+══════════════════════════════════════ */
+.reviews-section {
+  padding: 4rem 0;
+  background: var(--color-bg);
+
+  @media (min-width: 768px) { padding: 5rem 0; }
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+
+  @media (min-width: 768px) { grid-template-columns: repeat(3, 1fr); }
+}
+
+.review-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+}
+
+.review-label {
+  display: inline-block;
+  background: var(--color-primary-light);
+  color: var(--color-accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-pill);
+  margin-bottom: 0.875rem;
+}
+
+.review-quote {
+  font-size: 0.9rem;
+  color: var(--color-text-primary);
+  line-height: 1.65;
+  font-style: italic;
+  margin: 0 0 0.875rem;
+}
+
+.review-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+}
+
+.reviews-more { text-align: center; }
+
+.reviews-more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+
+  svg { width: 1rem; height: 1rem; }
+
+  &:hover { color: var(--color-accent-dark); }
+}
+
+/* ══════════════════════════════════════
+   SECTION 8 — FINAL CTA
+══════════════════════════════════════ */
+.cta-section {
+  padding: 4rem 0;
+  background: linear-gradient(160deg, #FFFFFF 0%, #F5F9FF 40%, #EEF5FD 100%);
+  border-top: 1px solid #E1ECF7;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  @media (min-width: 768px) { padding: 5rem 0; }
+}
+
+.cta-pattern {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, #16B8A6 0%, transparent 70%);
+  opacity: 0.08;
+  pointer-events: none;
 }
 
 .cta-title {
-  font-size: 1.25rem;
+  position: relative;
+  font-family: var(--font-heading);
+  font-size: clamp(1.375rem, 3vw, 2rem);
   font-weight: 800;
-  margin: 0 0 0.75rem;
-  line-height: 1.25;
-  
-  @media (min-width: 768px) {
-    font-size: 1.5rem;
-    margin: 0 0 1rem;
-  }
-  
-  @media (min-width: 1024px) {
-    font-size: 1.75rem;
-  }
+  color: #1A2B42;
+  max-width: 720px;
+  margin: 0 auto 1rem;
+  line-height: 1.3;
 }
 
 .cta-subtitle {
-  color: rgba($white, 0.85);
-  font-size: 0.875rem;
-  margin: 0 0 1.5rem;
-  line-height: 1.5;
-  
-  @media (min-width: 768px) {
-    font-size: 1rem;
-    margin: 0 0 1.75rem;
-  }
+  position: relative;
+  color: #4A5A72;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 620px;
+  margin: 0 auto 2rem;
 }
 
 .cta-buttons {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   align-items: center;
-  
-  @media (min-width: 480px) {
-    flex-direction: row;
-    justify-content: center;
-  }
+
+  @media (min-width: 480px) { flex-direction: row; justify-content: center; }
 }
 
-.cta-button {
+.cta-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.875rem 1.5rem;
-  border-radius: 0.75rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 0.875rem;
+  font-size: 0.938rem;
+  border: none;
   cursor: pointer;
-  transition: all 0.25s ease;
   text-decoration: none;
-  min-width: 160px;
-  
-  @media (min-width: 768px) {
-    padding: 1rem 1.75rem;
-    font-size: 0.938rem;
+  min-width: 200px;
+  transition: all 0.25s ease;
+
+  svg { width: 1.1rem; height: 1.1rem; }
+
+  &--primary {
+    background: var(--color-accent);
+    color: #ffffff;
+    box-shadow: 0 8px 24px rgba(43, 125, 233, 0.3);
+
+    &:hover { background: var(--color-accent-dark); transform: translateY(-2px); }
   }
-  
-  &.primary {
-    background: linear-gradient(135deg, $coral, $coral-light);
-    color: $white;
-    border: none;
-    box-shadow: 0 8px 25px rgba($coral, 0.3);
-    
-    &:hover {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 12px 35px rgba($coral, 0.4);
-    }
-  }
-  
-  &.secondary {
-    background: rgba($white, 0.1);
-    color: $white;
-    border: 2px solid rgba($white, 0.25);
-    backdrop-filter: blur(8px);
-    
-    &:hover {
-      background: rgba($white, 0.18);
-      border-color: rgba($white, 0.4);
-      transform: translateY(-2px);
-    }
-  }
-  
-  &:active {
-    transform: translateY(0) scale(0.98);
+
+  &--secondary {
+    background: #ffffff;
+    color: #1A2B42;
+    border: 1.5px solid #E1ECF7;
+
+    &:hover { background: var(--color-primary-light); transform: translateY(-2px); }
   }
 }
 
-.cta-btn-icon {
-  width: 1.125rem;
-  height: 1.125rem;
+/* ══════════════════════════════════════
+   MOBILE ≤599px
+══════════════════════════════════════ */
+@media (max-width: 599px) {
+  .hero-banner { padding: 2.5rem 0 2.5rem; }
+  .hero-cta-row { flex-direction: column; width: 100%; }
+  .hero-btn { width: 100%; justify-content: center; }
+
+  .cmo-section, .philosophy-section, .doctors-section, .first-visit-section,
+  .reviews-section { padding: 2.5rem 0; }
+
+  .cmo-card { padding: 1.5rem; gap: 1.5rem; }
+  .philosophy-card { padding: 1.375rem; }
+  .doctor-card { padding: 1.375rem 1.25rem; }
+  .stats-grid { gap: 0.75rem; }
+  .stat-item { padding: 1rem 0.5rem; }
+  .stat-value { font-size: 1.125rem; }
+  .first-visit-checklist { padding: 1.375rem; }
+
+  .cta-section { padding: 2.5rem 0; }
+  .cta-btn { width: 100%; min-width: unset; }
 }
 
-/* =========================================================
-   EXTRA SMALL SCREENS (< 375px)
-========================================================= */
-@media (max-width: 374px) {
-  .section-title {
-    font-size: 1.25rem;
-  }
-  
-  .cmo-photo {
-    width: 120px;
-    height: 120px;
-  }
-  
-  .photo-ring-1 {
-    width: 160px;
-    height: 160px;
-  }
-  
-  .photo-ring-2 {
-    width: 190px;
-    height: 190px;
-  }
-  
-  .cmo-name {
-    font-size: 1.25rem;
-  }
-  
-  .cmo-content {
-    padding: 1rem;
-  }
-  
-  .doctors-grid {
-    gap: 0.5rem;
-  }
-  
-  .doctor-photo {
-    width: 60px;
-    height: 60px;
-  }
-  
-  .initials {
-    font-size: 1.125rem;
-  }
-  
-  .stat-item {
-    min-width: 120px;
-    padding: 0.625rem 0.75rem;
-  }
-  
-  .stat-value {
-    font-size: 1.125rem;
-  }
-  
-  .cta-button {
-    width: 100%;
-    min-width: unset;
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.15ms !important;
   }
 }

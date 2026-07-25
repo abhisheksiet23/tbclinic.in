@@ -9,99 +9,91 @@ import { SeoService } from '../../services/seo.service';
   imports: [
     CommonModule,
     RouterLink
-  ], 
+  ],
   templateUrl: './about-us.component.html',
   styleUrls: ['./about-us.component.scss']
 })
 export class AboutUsComponent implements OnInit {
 
-  // Data for the Red Stats Banner
-  stats = [
-    { value: '27 Lakhs', label: 'Total TB Patients per year in India', icon: 'fas fa-check-circle' },
-    { value: '3.15 Lakhs', label: 'Total Deaths Due to TB per year in India. One TB Patients dies every ~90 seconds in India', icon: 'fas fa-award' },
-    { value: '22 Lakhs', label: 'Sputum positive Patients per year', icon: 'fas fa-globe' }
+  // Hero trust strip
+  trustStrip = [
+    { value: '17,000+', label: 'Patients Treated' },
+    { value: '16+ Years', label: 'Dedicated to TB Care' },
+    { value: '5 Clinics', label: 'Across Delhi' },
+    { value: '4.85★', label: '2,000+ Google Reviews' },
+    { value: 'WHO-Aligned', label: 'Treatment Protocols' }
   ];
 
-  // Data for the Our Story Section
-  story = {
-    title: 'Our Story',
-    content: `
-        <p>We are a multidisciplinary team of dedicated medical professionals expert in TB treatment and integrated healing practices. MEDCROSS is founded on the collective **Vision, Aspirations, and Hopes** of these professionals, driven by a commitment to eradicate tuberculosis as a major public health threat.</p>
-        
-        <h3>Core Objectives:</h3>
-        <ul>
-            <li>Contain the Spread: To implement the latest treatment practices and innovative strategies to control TB.</li>
-            <li>Prioritize Prevention: To dedicate resources and research to prevention—an essential step we are committed to mastering.</li>
-            <li>Reduce Burden: To contain the loss of man-days and channelize morbidity to reduce the financial strain (drain on the exchequer) caused by TB sickness.</li>
-            <li>Empower Patients: To empower individuals at risk with positive health strategies, ensuring they never fall into the grip of this life-threatening disease.</li>
-        </ul>
-        
-        <h3>Our Integrated Approach to Well-being:</h3>
-        <p>The well-being of TB patients is our first priority. We look forward to health-related tie-ups with different systems to ensure holistic recovery and sustained health. Key focus areas include:</p>
-        
-        <ul>
-            <li>Nutritional Support: Developing affordable, protein-rich supplements (e.g., cheap biscuits).</li>
-            <li>Holistic Healing: Integrating natural herbs and exploring new healing foods alongside conventional medicine.</li>
-            <li>Patient Resilience: Encouraging emotional empowerment and mental well-being.</li>
-            <li>Immunity Building: Promoting immunity supporting practices.</li>
-            <li>Clinical Excellence: Delivering state-of-the-art treatments fully compliant with WHO guidelines.</li>
-        </ul>
-        
-        <p>We are keen to foster extensive collaboration at multiple levels with all key players in the TB field—from researchers and NGOs to government agencies—to strengthen the global fight against tuberculosis.</p>
-    `,
-    imageUrl: 'assets/doctor-patient.webp ' // Placeholder path for your image
-}
+  // "Why We Exist" — purpose, not history
+  purpose = {
+    paragraphs: [
+      `When someone is diagnosed with tuberculosis, treatment is only one part of the journey. Questions begin immediately — "Will I recover?", "Will my family be safe?", "What happens next?"`,
+      `Over the years, we realised patients needed more than medicines. They needed someone to explain, someone to guide, and someone to follow through until treatment was complete. That belief became the foundation of TB Clinic.`,
+      `Today, everything we do — from diagnosis and treatment planning to follow-up and counselling — is designed around helping patients feel informed, supported, and confident throughout their recovery.`
+    ],
+    imageUrl: 'assets/doctor-patient.webp',
+    highlights: [
+      'Diagnosis explained in plain language',
+      'A treatment plan built around you',
+      'Support that continues until recovery'
+    ]
+  };
 
-  // Data for the 'Values' Section (placeholder, complete this later)
-  values = [
-  { 
-    title: 'Excellence', 
-    description: 'We are committed to delivering the highest standard of tuberculosis care. From accurate diagnosis to long-term recovery support, we consistently uphold strong clinical ethics and professional integrity in every step of treatment.',
-    icon: 'fas fa-handshake'
-  },
-  { 
-    title: 'Quality Care', 
-    description: 'We ensure safe, effective, and compassionate treatment by adhering to advanced TB care protocols and evidence-based practices. Every patient receives attentive guidance and continuous medical support throughout recovery.',
-    icon: 'fas fa-heartbeat'
-  },
-  { 
-    title: 'Empathy', 
-    description: 'We listen, understand, and stand beside every patient with respect and compassion. Our supportive care environment helps restore emotional strength, confidence, and hope during recovery.',
-    icon: 'fas fa-hands-helping'
-  },
-  { 
-    title: 'Innovation', 
-    description: 'We adopt modern diagnostic tools, advanced treatment strategies, and ongoing research-driven improvements to provide effective care — including support for complex TB cases.',
-    icon: 'fas fa-lightbulb'
-  }
-];
+  // "Our Philosophy of Care" — replaces generic values
+  philosophies = [
+    {
+      title: 'We Focus Only on TB',
+      description: 'Tuberculosis is our core area of expertise — not one of many services we offer. That focused experience helps us recognise its many forms, order the right investigations, and guide every stage of treatment.'
+    },
+    {
+      title: 'We Stay Beyond the First Consultation',
+      description: "Starting treatment is important. Completing it is essential. We continue supporting patients through follow-ups, monitoring, counselling, and practical guidance until recovery is complete."
+    },
+    {
+      title: 'We Treat People, Not Just Reports',
+      description: 'Every patient arrives with different concerns — infection risk, work, side effects, or a previous treatment that didn’t go well. We take the time to listen first, then explain clearly.'
+    },
+    {
+      title: 'We Believe Informed Patients Recover Better',
+      description: 'Clear information reduces fear, and confidence improves outcomes. We make sure every patient and family understands exactly what is happening and why.'
+    }
+  ];
 
+  // "How We Care Differently" — the patient journey, told as a timeline
+  careSteps = [
+    { title: 'You Arrive With Questions', description: 'Whatever brought you here — a cough, a report, a fear — you’re heard first, without judgment.' },
+    { title: 'We Understand Your Concerns', description: 'Every worry is different: family safety, work, side effects, or a treatment that didn’t go as planned. We listen before we advise.' },
+    { title: 'We Investigate Carefully', description: 'Digital X-ray, blood work, and molecular TB testing — only what’s needed to know exactly what’s happening.' },
+    { title: 'We Explain Every Finding', description: 'No jargon, no rushed summaries. You leave understanding your own diagnosis.' },
+    { title: 'We Create Your Treatment Plan', description: 'Tailored to your type of TB, your daily life, and your family’s needs — including complex, drug-resistant cases.' },
+    { title: 'We Support You Until Completion', description: 'Follow-ups, side-effect management, and counselling continue until you’re fully cured — not just until symptoms ease.' }
+  ];
 
   testimonials = [
-  { 
-    quote: 'I kept feeling that I will never get well even during treatment as I used to have headaches, pain in legs, lots of nausea, but it was all so well taken care of by the doctors and counselling personnel ,that I gradually came out of it a winner.', 
-    name: 'Naureen', 
-    title: 'Maujpur in East Delhi' 
-  },
-  { 
-    quote: 'I am a housewife who had duties of my 5 children and an ill husband to attend to, with no helping hand, all this was such a strain and on top of that one day I was diagnosed with TB, a situation where my life fell apart. I lost hope that I will not get well then who will take care of my family, I even thought of suicide, but thanks to TB clinic.in ,I have not only got well but feel much stronger than before.', 
-    name: 'Mrs. Kiran', 
-    title: 'Shahdara, Delhi' 
-  },
-  { 
-    quote: 'Dr Sunita mam is very good  and humble doctor. The staff of clinic is very cooperative and good Best dr in durgapri ..', 
-    name: 'Prashant Gaur', 
-    title: 'Former Patient' 
-  }
-];
+    {
+      quote: 'I kept feeling that I will never get well even during treatment as I used to have headaches, pain in legs, lots of nausea, but it was all so well taken care of by the doctors and counselling personnel ,that I gradually came out of it a winner.',
+      name: 'Naureen',
+      title: 'Maujpur in East Delhi'
+    },
+    {
+      quote: 'I am a housewife who had duties of my 5 children and an ill husband to attend to, with no helping hand, all this was such a strain and on top of that one day I was diagnosed with TB, a situation where my life fell apart. I lost hope that I will not get well then who will take care of my family, I even thought of suicide, but thanks to TB clinic.in ,I have not only got well but feel much stronger than before.',
+      name: 'Mrs. Kiran',
+      title: 'Shahdara, Delhi'
+    },
+    {
+      quote: 'Dr Sunita mam is very good  and humble doctor. The staff of clinic is very cooperative and good Best dr in durgapri ..',
+      name: 'Prashant Gaur',
+      title: 'Former Patient'
+    }
+  ];
 
   constructor(private seo: SeoService) { }
 
   ngOnInit(): void {
     this.seo.setPage({
-      title: 'About MEDCROSS TB Clinic Delhi | Our Mission to Eradicate Tuberculosis',
-      description: 'Learn about MEDCROSS by TB Clinic – a multidisciplinary team treating one of the highest numbers of TB patients in Delhi. Founded on a mission to eradicate tuberculosis in India. Evidence-based, compassionate care.',
-      keywords: 'about TB clinic Delhi, MEDCROSS tuberculosis clinic, TB expert Delhi, about us TB treatment',
+      title: 'Why Thousands Trust TB Clinic Delhi | About MEDCROSS TB Clinic',
+      description: 'For over 16 years, MEDCROSS by TB Clinic has helped 17,000+ patients across Delhi navigate TB with clarity, expertise, and continuous support — evidence-based, WHO-aligned tuberculosis care.',
+      keywords: 'about TB clinic Delhi, MEDCROSS tuberculosis clinic, TB expert Delhi, why trust TB clinic, TB treatment Delhi',
       canonicalUrl: 'https://tbclinic.in/about-us',
       jsonLd: {
         '@context': 'https://schema.org',

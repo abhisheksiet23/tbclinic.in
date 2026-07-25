@@ -1,458 +1,323 @@
-@use "sass:color";
-
-$primary-red: #f15f64;
-$dark-text: #2d2d2d;
-$border-color: #e0e0e0;
-$map-border: #f2f2f2;
+/* =========================================================
+   NETWORK / DELHI CENTERS — Premium redesign
+   ========================================================= */
 
 .network-section {
-  background-color: #fff;
-  margin-top: -110px;
-  padding: 60px 0;
-  font-family: "Poppins", sans-serif;
+  background: var(--color-bg);
+  padding: 5rem 1.5rem;
+  font-family: var(--font-body);
 
-  @media (max-width: 768px) {
-    margin-top: -95px;
-    padding: 80px 0;
+  @media (min-width: 1024px) {
+    padding: 6rem 2rem;
   }
 }
 
-
-.delhi-centers-header {
+/* ── Section Header ───────────────────────────────── */
+.network-header {
   text-align: center;
-  margin: -60px auto 25px;
-  padding: 0 15px;
-
-  @media (max-width: 768px) {
-    margin: -60px auto 20px;
-  }
-
-  @media (max-width: 480px) {
-    margin: -90px auto 18px;
-  }
+  max-width: 720px;
+  margin: 0 auto 3rem;
 }
 
-/* Main Title */
-.delhi-centers-title {
-  font-size: 30px;
+.network-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  color: #2d2d2d;   /* dark text */
-  font-family: "Poppins", sans-serif;
-  margin-bottom: 10px;
-  position: relative;
-  display: inline-block;
-
-  /* Underline to match theme */
-  &::after {
-    content: "";
-    width: 110px;
-    height: 4px;
-    background: #f15f64; /* your brand red */
-    border-radius: 3px;
-    display: block;
-    margin: 10px auto 0;
-  }
-
-  @media (max-width: 768px) {
-
-    font-size: 24px;
-    &::after {
-      width: 90px;
-      height: 3px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    font-size: 22px;
-    &::after {
-      width: 75px;
-    }
-  }
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  padding: 0.45rem 1.1rem;
+  border-radius: var(--radius-pill);
+  margin-bottom: 1.25rem;
 }
 
-/* Subheading */
-.delhi-centers-subtitle {
-  font-size: 16px;
-  font-weight: 500;
-  color: #555;   /* subtle grey */
-  margin-top: 5px;
-  letter-spacing: 0.3px;
-  font-family: "Poppins", sans-serif;
-
-  @media (max-width: 768px) {
-    font-size: 15px;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 14px;
-  }
+.network-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.9rem, 4.5vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+  margin-bottom: 1rem;
 }
 
+.network-subtitle {
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  max-width: 560px;
+  margin: 0 auto;
+}
 
-/* --- New: Interactive Delhi Map Section --- */
+/* ── Locator (map) ─────────────────────────────────── */
+.network-locator {
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+}
+
+/* ── Interactive Map ──────────────────────────────── */
 .delhi-map-container {
- max-width: 900px;
- margin: 20px auto 20px auto; // Center map and add space below
- padding: 0 15px;
- position: relative; // Important for absolute positioning of pins
- aspect-ratio: 16 / 9; // Maintain a consistent map ratio
- overflow: hidden;
- border-radius: 10px;
- box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-
- @media (max-width: 768px) {
- margin-bottom: 30px;
- margin-top: -15px;
- }
-
- .delhi-map-image {
- width: 100%;
- height: 100%;
- aspect-ratio: 16 / 9;
- object-fit: fill;
- display: block;
- }
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-alt);
+  /* Matches the source image's own ratio (800x730) so it scales cleanly without
+     cropping — which would otherwise throw off the percentage-based pin positions. */
+  max-width: 720px;
+  aspect-ratio: 800 / 730;
+  margin: 0 auto;
 }
 
-.map-location-pin {
- position: absolute;
- // Use the primary red for the pin background
- background-color: $primary-red; 
- color: #fff;
- border: 2px solid #fff;
- border-radius: 50%;
- width: 30px;
- height: 30px;
- display: flex;
- align-items: center;
- justify-content: center;
- cursor: pointer;
- transition: all 0.3s ease;
- z-index: 10;
- box-shadow: 0 0 0 4px rgba($primary-red, 0.4);
- font-size: 14px;
- font-weight: 700;
- 
- // Hide the text by default and use a single character for the pin
- span {
- display: none;
- }
-
- &:before {
- content: '•'; // Or use an icon if you have font-awesome linked globally
- font-size: 24px;
- line-height: 1;
- }
-
-
- &:hover {
- transform: scale(1.1);
- z-index: 11;
- // Optional: Show the branch name on hover
- span {
- display: block;
- position: absolute;
- bottom: 100%;
- left: 50%;
- transform: translate(-50%, -5px);
- background-color: $dark-text;
- color: #fff;
- padding: 5px 10px;
- border-radius: 4px;
- white-space: nowrap;
- font-size: 12px;
- font-weight: 500;
- }
- }
-
- @media (max-width: 576px) {
- width: 20px;
- height: 20px;
- 
- &:before {
- font-size: 18px;
- }
-
-  &:hover span {
-   padding: 3px 6px;
-   font-size: 10px;
-  }
- }
+.delhi-map-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-
-/* --- Top Navigation (Tabs) --- */
-.city-nav-bar {
-  border-bottom: 1px solid $border-color;
-  margin-bottom: 40px;
-
-  .city-nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-    display: flex;
-    overflow-x: auto;
-    white-space: nowrap;
-    scrollbar-width: thin;
-
-    @media (max-width: 768px) {
-      padding: 0 10px;
-    }
-  }
-
-  .city-link {
-    color: #666;
-    font-size: 15px;
-    text-decoration: none;
-    padding: 12px 18px;
-    border-bottom: 3px solid transparent;
-    transition: all 0.2s ease;
-    flex-shrink: 0;
-
-    &.active,
-    &:hover {
-      color: $primary-red;
-      border-bottom-color: $primary-red;
-      font-weight: 600;
-    }
-  }
-}
-
-/* --- Two-Column Layout --- */
-.network-content-wrapper {
-  .content-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-    display: flex;
-    align-items: flex-start;
-    gap: 40px;
-
-    @media (max-width: 992px) {
-      gap: 25px;
-    }
-
-    @media (max-width: 768px) {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 30px;
-    }
-  }
-}
-
-/* --- Left Panel --- */
-.network-info-panel {
-  flex-shrink: 0;
-  width: 340px;
-  background: $primary-red;
+/* Numbered map pins */
+.map-pin {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  background: var(--color-primary);
   color: #fff;
-  border-radius: 8px;
-  padding: 40px 30px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  text-align: left;
-  margin: 0 auto; /* helps with centering on wrap */
+  border: 3px solid #fff;
+  border-radius: 50% 50% 50% 0;
+  rotate: -45deg;
+  box-shadow: 0 4px 14px rgba(43, 125, 233, 0.4);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  z-index: 2;
 
-  .info-title {
-    font-size: 24px;
+  .map-pin-number {
+    rotate: 45deg;
+    font-size: 0.85rem;
+    font-weight: 800;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .map-pin-tooltip {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    rotate: 45deg;
+    transform: translateX(-50%);
+    transform-origin: center;
+    background: var(--color-text-primary);
+    color: #fff;
+    font-size: 0.72rem;
     font-weight: 600;
-    margin-bottom: 15px;
+    white-space: nowrap;
+    padding: 0.35rem 0.7rem;
+    border-radius: var(--radius-sm);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
   }
 
-  .info-description {
-    font-size: 15px;
-    line-height: 1.6;
-  }
+  &:hover,
+  &.active {
+    background: var(--color-accent);
+    transform: translate(-50%, -100%) scale(1.18);
+    box-shadow: 0 8px 22px rgba(22, 184, 166, 0.5);
+    z-index: 3;
 
-  /* --- Tablet (≤ 992px) --- */
-  @media (max-width: 992px) {
-    width: 100%;
-    max-width: 600px;
-    text-align: center;
-    padding: 35px 25px;
-  }
-
-  /* --- Mobile (≤ 768px) --- */
-  @media (max-width: 768px) {
-    width: 90%;
-    max-width: 500px;
-    padding: 30px 20px;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-
-    .info-title {
-      font-size: 20px;
-    }
-
-    .info-description {
-      font-size: 14px;
-      line-height: 1.5;
-    }
-  }
-
-  /* --- Small Mobile (≤ 480px) --- */
-  @media (max-width: 480px) {
-    max-width: 100%;
-    padding: 25px 16px;
-    border-radius: 8px;
-
-    .info-title {
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
-
-    .info-description {
-      font-size: 13px;
+    .map-pin-tooltip {
+      opacity: 1;
+      visibility: visible;
     }
   }
 }
 
-/* --- Right Scroll Cards --- */
+/* Compass */
+.map-compass {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  box-shadow: var(--shadow-card);
+  display: grid;
+  place-items: center;
+  gap: 0;
+
+  .compass-n {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: var(--color-text-primary);
+    line-height: 1;
+    margin-bottom: -2px;
+  }
+
+  .compass-arrow {
+    font-size: 0.6rem;
+    color: var(--color-primary);
+    line-height: 1;
+  }
+}
+
+/* ── Branch Cards Carousel ────────────────────────── */
 .locations-carousel {
-  flex-grow: 1;
+  max-width: 1200px;
+  margin: 0 auto;
   overflow-x: auto;
-  padding-bottom: 10px;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
 
-  .carousel-track {
-    display: flex;
-    gap: 25px;
-    flex-wrap: nowrap;
+  &::-webkit-scrollbar { height: 5px; }
+  &::-webkit-scrollbar-track { background: transparent; }
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
+  }
+}
 
-    @media (max-width: 768px) {
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+.carousel-track {
+  display: flex;
+  gap: 1.25rem;
+  padding: 0.5rem 0.25rem;
+  min-width: min-content;
+
+  @media (min-width: 1200px) {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    min-width: 0;
   }
 }
 
 .location-card {
+  flex: 0 0 260px;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.35rem 1.25rem;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  scroll-margin: 1rem;
+
+  &:hover,
+  &.active {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--color-primary);
+  }
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.85rem;
+}
+
+.card-number {
   flex-shrink: 0;
-  width: 300px;
-  border-radius: 10px;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.25s ease;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+.branch-name-header {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.address-line {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.1rem;
+  flex: 1;
+}
+
+.card-features {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 1rem 0;
+  margin-bottom: 1.1rem;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 1;
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+
+  i {
+    color: var(--color-primary);
+    font-size: 1rem;
+  }
+}
+
+.btn-get-directions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.7rem 1rem;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 3px 10px rgba(43, 125, 233, 0.25);
+
+  .directions-ext {
+    font-size: 0.7rem;
+    opacity: 0.85;
+  }
 
   &:hover {
-    transform: translateY(-5px);
-  }
-
-  @media (max-width: 1024px) {
-    width: 280px;
-  }
-
-  @media (max-width: 768px) {
-    width: 100%; /* full width on mobile */
-  }
-
-  .branch-name-header {
-    font-size: 1.1em;
-    font-weight: 700;
-    color: $primary-red;
-    padding: 15px 15px 5px 15px;
-    margin: 0;
-    border-bottom: 1px solid $map-border;
-  }
-
-  /* --- Map Embed Responsive Fix --- */
-  .map-embed-area {
-    width: 100%;
-    aspect-ratio: 16 / 9; /* keeps responsive map height */
-    border-bottom: 1px solid $border-color;
-    background: #f8f8f8;
-    position: relative;
-    overflow: hidden;
-
-    iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-  }
-
-  .branch-details {
-    padding: 15px;
-
-    .address-line {
-      font-size: 14px;
-      color: #666;
-      line-height: 1.4;
-      margin-bottom: 15px;
-
-      .fa-map-marker-alt {
-        color: $primary-red;
-        margin-right: 5px;
-      }
-    }
-
-    .btn-get-directions {
-      display: inline-block;
-      padding: 8px 15px;
-      background-color: $primary-red;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 14px;
-      font-weight: 600;
-      transition: background-color 0.2s;
-
-      &:hover {
-        // background-color: darken($primary-red, 10%);
-        background-color: color.adjust($primary-red, $lightness: -10%);
-      }
-    }
+    background: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(43, 125, 233, 0.35);
   }
 }
 
-/* --- Scrollbar Styling for Mobile --- */
-.locations-carousel::-webkit-scrollbar {
-  height: 6px;
-}
-.locations-carousel::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-}
-
-/* Clean branch titles */
-.branch-name-header {
-  text-align: center;
-  padding-top: 18px !important;
-  font-size: 1.2em;
-  font-weight: 600;
-}
-
-/* Slight breathing room for cards */
-.location-card {
-  border-radius: 12px;
-}
-
-/* Mobile text refinement */
-@media (max-width: 600px) {
-  .network-info-panel {
-    padding: 24px 18px;
-    text-align: center;
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 479px) {
+  .network-section {
+    padding: 3rem 1rem;
   }
 
-  .branch-details .address-line {
-    font-size: 13px;
-    line-height: 1.4;
-  }
-
-  .btn-get-directions {
-    width: 92%;
-    text-align: center;
-  }
-}
-
-/* Better map pin visibility on mobile */
-@media (max-width: 480px) {
-  .map-location-pin {
-    width: 18px;
-    height: 18px;
-    box-shadow: 0 0 0 3px rgba($primary-red, 0.35);
+  .location-card {
+    flex: 0 0 250px;
   }
 }

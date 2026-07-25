@@ -32,6 +32,16 @@ export const routes: Routes = [
       import('./components/privacy/PrivacyPolicyComponent').then((m) => m.PrivacyPolicyComponent),
   },
   {
+    path: 'blog',
+    loadComponent: () =>
+      import('./components/blog/blog.component').then((m) => m.BlogComponent),
+  },
+  {
+    path: 'blog/:slug',
+    loadComponent: () =>
+      import('./components/blog-post/blog-post.component').then((m) => m.BlogPostComponent),
+  },
+  {
     path: 'tb-treatments',
     loadComponent: () =>
       import('./components/tb-treatments/tb-treatments.component').then((m) => m.TbTreatmentsComponent),

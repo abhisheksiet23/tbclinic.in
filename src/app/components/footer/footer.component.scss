@@ -1,138 +1,85 @@
-@use "sass:color";
+﻿/* =========================================================
+   FOOTER — TBClinic Premium Rebrand
+   ========================================================= */
 
-/* =========================================================
-   COLOR PALETTE
-========================================================= */
-$purple: #393362;
-$purple-dark: #2a2848;
-$purple-light: #4a4375;
-$coral: #f15f64;
-$coral-light: #ff7a7f;
-$white: #ffffff;
-$off-white: #f8fafc;
-$gray-50: #f9fafb;
-$gray-100: #f3f4f6;
-$gray-200: #e5e7eb;
-$gray-300: #d1d5db;
-$gray-400: #9ca3af;
-$gray-500: #6b7280;
-$gray-600: #4b5563;
-$gray-700: #374151;
-$gray-900: #111827;
-
-/* =========================================================
-   MAIN FOOTER
-========================================================= */
 .main-footer {
-  background: $gray-50;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Open Sans', Arial, sans-serif;
+  background: var(--color-bg);
+  font-family: var(--font-body);
   position: relative;
   overflow-x: hidden;
-  
+
   &::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, $purple, $coral, $purple);
+    height: 3px;
+    background: linear-gradient(90deg, #E1ECF7, #2B7DE9, #E1ECF7);
   }
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
   width: 100%;
   box-sizing: border-box;
-  
-  @media (min-width: 768px) {
-    padding: 0 1.5rem;
-  }
-  
-  @media (min-width: 1024px) {
-    padding: 0 2rem;
-  }
+
+  @media (min-width: 1024px) { padding: 0 2rem; }
 }
 
-/* =========================================================
-   FOOTER CONTENT
-========================================================= */
+/* Footer Content */
 .footer-content {
-  padding: 3rem 0 2rem;
-  
-  @media (min-width: 768px) {
-    padding: 4rem 0 2.5rem;
-  }
+  padding: 3.5rem 0 2.5rem;
+
+  @media (min-width: 768px) { padding: 4rem 0 3rem; }
 }
 
 .footer-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2.5rem;
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
-  
+
   @media (min-width: 576px) {
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
   }
-  
+
   @media (min-width: 992px) {
     grid-template-columns: 1.4fr 0.8fr 1fr 1fr;
     gap: 2.5rem;
   }
-  
-  @media (min-width: 1200px) {
-    gap: 3.5rem;
-  }
 }
 
-/* =========================================================
-   BRAND COLUMN
-========================================================= */
+/* Brand Column */
 .footer-brand {
-  @media (min-width: 576px) {
-    grid-column: span 2;
-  }
-  
-  @media (min-width: 992px) {
-    grid-column: span 1;
-  }
+  @media (min-width: 576px) { grid-column: span 2; }
+  @media (min-width: 992px) { grid-column: span 1; }
 }
 
 .footer-logo {
   display: inline-block;
   margin-bottom: 1rem;
-  
+
   img {
     height: 3.5rem;
     width: auto;
-    transition: transform 0.2s ease;
-    
-    @media (min-width: 768px) {
-      height: 4rem;
-    }
-    
-    &:hover {
-      transform: scale(1.03);
-    }
+    transition: opacity 0.2s ease;
+
+    &:hover { opacity: 0.85; }
   }
 }
 
 .brand-tagline {
-  color: $gray-600;
+  color: var(--color-text-secondary);
   font-size: 0.875rem;
   line-height: 1.6;
   margin: 0 0 1.25rem;
   max-width: 280px;
 }
 
-/* =========================================================
-   CONTACT CARDS
-========================================================= */
+/* Contact Cards */
 .contact-cards {
   display: flex;
   flex-direction: column;
@@ -145,23 +92,21 @@ $gray-900: #111827;
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem;
-  background: $white;
-  border-radius: 0.75rem;
-  border: 1px solid $gray-200;
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
   text-decoration: none;
   transition: all 0.2s ease;
-  
+
   &:hover {
-    border-color: $coral;
-    box-shadow: 0 4px 12px rgba($coral, 0.1);
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 12px rgba(43, 125, 233, 0.1);
     transform: translateY(-2px);
-    
+
     .contact-icon {
-      background: $coral;
-      
-      svg {
-        color: $white;
-      }
+      background: #2B7DE9;
+
+      svg { color: #ffffff; }
     }
   }
 }
@@ -172,15 +117,15 @@ $gray-900: #111827;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba($coral, 0.1);
-  border-radius: 0.5rem;
+  background: rgba(43, 125, 233, 0.1);
+  border-radius: var(--radius-sm);
   flex-shrink: 0;
   transition: all 0.2s ease;
-  
+
   svg {
     width: 1.25rem;
     height: 1.25rem;
-    color: $coral;
+    color: var(--color-primary);
     transition: color 0.2s ease;
   }
 }
@@ -193,7 +138,7 @@ $gray-900: #111827;
 
 .contact-label {
   font-size: 0.688rem;
-  color: $gray-500;
+  color: var(--color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-weight: 500;
@@ -201,64 +146,47 @@ $gray-900: #111827;
 
 .contact-value {
   font-size: 0.875rem;
-  color: $gray-900;
+  color: var(--color-text-primary);
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* =========================================================
-   SOCIAL LINKS
-========================================================= */
-.social-links {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.social-label {
-  font-size: 0.75rem;
-  color: $gray-500;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.social-icons {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.social-icon {
-  width: 2rem;
-  height: 2rem;
-  display: flex;
+/* Book footer CTA */
+.btn-book-footer {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: $white;
-  border: 1px solid $gray-200;
-  border-radius: 0.5rem;
-  color: $gray-600;
-  font-size: 0.875rem;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.813rem;
+  font-weight: 700;
   text-decoration: none;
-  transition: all 0.2s ease;
-  
+  transition: all 0.25s ease;
+  background: #2B7DE9;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(43, 125, 233, 0.25);
+  font-family: var(--font-heading);
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+  }
+
   &:hover {
-    background: $purple;
-    border-color: $purple;
-    color: $white;
+    background: #1E5FB8;
     transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(43, 125, 233, 0.35);
   }
 }
 
-/* =========================================================
-   FOOTER COLUMNS
-========================================================= */
+/* Footer Columns */
 .footer-column {
   min-width: 0;
-  max-width: 100%;
   overflow: hidden;
 }
 
@@ -266,14 +194,15 @@ $gray-900: #111827;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-family: var(--font-heading);
   font-size: 0.938rem;
   font-weight: 700;
-  color: $purple;
+  color: var(--color-text-primary);
   margin: 0 0 1.25rem;
   padding-bottom: 0.75rem;
-  border-bottom: 2px solid $gray-200;
+  border-bottom: 2px solid var(--color-border);
   position: relative;
-  
+
   &::after {
     content: '';
     position: absolute;
@@ -281,65 +210,56 @@ $gray-900: #111827;
     left: 0;
     width: 2.5rem;
     height: 2px;
-    background: $coral;
+    background: var(--color-primary);
   }
-  
+
   svg {
     width: 1.125rem;
     height: 1.125rem;
-    color: $coral;
+    color: var(--color-primary);
     flex-shrink: 0;
   }
 }
 
-/* =========================================================
-   FOOTER LINKS
-========================================================= */
+/* Footer Links */
 .footer-links {
   list-style: none;
   padding: 0;
   margin: 0;
-  
+
   li {
     margin-bottom: 0.5rem;
-    
-    &:last-child {
-      margin-bottom: 0;
-    }
+    &:last-child { margin-bottom: 0; }
   }
-  
+
   a {
     display: inline-flex;
     align-items: center;
     gap: 0.375rem;
-    color: $gray-600;
+    color: var(--color-text-secondary);
     text-decoration: none;
     font-size: 0.875rem;
     padding: 0.375rem 0;
     transition: all 0.2s ease;
-    
+
     svg {
       width: 0.875rem;
       height: 0.875rem;
-      color: $gray-400;
+      color: var(--color-border);
       transition: all 0.2s ease;
       flex-shrink: 0;
     }
-    
+
     &:hover {
-      color: $coral;
+      color: var(--color-primary);
       transform: translateX(4px);
-      
-      svg {
-        color: $coral;
-      }
+
+      svg { color: var(--color-primary); }
     }
   }
 }
 
-/* =========================================================
-   HOURS LIST
-========================================================= */
+/* Hours List */
 .hours-list {
   display: flex;
   flex-direction: column;
@@ -352,129 +272,103 @@ $gray-900: #111827;
   justify-content: space-between;
   align-items: center;
   padding: 0.625rem 0.75rem;
-  background: $white;
-  border-radius: 0.5rem;
-  border: 1px solid $gray-200;
-  
-  &.closed {
-    .hours-time {
-      color: $coral;
-      background: rgba($coral, 0.1);
-    }
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+
+  &.closed .hours-time {
+    color: var(--color-danger);
+    background: rgba(220, 38, 38, 0.08);
   }
 }
 
 .hours-day {
   font-size: 0.813rem;
-  color: $gray-700;
+  color: var(--color-text-primary);
   font-weight: 500;
 }
 
 .hours-time {
   font-size: 0.75rem;
-  color: $purple;
+  color: var(--color-primary);
   font-weight: 600;
-  background: rgba($purple, 0.06);
+  background: var(--color-primary-light);
   padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
+  border-radius: 4px;
 }
 
-/* =========================================================
-   LOCATIONS LIST
-========================================================= */
+/* Locations List */
 .locations-list {
   list-style: none;
   padding: 0;
   margin: 0 0 1.25rem;
-  
+
   li {
     margin-bottom: 0.375rem;
-    
-    &:last-child {
-      margin-bottom: 0;
-    }
+    &:last-child { margin-bottom: 0; }
   }
-  
+
   a {
     display: inline-flex;
     align-items: center;
     gap: 0.375rem;
-    color: $gray-600;
+    color: var(--color-text-secondary);
     text-decoration: none;
     font-size: 0.875rem;
     padding: 0.375rem 0;
     transition: all 0.2s ease;
-    
+
     svg {
       width: 0.875rem;
       height: 0.875rem;
-      color: $coral;
+      color: var(--color-primary);
       flex-shrink: 0;
     }
-    
+
     &:hover {
-      color: $coral;
+      color: var(--color-primary);
       transform: translateX(4px);
     }
   }
 }
 
-/* =========================================================
-   FOOTER BUTTONS
-========================================================= */
-.btn-book-footer,
+/* Work With Us button */
 .btn-careers {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   width: 100%;
-  max-width: 100%;
   padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-heading);
   font-size: 0.813rem;
   font-weight: 600;
   text-decoration: none;
   transition: all 0.25s ease;
-  box-sizing: border-box;
-  
+  background: var(--color-surface);
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-border);
+
   svg {
     width: 1rem;
     height: 1rem;
     flex-shrink: 0;
   }
-}
 
-.btn-book-footer {
-  background: linear-gradient(135deg, $coral, $coral-light);
-  color: $white;
-  box-shadow: 0 4px 12px rgba($coral, 0.25);
-  
   &:hover {
+    background: var(--color-primary);
+    color: #ffffff;
+    border-color: var(--color-primary);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba($coral, 0.35);
+    box-shadow: 0 4px 12px rgba(43, 125, 233, 0.2);
   }
 }
 
-.btn-careers {
-  background: $white;
-  color: $purple;
-  border: 1px solid $gray-200;
-  
-  &:hover {
-    background: $purple;
-    color: $white;
-    border-color: $purple;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba($purple, 0.2);
-  }
-}
-
-/* =========================================================
-   FOOTER BOTTOM
-========================================================= */
+/* Footer Bottom */
 .footer-bottom {
-  background: linear-gradient(135deg, $purple, $purple-dark);
+  background: #E1ECF7;
+  border-top: 1px solid #D2E2F4;
   padding: 1.25rem 0;
 }
 
@@ -484,7 +378,7 @@ $gray-900: #111827;
   align-items: center;
   gap: 0.75rem;
   text-align: center;
-  
+
   @media (min-width: 768px) {
     flex-direction: row;
     justify-content: space-between;
@@ -494,7 +388,7 @@ $gray-900: #111827;
 
 .copyright {
   margin: 0;
-  color: rgba($white, 0.85);
+  color: #0E9384;
   font-size: 0.813rem;
   font-weight: 500;
 }
@@ -503,505 +397,44 @@ $gray-900: #111827;
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  
+
   a {
-    color: rgba($white, 0.85);
+    color: #0E9384;
     text-decoration: none;
     font-size: 0.813rem;
     font-weight: 500;
     transition: color 0.2s ease;
-    
-    &:hover {
-      color: $white;
-    }
+
+    &:hover { color: #1A2B42; }
   }
-  
+
   .divider {
-    color: rgba($white, 0.4);
+    color: #9DB3CE;
     font-size: 0.75rem;
   }
 }
 
-/* =========================================================
-   RESPONSIVE - LARGE TABLET (768px - 991px)
-========================================================= */
-@media (min-width: 768px) and (max-width: 991px) {
-  .footer-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem 3rem;
-  }
-  
-  .footer-brand {
-    grid-column: span 2;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    
-    .footer-logo {
-      width: 100%;
-    }
-    
-    .brand-tagline {
-      max-width: 100%;
-    }
-    
-    .contact-cards {
-      flex: 1;
-      min-width: 200px;
-    }
-    
-    .social-links {
-      flex: 1;
-      min-width: 150px;
-    }
-  }
-}
-
-/* =========================================================
-   RESPONSIVE - SMALL TABLET (576px - 767px)
-========================================================= */
-@media (min-width: 576px) and (max-width: 767px) {
+/* Responsive */
+@media (max-width: 575px) {
   .footer-content {
     padding: 2.5rem 0 2rem;
   }
-  
-  .footer-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.75rem;
-  }
-  
-  .footer-brand {
-    grid-column: span 2;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .contact-cards {
-    flex-direction: row;
-    flex-wrap: wrap;
-    
-    .contact-card {
-      flex: 1;
-      min-width: 180px;
-    }
-  }
-  
-  .column-title {
-    font-size: 0.875rem;
-  }
-  
-  .footer-links a,
-  .locations-list a {
-    font-size: 0.813rem;
-  }
-  
-  .hours-day,
-  .hours-time {
-    font-size: 0.75rem;
-  }
-}
 
-/* =========================================================
-   RESPONSIVE - MOBILE (480px - 575px)
-========================================================= */
-@media (min-width: 480px) and (max-width: 575px) {
-  .footer-content {
-    padding: 2rem 0 1.5rem;
-  }
-  
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  
   .footer-brand {
     text-align: center;
-    
+
     .brand-tagline {
       max-width: 100%;
       margin-left: auto;
       margin-right: auto;
     }
   }
-  
-  .contact-cards {
-    flex-direction: row;
-    justify-content: center;
-    
-    .contact-card {
-      flex: 1;
-      max-width: 200px;
-    }
-  }
-  
-  .social-links {
-    justify-content: center;
-  }
-  
-  .column-title {
-    font-size: 0.875rem;
-  }
-  
-  .footer-links a,
-  .locations-list a {
-    font-size: 0.813rem;
-  }
-  
-  .hours-item {
-    padding: 0.5rem 0.75rem;
-  }
-  
-  .hours-day {
-    font-size: 0.75rem;
-  }
-  
-  .hours-time {
-    font-size: 0.688rem;
-    padding: 0.188rem 0.375rem;
-  }
-  
-  .btn-book-footer,
-  .btn-careers {
-    max-width: 280px;
-    margin: 0 auto;
-  }
 }
 
-/* =========================================================
-   RESPONSIVE - SMALL MOBILE (375px - 479px)
-========================================================= */
-@media (min-width: 375px) and (max-width: 479px) {
-  .footer-content {
-    padding: 1.75rem 0 1.25rem;
-  }
-  
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 1.75rem;
-  }
-  
-  .footer-brand {
-    text-align: center;
-    
-    .footer-logo img {
-      height: 3rem;
-    }
-    
-    .brand-tagline {
-      font-size: 0.813rem;
-      max-width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-  }
-  
-  .contact-cards {
-    gap: 0.5rem;
-  }
-  
-  .contact-card {
-    padding: 0.625rem;
-  }
-  
-  .contact-icon {
-    width: 2.25rem;
-    height: 2.25rem;
-    
-    svg {
-      width: 1.125rem;
-      height: 1.125rem;
-    }
-  }
-  
-  .contact-label {
-    font-size: 0.625rem;
-  }
-  
-  .contact-value {
-    font-size: 0.813rem;
-  }
-  
-  .social-links {
-    justify-content: center;
-  }
-  
-  .social-icon {
-    width: 2.25rem;
-    height: 2.25rem;
-  }
-  
-  .column-title {
-    font-size: 0.813rem;
-    margin-bottom: 0.875rem;
-    
-    svg {
-      width: 0.938rem;
-      height: 0.938rem;
-    }
-  }
-  
-  .footer-links a,
-  .locations-list a {
-    font-size: 0.75rem;
-    padding: 0.25rem 0;
-  }
-  
-  .hours-item {
-    padding: 0.5rem 0.625rem;
-  }
-  
-  .hours-day {
-    font-size: 0.688rem;
-  }
-  
-  .hours-time {
-    font-size: 0.625rem;
-    padding: 0.125rem 0.375rem;
-  }
-  
-  .btn-book-footer,
-  .btn-careers {
-    padding: 0.625rem 1rem;
-    font-size: 0.75rem;
-  }
-  
-  .footer-bottom {
-    padding: 1rem 0;
-  }
-  
-  .footer-bottom-content {
-    gap: 0.5rem;
-  }
-  
-  .copyright {
-    font-size: 0.688rem;
-  }
-  
-  .footer-bottom-links {
-    gap: 0.5rem;
-    
-    a {
-      font-size: 0.688rem;
-    }
-  }
-}
-
-/* =========================================================
-   RESPONSIVE - EXTRA SMALL MOBILE (320px - 374px)
-========================================================= */
-@media (max-width: 374px) {
-  .container {
-    padding: 0 0.75rem;
-  }
-  
-  .footer-content {
-    padding: 1.5rem 0 1rem;
-  }
-  
-  .footer-grid {
-    gap: 1.5rem;
-  }
-  
-  .footer-brand {
-    text-align: center;
-    
-    .footer-logo img {
-      height: 2.5rem;
-    }
-    
-    .brand-tagline {
-      font-size: 0.75rem;
-      line-height: 1.5;
-    }
-  }
-  
-  .contact-cards {
-    gap: 0.375rem;
-  }
-  
-  .contact-card {
-    padding: 0.5rem;
-    gap: 0.5rem;
-  }
-  
-  .contact-icon {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 0.375rem;
-    
-    svg {
-      width: 1rem;
-      height: 1rem;
-    }
-  }
-  
-  .contact-label {
-    font-size: 0.563rem;
-  }
-  
-  .contact-value {
-    font-size: 0.75rem;
-  }
-  
-  .social-links {
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: center;
-  }
-  
-  .social-label {
-    font-size: 0.688rem;
-  }
-  
-  .social-icon {
-    width: 2rem;
-    height: 2rem;
-    font-size: 0.75rem;
-  }
-  
-  .column-title {
-    font-size: 0.75rem;
-    gap: 0.375rem;
-    margin-bottom: 0.75rem;
-    padding-bottom: 0.5rem;
-    
-    svg {
-      width: 0.875rem;
-      height: 0.875rem;
-    }
-    
-    &::after {
-      width: 2rem;
-    }
-  }
-  
-  .footer-links,
-  .locations-list {
-    li {
-      margin-bottom: 0.25rem;
-    }
-    
-    a {
-      font-size: 0.688rem;
-      padding: 0.188rem 0;
-      gap: 0.25rem;
-      
-      svg {
-        width: 0.75rem;
-        height: 0.75rem;
-      }
-    }
-  }
-  
-  .hours-list {
-    gap: 0.375rem;
-  }
-  
-  .hours-item {
-    padding: 0.375rem 0.5rem;
-    flex-wrap: wrap;
-    gap: 0.25rem;
-  }
-  
-  .hours-day {
-    font-size: 0.625rem;
-    flex: 1;
-  }
-  
-  .hours-time {
-    font-size: 0.563rem;
-    padding: 0.125rem 0.25rem;
-  }
-  
-  .btn-book-footer,
-  .btn-careers {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.688rem;
-    border-radius: 0.375rem;
-    
-    svg {
-      width: 0.875rem;
-      height: 0.875rem;
-    }
-  }
-  
-  .footer-bottom {
-    padding: 0.875rem 0;
-  }
-  
-  .footer-bottom-content {
-    gap: 0.375rem;
-  }
-  
-  .copyright {
-    font-size: 0.625rem;
-  }
-  
-  .footer-bottom-links {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.375rem;
-    
-    a {
-      font-size: 0.625rem;
-    }
-    
-    .divider {
-      font-size: 0.5rem;
-    }
-  }
-}
-
-/* =========================================================
-   ACCESSIBILITY
-========================================================= */
-.contact-card:focus,
-.social-icon:focus,
-.footer-links a:focus,
-.locations-list a:focus,
-.btn-book-footer:focus,
-.btn-careers:focus,
-.footer-bottom-links a:focus {
-  outline: 2px solid rgba($coral, 0.5);
-  outline-offset: 2px;
-}
-
+/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.15ms !important;
-  }
-}
-
-/* =========================================================
-   PRINT STYLES
-========================================================= */
-@media print {
-  .main-footer {
-    background: none;
-    
-    &::before {
-      display: none;
-    }
-  }
-  
-  .btn-book-footer,
-  .btn-careers,
-  .social-links {
-    display: none;
-  }
-  
-  .footer-bottom {
-    background: none;
-    color: $gray-900;
-    border-top: 1px solid $gray-300;
-  }
-  
-  .copyright,
-  .footer-bottom-links a {
-    color: $gray-900;
   }
 }
