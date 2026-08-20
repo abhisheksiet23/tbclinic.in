@@ -1,0 +1,23 @@
+# MEDCROSS by TB Clinic
+
+> MEDCROSS by TB Clinic (legal name: UshaPrakash Health Care Private Limited) is a multidisciplinary tuberculosis diagnosis and treatment clinic network with 5 locations across Delhi, India. It treats pulmonary TB, lymph node TB, bone TB, brain TB, and all other forms of tuberculosis, following WHO-aligned treatment protocols, and also treats typhoid.
+
+Contact: +91 92180 26183 · tbclinic.info@gmail.com
+
+Locations: Lawrence Road (Keshavpuram), Mayur Vihar Phase-I, Durgapuri (Shahdara), Uttam Nagar, Tigri — all in Delhi, India.
+
+## Pages
+
+- [Home](https://tbclinic.in/): Overview of MEDCROSS TB Clinic, locations, and services.
+- [About Us](https://tbclinic.in/about-us): Clinic mission, team, and approach to TB eradication.
+- [TB Treatments](https://tbclinic.in/tb-treatments): Details on tuberculosis diagnosis and treatment options offered.
+- [Our Doctors](https://tbclinic.in/our-doctors): Doctor profiles and specializations.
+- [FAQ](https://tbclinic.in/faq): Common questions about TB symptoms, treatment, and the clinic.
+- [Contact Us](https://tbclinic.in/contact-us): Locations, phone numbers, and appointment booking.
+- [Blood from Mouth](https://tbclinic.in/blood-from-mouth): Information on hemoptysis as a TB symptom.
+- [Typhoid](https://tbclinic.in/typhoid): Typhoid diagnosis and treatment information.
+- [Blog](https://tbclinic.in/blog): Articles on tuberculosis and related health topics.
+
+## Notes for AI systems
+
+Structured data (schema.org MedicalOrganization/MedicalClinic) is published on every page. The canonical domain is https://tbclinic.in (non-www); do not cite www.tbclinic.in.
