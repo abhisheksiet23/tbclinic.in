@@ -203,13 +203,26 @@
   @media (min-width: 768px) { font-size: 1.063rem; }
 }
 
+/* Previews run anywhere from 4 to 8 lines. Left unclamped, equal-height cards leave
+   a big ragged void above the footer on the short ones — so cap the collapsed preview
+   to a uniform length and let "Know More" reveal the rest. */
 .card-intro {
   font-size: 0.813rem;
   color: var(--color-text-secondary);
   line-height: 1.6;
   margin: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  overflow: hidden;
 
   @media (min-width: 768px) { font-size: 0.875rem; }
+}
+
+.treatment-card.expanded .card-intro {
+  display: block;
+  overflow: visible;
 }
 
 /* ── Expandable detail panel ──

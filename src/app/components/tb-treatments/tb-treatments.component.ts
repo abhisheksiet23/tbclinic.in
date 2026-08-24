@@ -111,7 +111,7 @@ export class TbTreatmentsComponent implements OnInit {
         'Chest pain or breathlessness'
       ],
       whyMatters: 'Pulmonary TB is treatable, but delaying treatment can increase the risk of complications and spread the infection to others. Early evaluation helps you begin the right treatment sooner.',
-      howWeHelp: 'Our specialists carefully evaluate your symptoms, review previous reports if available, recommend the appropriate investigations, and guide you through treatment until recovery.'
+      howWeHelp: 'Our experts carefully evaluate your symptoms, review previous reports if available, recommend the appropriate investigations, and guide you through treatment until recovery.'
     },
     {
       title: 'TB of Lymph Nodes',
@@ -169,7 +169,7 @@ export class TbTreatmentsComponent implements OnInit {
         'Drowsiness'
       ],
       whyMatters: 'Early recognition and timely treatment are critical to reducing the risk of severe complications.',
-      howWeHelp: 'Our specialists coordinate prompt evaluation and guide patients through the appropriate treatment pathway while ensuring continuous monitoring.'
+      howWeHelp: 'Our experts coordinate prompt evaluation and guide patients through the appropriate treatment pathway while ensuring continuous monitoring.'
     },
     {
       title: 'Genito-Urinary TB',
@@ -216,7 +216,7 @@ export class TbTreatmentsComponent implements OnInit {
 
   reassurance = {
     title: 'Not Sure If This Matches Your Symptoms?',
-    body: "That's okay. Many patients aren't certain which form of TB they have when they first visit us. Our specialists can help determine the cause of your symptoms and guide you toward the right next step.",
+    body: "That's okay. Many patients aren't certain which form of TB they have when they first visit us. Our experts can help determine the cause of your symptoms and guide you toward the right next step.",
     cta: 'Book a Consultation'
   };
 

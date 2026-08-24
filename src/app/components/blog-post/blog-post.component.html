@@ -29,6 +29,17 @@
 
   <div class="article-body">
     <div class="container">
+      @if (post.takeaways.length) {
+        <div class="article-takeaways" aria-label="Key takeaways">
+          <span class="takeaways-heading">Quick Takeaways</span>
+          <ul>
+            @for (point of post.takeaways; track point) {
+              <li>{{ point }}</li>
+            }
+          </ul>
+        </div>
+      }
+
       <div class="article-content">
         @for (paragraph of bodyParagraphs; track paragraph) {
           <p>{{ paragraph }}</p>

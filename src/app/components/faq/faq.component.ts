@@ -83,7 +83,7 @@ export class FaqComponent implements OnInit {
     {
       id: 13,
       question: 'Does coughing up blood always mean TB?',
-      answer: 'Coughing up blood (hemoptysis) is a significant symptom that should always be evaluated by a doctor. While it can be a sign of pulmonary TB, it may also result from other conditions like lung infections, bronchiectasis, or cancer. If you cough up blood, visit a TB specialist immediately for proper diagnosis and testing.'
+      answer: 'Coughing up blood (hemoptysis) is a significant symptom that should always be evaluated by a doctor. While it can be a sign of pulmonary TB, it may also result from other conditions like lung infections, bronchiectasis, or cancer. If you cough up blood, visit a TB expert immediately for proper diagnosis and testing.'
     },
     {
       id: 14,

@@ -19,15 +19,18 @@
   padding: 2.5rem 0 2.25rem;
 }
 
+/* Sits on its own line above the tag — inline-flex would let the tag ride up
+   alongside it, colliding their differing bottom margins. */
 .back-link {
-  display: inline-flex;
+  display: flex;
+  width: fit-content;
   align-items: center;
   gap: 0.4rem;
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--color-primary);
   text-decoration: none;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 
   svg { width: 15px; height: 15px; }
 
@@ -41,7 +44,9 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-primary);
-  background: rgba(255, 255, 255, 0.9);
+  /* A near-white pill washed out against the hero's near-white gradient — tint it
+     so the tag actually reads as a badge. */
+  background: rgba(43, 125, 233, 0.09);
   padding: 0.3rem 0.7rem;
   border-radius: var(--radius-pill);
   margin-bottom: 1rem;
@@ -84,6 +89,39 @@
 /* ── Body ─────────────────────────────────────────────── */
 .article-body {
   padding: 2.5rem 0 4rem;
+}
+
+.article-takeaways {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-primary, #1a7f37);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+
+  .takeaways-heading {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-primary, #1a7f37);
+    margin-bottom: 0.6rem;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  li {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--color-text-primary);
+  }
 }
 
 .article-content {

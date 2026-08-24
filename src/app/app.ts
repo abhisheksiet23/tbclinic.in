@@ -14,6 +14,8 @@ import { SpecialtiesCeComponent } from './components/specialties-ce/specialties-
 import { NetworkComponent } from './components/network/network.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ToastComponent } from './components/toast/toast.component';
+import { BookingPopupComponent } from './components/booking-popup/booking-popup.component';
+import { PopupService } from './services/popup.service';
 import { PatientStoriesComponent } from './components/patient-stories/patient-stories.component';
 // import { VideoCardComponent } from './components/video-card/video-card.component'; 
 import { AboutUsComponent } from './components/about-us/about-us.component';
@@ -32,16 +34,17 @@ import { PrivacyPolicyComponent } from './components/privacy/PrivacyPolicyCompon
   imports: [
     CommonModule, 
     RouterOutlet,
-    HeaderComponent, 
+    HeaderComponent,
     FooterComponent,
     ToastComponent,
+    BookingPopupComponent,
   ],
 })
 // 4. MUST export the class as App to satisfy main.ts/main.server.ts
 export class App {
   title = 'TbClinic';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private popup: PopupService) {}
 
   ngOnInit() {
     this.router.events.subscribe(event => {
@@ -50,6 +53,7 @@ export class App {
         if (typeof window !== 'undefined') {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+        this.popup.registerPageView(event.urlAfterRedirects);
       }
     });
   }

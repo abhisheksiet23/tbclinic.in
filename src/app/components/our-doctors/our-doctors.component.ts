@@ -46,16 +46,16 @@ export class OurDoctorsComponent implements OnInit {
 
   ngOnInit(): void {
     this.seo.setPage({
-      title: 'Our TB Specialist Doctors in Delhi | MEDCROSS TB Clinic',
-      description: 'Meet our team of expert TB doctors led by Dr. Sunita (20+ years experience) at MEDCROSS TB Clinic Delhi. Our specialists have decades of combined experience treating tuberculosis.',
-      keywords: 'TB doctor Delhi, tuberculosis specialist Delhi, Dr Sunita TB expert, best TB doctor Delhi, MEDCROSS doctors',
+      title: 'Our TB Expert Doctors in Delhi | MEDCROSS TB Clinic',
+      description: 'Meet our team of expert TB doctors led by Dr. Sunita (20+ years experience) at MEDCROSS TB Clinic Delhi. Our experts have decades of combined experience treating tuberculosis.',
+      keywords: 'TB doctor Delhi, tuberculosis expert Delhi, Dr Sunita TB expert, best TB doctor Delhi, MEDCROSS doctors',
       canonicalUrl: 'https://tbclinic.in/our-doctors',
       jsonLd: [
         {
           '@context': 'https://schema.org',
           '@type': 'CollectionPage',
           'url': 'https://tbclinic.in/our-doctors',
-          'name': 'Our TB Specialist Doctors – MEDCROSS TB Clinic Delhi',
+          'name': 'Our TB Expert Doctors – MEDCROSS TB Clinic Delhi',
           'description': 'Expert TB doctors at MEDCROSS TB Clinic Delhi with decades of combined experience in tuberculosis diagnosis and treatment.'
         },
         {

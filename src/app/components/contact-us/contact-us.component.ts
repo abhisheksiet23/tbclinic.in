@@ -154,7 +154,7 @@ export class ContactUsComponent implements OnInit {
     {
       id: 3,
       question: 'Can I request a second opinion?',
-      answer: "Absolutely. If you've already been diagnosed or started treatment elsewhere, our specialists can review your reports and guide you further."
+      answer: "Absolutely. If you've already been diagnosed or started treatment elsewhere, our experts can review your reports and guide you further."
     },
     {
       id: 4,

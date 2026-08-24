@@ -24,10 +24,14 @@
   align-items: center;
 }
 
-/* ── Section 1: intro hero — copy on the left, doctor photo on the right ── */
+/* ── Section 1: intro hero — copy on the left, doctor photo on the right ──
+   Capped narrower than the 1200px default: the copy column's content tops out
+   around 560px, so a full-width container would leave a dead band of empty space
+   between the text and the portrait rather than a deliberate gutter. */
 .hero-inner--intro {
-  grid-template-columns: 1.3fr 300px;
-  gap: 2.25rem;
+  max-width: 1080px;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 3rem;
   text-align: left;
 }
 
@@ -36,7 +40,7 @@
   font-size: clamp(1.02rem, 1.8vw, 1.25rem);
   color: #4A5A72;
   line-height: 1.6;
-  max-width: 520px;
+  max-width: 560px;
   margin: 0 0 1.75rem;
   text-align: left;
 }
@@ -45,15 +49,59 @@
    RIGHT: DOCTOR PHOTO — builds trust in the hero itself
 ══════════════════════ */
 .hero-doctor-visual {
+  --photo-w: 270px;
   position: relative;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+/* Real clinic photos as a legible thumbnail strip under the portrait. Each one is
+   large enough to actually read as a place, and the caption tells you what you're
+   looking at — the photos earn their space instead of being background texture. */
+.clinic-strip {
+  width: 100%;
+  max-width: var(--photo-w);
+  margin: 0;
+}
+
+.clinic-strip-thumbs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+
+  img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+    border: 3px solid #ffffff;
+    box-shadow: 0 6px 16px rgba(26, 43, 66, 0.13);
+  }
+}
+
+.clinic-strip-caption {
+  margin-top: 0.5rem;
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #6B7A90;
+}
+
+/* Wraps the photo + badge as one unit, sized exactly to the photo, so the badge
+   anchors to the portrait's corner regardless of the larger plate behind it. */
+.hero-doctor-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--photo-w);
 }
 
 .hero-doctor-photo {
   position: relative;
   width: 100%;
-  max-width: 270px;
   aspect-ratio: 6 / 7;
   border-radius: 20px;
   overflow: hidden;
@@ -100,6 +148,7 @@
 
 .hero-doctor-badge {
   position: absolute;
+  z-index: 3;
   top: -0.875rem;
   right: 0.5rem;
   display: flex;
@@ -598,12 +647,12 @@
   }
 
   .hero-doctor-visual {
+    --photo-w: 240px;
     order: -1;
     margin-bottom: 0.5rem;
   }
 
-  .hero-doctor-photo {
-    max-width: 220px;
+  .hero-doctor-card {
     margin: 0 auto;
   }
 
@@ -778,8 +827,8 @@
     padding: 2rem 1rem;
   }
 
-  .hero-doctor-photo {
-    max-width: 180px;
+  .hero-doctor-visual {
+    --photo-w: 200px;
   }
 
   .hero-doctor-role {
