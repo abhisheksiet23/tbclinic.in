@@ -33,7 +33,7 @@ import { PopupService } from '../../services/popup.service';
             <button type="button" class="popup-btn popup-btn--primary" (click)="bookAppointment()">
               Book Appointment
             </button>
-            <a href="https://wa.me/919218026183?text=Hello%2C%20I%20would%20like%20to%20book%20a%20TB%20consultation"
+            <a href="https://wa.me/918076715840?text=Hello%2C%20I%20would%20like%20to%20book%20a%20TB%20consultation"
                target="_blank" rel="noopener" class="popup-btn popup-btn--secondary" (click)="popup.dismiss()">
               WhatsApp Us
             </a>

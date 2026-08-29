@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { SeoService } from '../../services/seo.service';
@@ -11,9 +11,10 @@ import { SeoService } from '../../services/seo.service';
     RouterLink
   ],
   templateUrl: './about-us.component.html',
-  styleUrls: ['./about-us.component.scss']
+  // Phone (≤767px) overrides live in their own file so the desktop sheet stays untouched.
+  styleUrls: ['./about-us.component.scss', './about-us.mobile.scss']
 })
-export class AboutUsComponent implements OnInit {
+export class AboutUsComponent implements OnInit, AfterViewInit {
 
   // Hero trust strip
   trustStrip = [
@@ -88,6 +89,32 @@ export class AboutUsComponent implements OnInit {
   ];
 
   constructor(private seo: SeoService) { }
+
+  /**
+   * Myth cards: an exclusive accordion on mobile (one open at a time), but all
+   * cards open and non-interactive on desktop (a 2-up grid of full myth+fact cards).
+   * Done in JS because CSS can't reliably force a modern <details> open.
+   */
+  @HostListener('window:resize')
+  applyMythMode(): void {
+    if (typeof document === 'undefined') return;
+    const items = document.querySelectorAll<HTMLDetailsElement>('.myth-item');
+    const isDesktop = window.innerWidth >= 768;
+    items.forEach((el, i) => {
+      if (isDesktop) {
+        el.removeAttribute('name');
+        el.open = true;
+      } else {
+        el.setAttribute('name', 'myths');
+        el.open = i === 0;
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    if (typeof window === 'undefined') return;
+    this.applyMythMode();
+  }
 
   ngOnInit(): void {
     this.seo.setPage({

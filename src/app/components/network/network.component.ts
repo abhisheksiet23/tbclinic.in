@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 // Encodes the address for the "Get Directions" Google Maps link
 import { UrlEncodePipe } from '../pipes/url-encode.pipe';
@@ -15,9 +16,10 @@ interface Location {
 @Component({
  selector: 'app-network',
  standalone: true,
- imports: [CommonModule, UrlEncodePipe],
+ imports: [CommonModule, RouterLink, UrlEncodePipe],
  templateUrl: './network.component.html',
- styleUrls: ['./network.component.scss']
+ // Phone (≤767px) overrides live in their own file so the desktop sheet stays untouched.
+ styleUrls: ['./network.component.scss', './network.mobile.scss']
 })
 export class NetworkComponent {
 

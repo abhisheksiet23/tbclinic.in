@@ -12,7 +12,8 @@ interface Testimonial {
   selector: 'app-patient-stories',
   standalone: true,
   templateUrl: './patient-stories.component.html',
-  styleUrls: ['./patient-stories.component.scss'],
+  // Phone (≤767px) overrides live in their own file so the desktop sheet stays untouched.
+  styleUrls: ['./patient-stories.component.scss', './patient-stories.mobile.scss'],
   imports: [CommonModule]
 })
 export class PatientStoriesComponent implements OnInit, OnDestroy {
@@ -161,72 +162,191 @@ export class PatientStoriesComponent implements OnInit, OnDestroy {
   ];
 
   /** SLIDER STATE */
-  currentSlideIndex: number = 0;
-  private autoScrollInterval: any;
-  private isBrowser: boolean;
 
-  /** Limit dots (visible indicators) */
-  visibleDots: number = 5;
+  /**
+   * What the track actually renders: the last two reviews, then all of them,
+   * then the first two. Those clones are what peek out at either end, and each
+   * is swapped for its real counterpart the instant the slide animation
+   * finishes — so the carousel loops with no visible seam and no empty edge.
+   *
+   * Two clones per side rather than one: while a clone is centred it needs a
+   * neighbour of its own to fill the peek beside it.
+   */
+  slides: Testimonial[] = [];
+
+  /** How many reviews are mirrored onto each end of the track. */
+  private readonly cloneCount = 2;
+
+  /** Where the real testimonials start inside `slides`. */
+  private offset = 0;
+
+  /** False when there are too few reviews to clone from — then the track just clamps. */
+  private isLooping = false;
+
+  /** Index into `slides`. */
+  position = 0;
+
+  /** Dropped while snapping across the seam, so the jump isn't animated. */
+  transitionEnabled = true;
+
+  private autoScrollInterval: any;
+  private snapSafetyTimer: any;
+  private isAnimating = false;
+  private isBrowser: boolean;
+  private touchStartX = 0;
+
+  /** Index into `testimonials` — drives the dots and the active-card styling. */
+  get currentSlideIndex(): number {
+    const total = this.testimonials.length;
+    if (!total) return 0;
+    return (this.position - this.offset + total * 2) % total;
+  }
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
-  /** Creates evenly spaced dots: ALWAYS 5 dots even if 25 reviews */
-  get displayedDots(): number[] {
-    const dots = [];
+  /** How far through the set we are — drives the progress bar. */
+  get progressPercent(): number {
     const total = this.testimonials.length;
-
-    const step = Math.ceil(total / this.visibleDots);
-
-    for (let i = 0; i < this.visibleDots; i++) {
-      dots.push(i * step);
-    }
-
-    return dots;
+    return total ? ((this.currentSlideIndex + 1) / total) * 100 : 0;
   }
 
-  getDotRangeEnd(startIndex: number): number {
-  return startIndex + Math.ceil(this.testimonials.length / this.visibleDots);
-}
 
+  /**
+   * Centres the active card and lets the neighbours peek out on either side.
+   * `--card-w` is the card's share of the track width and is set per breakpoint
+   * in the stylesheet, so the peek stays proportional from phone to desktop.
+   */
+  get trackTransform(): string {
+    return `translateX(calc((100% - var(--card-w)) / 2 - ${this.position} * var(--card-w)))`;
+  }
 
   ngOnInit(): void {
-    if (this.isBrowser) {
-      this.startAutoScroll();
+    const items = this.testimonials;
+    const n = items.length;
+    const c = this.cloneCount;
+
+    if (n > c) {
+      this.slides = [...items.slice(n - c), ...items, ...items.slice(0, c)];
+      this.offset = c;
+      this.isLooping = true;
+    } else {
+      // Too few reviews to clone from — fall back to a plain, wrapping track
+      this.slides = [...items];
+      this.offset = 0;
+      this.isLooping = false;
     }
+    this.position = this.offset;
+
+    this.startAutoScroll();
   }
 
   ngOnDestroy(): void {
-    if (this.isBrowser && this.autoScrollInterval) {
-      clearInterval(this.autoScrollInterval);
-    }
+    this.stopAutoScroll();
+    clearTimeout(this.snapSafetyTimer);
   }
 
   /** Auto-scroll slides */
   startAutoScroll(): void {
-    this.autoScrollInterval = setInterval(() => {
-      this.nextSlide();
-    }, 4000);
+    if (!this.isBrowser) return;
+    this.stopAutoScroll();
+    this.autoScrollInterval = setInterval(() => this.advance(1), 4000);
+  }
+
+  /** Pause autoplay — on hover, and while the component is torn down */
+  stopAutoScroll(): void {
+    if (this.autoScrollInterval) {
+      clearInterval(this.autoScrollInterval);
+      this.autoScrollInterval = undefined;
+    }
   }
 
   /** Restart auto-scroll on user interaction */
   resetAutoScroll(): void {
-    if (this.isBrowser && this.autoScrollInterval) {
-      clearInterval(this.autoScrollInterval);
-      this.startAutoScroll();
-    }
+    this.startAutoScroll();
   }
 
   /** Next slide */
   nextSlide(): void {
-    this.currentSlideIndex = (this.currentSlideIndex + 1) % this.testimonials.length;
+    this.advance(1);
     this.resetAutoScroll();
   }
 
   /** Previous slide */
   prevSlide(): void {
-    this.currentSlideIndex = (this.currentSlideIndex - 1 + this.testimonials.length) % this.testimonials.length;
+    this.advance(-1);
     this.resetAutoScroll();
+  }
+
+  private advance(step: number): void {
+    // One move at a time: a second move mid-flight could carry the track past
+    // a clone before it has been swapped back, which would strand the track.
+    if (this.isAnimating) return;
+
+    if (!this.isLooping) {
+      const total = this.testimonials.length;
+      if (total) this.position = (this.position + step + total) % total;
+      return;
+    }
+
+    this.isAnimating = true;
+    // Overshooting onto a clone is intentional — `settle` swaps it for the real
+    // card once the slide lands, which is what makes the wrap seamless.
+    this.position += step;
+
+    // transitionend is the trigger for releasing the lock and snapping the
+    // seam; this is the backstop for when it never fires (background tab).
+    clearTimeout(this.snapSafetyTimer);
+    this.snapSafetyTimer = setTimeout(() => this.settle(), 900);
+  }
+
+  /** Slide finished — release the lock, and hop the seam if we're on a clone. */
+  onTransitionEnd(event: TransitionEvent): void {
+    // The cards' own scale/opacity transitions bubble up here too, and land on
+    // 'transform' as well — only the track's own movement should settle it.
+    if (event.target !== event.currentTarget) return;
+    if (event.propertyName !== 'transform') return;
+    this.settle();
+  }
+
+  private settle(): void {
+    if (!this.isAnimating) return;
+    this.isAnimating = false;
+    clearTimeout(this.snapSafetyTimer);
+
+    const total = this.testimonials.length;
+    // Landed on the leading clone of the first card → hop to the real first.
+    if (this.position === total + this.offset) this.snapTo(this.offset);
+    // Landed on the trailing clone of the last card → hop to the real last.
+    else if (this.position === this.offset - 1) this.snapTo(total + this.offset - 1);
+  }
+
+  /** Swap a clone for the real card it mirrors, without animating the jump. */
+  private snapTo(position: number): void {
+    this.transitionEnabled = false;
+    this.position = position;
+
+    if (!this.isBrowser) {
+      this.transitionEnabled = true;
+      return;
+    }
+
+    // Two frames: one for the browser to paint the un-animated jump, the next
+    // to arm the transition again. Re-arming in the same frame would animate it.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => (this.transitionEnabled = true));
+    });
+  }
+
+  /** Swipe support — the primary way through the carousel on touch devices */
+  onTouchStart(event: TouchEvent): void {
+    this.touchStartX = event.changedTouches[0].clientX;
+  }
+
+  onTouchEnd(event: TouchEvent): void {
+    const deltaX = event.changedTouches[0].clientX - this.touchStartX;
+    if (Math.abs(deltaX) < 40) return; // ignore taps and stray drags
+    deltaX < 0 ? this.nextSlide() : this.prevSlide();
   }
 }

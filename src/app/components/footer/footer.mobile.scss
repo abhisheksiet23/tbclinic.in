@@ -1,0 +1,35 @@
+/* =========================================================
+   FOOTER — PHONE (≤767px) ONLY
+
+   The base stylesheet centre-aligns the whole brand column below 576px
+   (logo, tagline, contact cards, button) — reasonable for the logo and
+   tagline, but it also drags the Call Us / Email rows into a centred
+   layout, which reads oddly on a two-column icon+text row. Left-align just
+   those two rows; the logo/tagline/button stay exactly as designed.
+   ========================================================= */
+@media (max-width: 767px) {
+  .contact-text {
+    text-align: left;
+  }
+
+  /* Clinic Hours and Our Locations columns hidden on phones. */
+  .footer-column:has(.hours-list),
+  .footer-column:has(.locations-list) {
+    display: none;
+  }
+
+  /* Quick Links and Our Locations were one link per line — with 8-9 items
+     each that made the footer very tall on a phone. Two per row instead. */
+  .footer-links,
+  .locations-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1rem;
+    row-gap: 0.375rem;
+  }
+
+  .footer-links li,
+  .locations-list li {
+    margin-bottom: 0;
+  }
+}

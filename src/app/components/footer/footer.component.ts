@@ -12,7 +12,8 @@ interface LinkItem {
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+  // Phone (≤767px) overrides live in their own file so the desktop sheet stays untouched.
+  styleUrls: ['./footer.component.scss', './footer.mobile.scss']
 })
 export class FooterComponent {
 

@@ -1,7 +1,7 @@
 import { Component, inject, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ToastService } from '../../services/toast.service';
 
 interface LeadForm {
@@ -14,9 +14,10 @@ interface LeadForm {
 @Component({
   selector: 'app-hero-carousel',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './hero-carousel.component.html',
-  styleUrls: ['./hero-carousel.component.scss']
+  // Phone (≤767px) overrides live in their own file so the desktop sheet stays untouched.
+  styleUrls: ['./hero-carousel.component.scss', './hero-carousel.mobile.scss']
 })
 export class HeroCarouselComponent {
 

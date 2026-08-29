@@ -1,0 +1,18 @@
+/* =========================================================
+   CONTACT US — PHONE (≤767px) ONLY
+   ========================================================= */
+@media (max-width: 767px) {
+
+  /* Grid items default to min-width:auto, so a card whose content (e.g.
+     "Message Us on WhatsApp") is wider than its 1fr share can force that
+     column wider than the other — the right column then overflows past
+     the container's own edge while the left one looks fine. minmax(0,1fr)
+     makes both columns actually honour the 1fr split. */
+  .methods-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .method-card {
+    min-width: 0;
+  }
+}

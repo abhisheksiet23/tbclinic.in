@@ -1,0 +1,25 @@
+/* =========================================================
+   ABOUT US — PHONE (≤767px) ONLY
+   ========================================================= */
+@media (max-width: 767px) {
+
+  /* The base styles size the trust pills with flex-wrap + min-width, which
+     is why they were one-per-row on some phone widths and 2-per-row on
+     others depending on exactly how much space was left over — a fixed
+     2-column grid is stable everywhere, and pins the 5th (odd) card to
+     span both columns instead of sitting half-width and off-centre. */
+  .trust-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.625rem;
+  }
+
+  .trust-pill {
+    min-width: 0;
+    width: auto;
+  }
+
+  .trust-pill:last-child {
+    grid-column: 1 / -1;
+  }
+}
