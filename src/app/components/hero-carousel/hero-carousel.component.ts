@@ -22,7 +22,7 @@ interface LeadForm {
 export class HeroCarouselComponent {
 
   staticBackgroundUrl: string = 'assets/Doctor.jpeg';
-  hospitals: string[] = ['Select Clinic (Nearest Metro)', 'Lawrence Road (Keshavuram, Red Line)', 'Mayur Vihar (Mayur Vihar Pocket-I, Pink Line)', 'Durgapuri (Shahdra, Red Line)', 'Uttam Nagar (Nawada, Blue Line)', 'Tigri (Saket, Yellow Line)'];
+  hospitals: string[] = ['Select Clinic (Nearest Metro)', 'Lawrence Road (Keshavpuram, Red Line)', 'Mayur Vihar (Mayur Vihar Pocket-I, Pink Line)', 'Durgapuri (Shahdra, Red Line)', 'Uttam Nagar (Nawada, Blue Line)', 'Tigri (Saket, Yellow Line)'];
 
   formData: LeadForm = {
     name: '',

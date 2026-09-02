@@ -23,17 +23,7 @@ export class HeaderComponent {
     }
   }
 
-  onBookAppointment(): void {
-    console.log('Book Appointment clicked');
-    this.closeMenu();
-  }
-
   onHelplineClick(): void {
     window.location.href = 'tel:+919218026183';
-  }
-
-  onNavigate(item: string): void {
-    console.log('Navigating to:', item);
-    this.closeMenu();
   }
 }

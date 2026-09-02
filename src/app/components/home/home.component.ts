@@ -84,9 +84,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
     ];
   }
 
-  /** These SVG fragments are hard-coded above, not user input — safe to trust. */
+  /**
+   * These SVG fragments are hard-coded above, not user input — safe to trust.
+   * Wrapped in a full <svg> element (rather than left as bare inner markup)
+   * so the template can bind them via [innerHTML] on a plain <span>: setting
+   * innerHTML directly on an <svg> element throws under SSR (NotYetImplemented).
+   */
   private trustIcon(svgInner: string): SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(svgInner);
+    return this.sanitizer.bypassSecurityTrustHtml(
+      `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${svgInner}</svg>`
+    );
   }
 
   /**
@@ -159,9 +166,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
     // actually centred is full-strength, the peeking neighbours are dimmed.
     const observer = new IntersectionObserver((entries) => {
       for (const entry of entries) {
-        entry.target.classList.toggle('is-active', entry.intersectionRatio > 0.6);
+        entry.target.classList.toggle('is-active', entry.intersectionRatio > 0.55);
       }
-    }, { root: rail, threshold: [0, 0.6, 1] });
+    }, { root: rail, threshold: [0, 0.55, 1] });
     steps.forEach(step => observer.observe(step));
   }
 

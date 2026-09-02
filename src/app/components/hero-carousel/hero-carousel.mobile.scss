@@ -50,7 +50,7 @@
   .hero-eyebrow        { order: 1; }
   .hero-headline       { order: 2; }
   .hero-lead           { order: 3; }
-  .hero-doctor-visual  { order: 4; }
+  .hero-social-proof   { order: 4; }
   .m-hero-stats        { order: 5; }
   .hero-cta-row        { order: 6; }
   .m-hero-trust        { order: 7; }
@@ -61,6 +61,12 @@
   .cta-label-full,
   .cta-label-short  { display: none; }
   .cta-label-phone  { display: inline; }
+
+  /* The photo is replaced on phones by the fuller desktop lead sentence plus
+     the social-proof badges (matching the reference), so the lead shows its
+     wide copy here rather than the shortened phone variant. */
+  .hero-lead .wide-only  { display: inline; }
+  .hero-lead .phone-only { display: none; }
 
   .hero-eyebrow {
     /* Same blue as every other eyebrow on the site (.section-eyebrow, the
@@ -94,8 +100,10 @@
     font-size: 0.85rem;
     line-height: 1.5;
     text-align: left;
-    max-width: none;
-    margin: 0 0 0.75rem;
+    /* Constrain the wide lead sentence so it wraps to ~4 lines (matching the
+       red guide marks in the reference) instead of stretching edge to edge. */
+    max-width: 17rem;
+    margin: 1rem 0;
   }
 
   /* ═══ Photo ═══
@@ -105,10 +113,41 @@
      buys back the vertical space the "fits in one screen" ask needs,
      without re-introducing the badly-cropped look. */
   .hero-doctor-visual {
+    /* Replaced on phones by the lead sentence + social-proof badges. */
+    display: none;
+
     --photo-w: none;
     width: 72%;
     max-width: 280px;
     margin: 0 auto 0.875rem;
+  }
+
+  /* ═══ Social proof badges (shown in place of the photo) ═══ */
+  .hero-social-proof {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 0.4rem;
+    margin: 0 0 0.875rem;
+  }
+
+  .hero-proof-badge {
+    flex: 1 1 0;
+    min-width: 0;
+    height: auto;
+    justify-content: center;
+    padding: 0.4rem 0.5rem;
+  }
+
+  .hero-proof-trophy img { width: 15px; height: 15px; }
+
+  .hero-rating-stars svg { width: 11px; height: 11px; }
+
+  .hero-proof-text {
+    font-size: 0.62rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .hero-doctor-card {
@@ -134,8 +173,7 @@
   /* Replaced by the video pill */
   .hero-doctor-caption,
   .hero-doctor-badge,
-  .clinic-strip,
-  .hero-social-proof {
+  .clinic-strip {
     display: none;
   }
 

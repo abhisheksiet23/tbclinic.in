@@ -72,19 +72,6 @@ export class NetworkComponent {
 ];
 
 
- // The network tabs are now simplified to reflect the actual branches
- networkCities: string[] = [
-  'All Locations',
- ];
- 
- // The contact info has been updated to remove "RG Hospitals" reference
- contactInfo = {
-  title: 'Our Network of Care',
- description: 'We are India\'s leading TB healthcare provider, offering exceptional medical services across our centers in Delhi.',
- phone: '+91 80 767 15740',
- email: 'info@tbclinic.com'
- };
- 
  // Currently highlighted branch (synced between map pins, clinic list & cards)
  activeIndex: number | null = null;
 

@@ -70,7 +70,7 @@ export class ContactUsComponent implements OnInit {
 
   readonly helpline = '+919218026183';
   readonly helplineDisplay = '+91 92-180-26183';
-  readonly whatsappHref = 'https://wa.me/918076715840?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20TB%20care';
+  readonly whatsappHref = 'https://wa.me/919218117493?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20TB%20care';
 
   contactMethods = [
     {
